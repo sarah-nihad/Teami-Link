@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Context from './component/context';
-import NotFound from './component/notfound';
+// import NotFound from './component/notfound';
 import Si from './Dashbord/Si';
 import Main from './Teami/Main';
 import './assets/css/nav1.css';
@@ -10,17 +10,24 @@ import LoginTeam from './Teami/LoginTeam';
 import SignupTeam from './Teami/SignupTeam';
 import Companysignup from './Teami/Companysignup';
 import Profile from './component/Profile';
+import Profile1 from './component/Profile1';
 import HomeCom from './Teami/HomeCom';
 import axios from 'axios';
 import HomeUser from './component/HomeUser';
+import Candidates from './component/Candidates';
 import host from './component/host';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route ,Switch } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import UserProfile from './Teami/UserProfile';
-import Company2 from './Teami/Company2';
-import Benefits from './Teami/Benefits';
-import Filter from './Teami/Filter';
+import Company_profile from './Teami/Company_profile';
+import Advertising from './Teami/Advertising';
+import Admin_login from './Teami/Admin_login';
 import ComLogin from './Teami/ComLogin';
+import Warning from './component/Warning';
+import Applidjob from './component/Applidjob';
+import Accept from './component/Accept';
+import finduser from './component/finduser';
+
 const cookies = new Cookies();
 class App extends Component {
   constructor() {
@@ -29,129 +36,229 @@ class App extends Component {
       pass: '',
       mail: '',
       data: [],
-      datas: [],
+      chech_userLOgin:'',
+      chech_compLOgin:'',
+      data1: [],
       data2: [],
       data3: [],
       data5: [],
+      data4:[],
+      data6:[],
+      data8:[],
+      data9:[],
+      data10:[],
+      data11:[],
       description: '',
       type_value: '',
       logo: '',
       category_id: '',
       rating: '',
       Image: '',
+      ads:'',
+      company_id:'',
+      status:'',
+      fdata1 :'',
       auth: null,
-      spin: true,
-      spin1: true,
-      spin2: true,
-      spin3: true,
-      spin4: true,
-      redirect: false,
+pro:[]
     }
 
   }
-  // componentDidMount() {
+   componentDidMount() {
 
-  //   if (cookies.get("token")) {
-  //     axios.get(host + 'api/v1/admin/checkadmin', { headers: { token: cookies.get("token") } })
-  //     .then(res => {
+    if (cookies.get("token_admin")) {
+      axios.get(host + 'api/v1/admin/auth/me', { headers: { token: cookies.get("token_admin") } })
+      .then(res => {
 
-  //       if (res.data.isAdmin === true) {
-  //         this.setState({ auth: true })
-  //       }
-  //     })
-  //     .catch(err => {
-  //       this.setState({ auth: false })
+        this.setState({
+          pro: res.data.profile
+        })
+        console.log(res.data.profile);
+        
+        if (res.data.profile.isActive === true) {
+          this.setState({ auth: true })
+        }
+    
+        
+      })
+      .catch(err => {
+        this.setState({ auth: false })
        
-  //       console.log('error:' + err);
-  //     })
-  //   }else{
-  //     this.setState({ auth: false })
-  //   }
+        console.log('error:' + err);
+      })
+    }else{
+      this.setState({ auth: false })
+    }
 
 
-  //   axios.get(host + 'api/v1/banner/')
-  //     .then(res => {
-  //     //  console.log(res.data.banner)
-  //       if (res.status === 200) {
-  //         this.setState({
-  //           datas: res.data.banner,
-  //           spin: false
-  //         })
-  //       }
-  //     }).catch(err => {
-  //       console.log('error:' + err)
-  //       this.setState({
-  //         spin: false
-  //       });
-  //     })
 
 
-  //   axios.get(host + 'api/v1/card/new')
-  //     .then(res => {
-  //       this.setState({
-  //         data: res.data.new,
-  //         spin1: false
-  //       })
-
-  //     })
-  //     .catch(err => {
-  //       console.log('error:' + err);
-  //       this.setState({
-
-  //         spin1: false
-  //       })
-  //     })
-
-  //   axios.get(host + 'api/v1/card/special')
-  //     .then(res => {
-  //       // console.log(res.data.hot_deal)
-  //       this.setState({
-  //         data3: res.data.hot_deal,
-  //         spin2: false
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log('error:' + err);
-  //       this.setState({
-
-  //         spin2: false
-  //       })
-  //     })
 
 
-  //   axios.get(host + 'api/v1/recommend/')
-  //     .then(res => {
-  //       // console.log(res.data.rec)
-  //       this.setState({
-  //         data2: res.data.rec,
-  //         spin3: false
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log('error:' + err);
-  //       this.setState({
-
-  //         spin3: false
-  //       })
-  //     })
 
 
-  //   axios.get(host + 'api/v1/cat/visited')
-  //     .then(res => {
-  //       // console.log(res.data.visited)
-  //       this.setState({
-  //         data5: res.data.visited,
-  //         spin4: false
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log('error:' + err);
-  //       this.setState({
+var token= cookies.get("token") ;
+var Usertoken= cookies.get("Usertoken") ;
+if (Usertoken) {
+  axios.get(host + 'api/v1/auth/profile', { headers: { token: cookies.get("Usertoken") } })
+  .then(res => {
+  
+    this.setState({
+      data: res.data.data,
+      chech_userLOgin:'login',
+    data1:res.data.data.experience,
+    data2:res.data.data.training,
 
-  //         spin4: false
-  //       })
-  //     })
-  // }
+    })
+  // console.log(res.data.data.experience);
+  
+
+  })
+  .catch(err => {
+    this.setState({
+      chech_userLOgin:'notlogin',
+    })
+    console.log('error:' + err);
+  })
+
+
+  axios.get(host + 'api/v1/Advertising/me', { headers: { token: cookies.get("Usertoken") } })
+  .then(res => {
+  
+    this.setState({
+      data3: res.data.ads
+    })
+ 
+  })
+  .catch(err => {
+    console.log('error:' + err);
+  })
+
+
+
+
+  axios.get(host + 'api/v1/user/job/', { headers: { token: cookies.get("Usertoken") } })
+  .then(res => {
+  
+    this.setState({
+      data8: res.data.result
+    })
+    // console.log(res.data.result);
+  })
+  .catch(err => {
+    console.log('error:' + err);
+  })
+
+
+
+ 
+}
+  
+if (token) {
+
+
+  axios.get(host + 'api/v1/Company/profile', { headers: { token: cookies.get("token") } })
+  .then(res => {
+  
+    this.setState({
+      data4: res.data.profile,
+      chech_compLOgin:'login'
+
+    })
+    // console.log(res.data.data);
+
+  })
+  .catch(err => {
+    console.log('error:' + err);
+    this.setState({
+      chech_compLOgin:'notlogin',
+    })
+  })
+
+
+
+
+  axios.get(host + 'api/v1/Company/job/', { headers: { token: cookies.get("token") } })
+  .then(res => {
+  // console.log(res.data.result);
+  let data=res.data.result
+
+  let fdata=data.filter(d=>
+    d.status==="reject"
+    )
+
+    // console.log('fdata',fdata);
+    
+
+    this.setState({
+      data9:fdata
+    })
+    let fdata1=data.filter(d=>
+      d.status==="received "
+      )
+      // console.log('fdata1',fdata1);
+      // console.log(fdata1);
+      
+      this.setState({
+        data10: fdata1 
+      })
+      let fdata2=data.filter(d=>
+        d.status==="Watting"
+        )
+     
+        // console.log(fdata2);
+        
+        this.setState({
+          data11: fdata2 
+        })
+
+  })
+  .catch(err => {
+    console.log('error:' + err);
+  })
+
+
+
+
+
+  axios.get(host + 'api/v1/Advertising/my', { headers: { token: cookies.get("token") } })
+  .then(res => {
+  
+    this.setState({
+      data6: res.data.result
+    })
+    // console.log(res.data.result);
+  })
+  .catch(err => {
+    console.log('error:' + err);
+  })
+
+
+
+}
+  
+// }else
+    
+    //ckeck user type
+
+    //if user type == user call users reqs
+
+    //else user type== com call comp req
+
+
+
+
+
+
+
+ 
+
+  
+  
+
+
+
+ 
+   }
 
   render() {
     return (
@@ -170,31 +277,30 @@ class App extends Component {
             <Route exact path='/HomeUser' component={HomeUser} />
              <Route path='/UserProfile' component={UserProfile} />
             <Route path='/Profile' component={Profile} />
+            <Route path='/Profile1' component={Profile1} />
         <Route path='/HomeCom' component={HomeCom} /> 
-        <Route path='/Company2' component={Company2} /> 
-        <Route path='/Benefits' component={Benefits} /> 
-        <Route path='/Filter' component={Filter} /> 
+        <Route path='/Company_profile' component={Company_profile} /> 
+        <Route path='/Advertising' component={Advertising} /> 
+     
+        <Route path='/Applidjob' component={Applidjob} /> 
+        <Route path='/Warning' component={Warning} /> 
         <Route path='/ComLogin' component={ComLogin} /> 
-            {/* <Route path='/NotFound' component={NotFound} />    */}
-            {/* <Switch> */}
-              {/* <Route path='/Home' component={Si} /> */}
-              {/* <Route path='/Addsection' component={Si} />
-              <Route path='/Addcompany' component={Si} />
-              <Route path='/Addbanner' component={Si} />
-              <Route path='/Addrecomnd' component={Si} />
-              <Route path='/Addprofile' component={Si} />
-              <Route path='/Addcard' component={Si} />
-              <Route path='/Resturant' component={Si} />
-              <Route path='/Section1' component={Si} />
-              <Route path='/Category1' component={Si} />
+        <Route path='/Candidates' component={Candidates} /> 
+        <Route path='/finduser' component={finduser} /> 
+        <Route path='/Accept' component={Accept} /> 
+            <Route path='/Admin_login' component={Admin_login} />   
+            <Switch>
+            <Route path='/Home' component={Si} />
+            <Route path='/Change' component={Si} />
+            <Route path='/User' component={Si} />
+              <Route path='/Alluser' component={Si} />
+              <Route path='/Alladvertise' component={Si} />
+              <Route path='/Alljob' component={Si} />
               <Route path='/Addusers' component={Si} />
-              <Route path='/Allcard' component={Si} />
-              <Route path='/Allbanner' component={Si} />
-              <Route path='/Description' component={Si} />
-              <Route path='/Ratingdescription' component={Si} />
-              <Route path='/Addpos' component={Si} />
-              <Route path='/Allrecomnd' component={Si} />
-            </Switch> */}
+              <Route path='/Company' component={Si} />
+              <Route path='/Allcompany' component={Si} />
+           
+            </Switch> 
           </Context.Provider>
         </BrowserRouter>
 

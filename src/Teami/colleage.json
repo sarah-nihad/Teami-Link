@@ -1,0 +1,43 @@
+[
+    {
+        "name":"Medicine ",
+        "data":["Medicine "]
+    },
+    {
+        "name":"Veternary",
+        "data":["Veternary"]
+    },
+    {
+        "name":"Pharmacy ",
+        "data":["Pharmacy "]
+    },
+    {
+        "name":"Biology Scince",
+        "data":["Biology Scince"]
+    },
+    {
+        "name":"Chemistry scince",
+        "data":["Chemistry scince"]
+    },
+    {
+        "name":"Physics Scince",
+        "data":["Physics Scince"]
+    },
+    {
+        "name":"Business Adminsteation",
+        "data":["Business Adminsteation"]
+    },
+    {
+        "name":"Economics",
+        "data":["Economics"]
+    },
+    {
+        "name":"other",
+        "data":["other"]
+    },
+    {
+        "name":"all",
+        "data":["all"]
+    }
+   
+]

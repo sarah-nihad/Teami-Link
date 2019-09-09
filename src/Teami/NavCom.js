@@ -1,40 +1,40 @@
 import React from 'react';
-import { Navbar, Nav, InputGroup } from 'react-bootstrap';
+import { Navbar, Nav} from 'react-bootstrap';
 import { NavLink} from 'react-router-dom';
-import axios from 'axios';
-import host from '../component/host';
-import Autosuggest from 'react-autosuggest';
+// import axios from 'axios';
+// import host from '../component/host';
+// import Autosuggest from 'react-autosuggest';
 import Context from '../component/context';
-import { Popover, Pane, Avatar } from 'evergreen-ui';
+// import { Popover, Pane, Avatar } from 'evergreen-ui';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 
-var languages = [];
-var id = '';
-const getSuggestions = value => {
+// var languages = [];
+// var id = '';
+// const getSuggestions = value => {
 
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
+//   const inputValue = value.trim().toLowerCase();
+//   const inputLength = inputValue.length;
 
 
-  return inputLength === 0 ? [] : languages.filter(lang =>
+//   return inputLength === 0 ? [] : languages.filter(lang =>
 
-    lang.name.toLowerCase().slice(0, inputLength) === inputValue
+//     lang.name.toLowerCase().slice(0, inputLength) === inputValue
 
-  );
-};
+//   );
+// };
 
-function getSuggestionValue(suggestion) {
-  id = suggestion._id
-  return suggestion.name
+// function getSuggestionValue(suggestion) {
+//   id = suggestion._id
+//   return suggestion.name
 
-}
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.name}
-  </div>
-);
+// }
+// const renderSuggestion = suggestion => (
+//   <div>
+//     {suggestion.name}
+//   </div>
+// );
 
 
 
@@ -66,29 +66,29 @@ class NavCom extends React.Component {
 
 
 
-  onChange = (event, { newValue }) => {
+  // onChange = (event, { newValue }) => {
 
     //   var name=newValue.split
     //  var res = name.split("  ");
-    this.setState({
-      value: newValue
-    });
+  //   this.setState({
+  //     value: newValue
+  //   });
 
-  };
-  onSuggestionsFetchRequested = ({ value }) => {
+  // };
+  // onSuggestionsFetchRequested = ({ value }) => {
 
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
-  };
+  //   this.setState({
+  //     suggestions: getSuggestions(value)
+  //   });
+  // };
 
   // Autosuggest will call this function every time you need to clear suggestions.
-  onSuggestionsClearRequested = () => {
+  // onSuggestionsClearRequested = () => {
 
-    this.setState({
-      suggestions: []
-    });
-  };
+  //   this.setState({
+  //     suggestions: []
+  //   });
+  // };
 
   
   openModal() {
@@ -117,16 +117,16 @@ class NavCom extends React.Component {
   });
   }
   render() {
-    const { value, suggestions } = this.state;
+    // const { value, suggestions } = this.state;
 
     // Autosuggest will pass through all these props to the input.
-    const inputProps = {
-      placeholder: '',
-      value,
-      width: '400px',
-      onChange: this.onChange,
+    // const inputProps = {
+    //   placeholder: '',
+    //   value,
+    //   width: '400px',
+    //   onChange: this.onChange,
 
-    };
+    // };
 
     return (
       <Context.Consumer>{ctx => {
@@ -150,7 +150,7 @@ class NavCom extends React.Component {
 
 
 
-                <div id='itemnav' >
+                <div id='itemnavcom' >
                
                   <div id='ssteamnav'>
 <div id='teamnav'>
@@ -161,14 +161,20 @@ class NavCom extends React.Component {
                  
                   <div id='teamnav'>
                   <i className="fas fa-award"></i>
-                    <NavLink to='./Benefits'> Benefits </NavLink>
+                    <NavLink to='./Advertising'> 
+Advertisement</NavLink>
 </div>
                  
                    
        
                   <div id='teamnav'>
                   <i className="fas fa-user"></i>
-                  <NavLink to='./Company2' >  Profile   </NavLink>
+                  <NavLink to='./Company_profile' >  Profile   </NavLink>
+                  </div>
+
+                  <div id='teamnav'>
+                  <i className="fas fa-users"></i>
+                  <NavLink to='./Candidates' > Candidates  </NavLink>
                   </div>
           
                   <div id='teamnav'>

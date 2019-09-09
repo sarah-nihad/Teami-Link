@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap';
-import { TextInput, toaster } from 'evergreen-ui';
+import { TextInput } from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -66,7 +66,7 @@ class Companysignup extends Component {
                   <div style={{ lineHeight: '30px', fontWeight: '400', color: '#fff', textAlign: 'center' }} id='textmaint1' > Make the most of your professional life</div>
                      <div style={{fontSize:'24px',fontWeight:'400',color:'#fff',paddingTop:'3%'}}>Company Sign Up</div>
                 </Row>
-                <Row style={{ marginRight: '0px' }} id='rowlogins1c' style={{ width: '90%' }}>
+                <Row style={{ marginRight: '0px', width: '90%' }} id='rowlogins1c' >
 
                   <Col xs={12} md={6}>
                  

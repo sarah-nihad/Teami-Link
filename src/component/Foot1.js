@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Row, Col } from 'react-bootstrap';
+// import { Row, Col } from 'react-bootstrap';
 // import { Link, Redirect } from 'react-router-dom';
 class Foot1 extends Component {
     render() {

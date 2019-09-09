@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Row,Col} from 'react-bootstrap';
-import {TextInput,toaster} from 'evergreen-ui';
+import {TextInput} from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 
@@ -30,7 +30,7 @@ import Cookies from 'universal-cookie';
           // if (response === 200) {
             window.location.href = '/HomeCom'
             cookies.set("token",response.data.token,{
-              path:'/HomeCom',
+              path:'/',
               expires:new Date(Date.now() + 60480000)
             }
             );

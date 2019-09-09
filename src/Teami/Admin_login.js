@@ -8,7 +8,7 @@ import { Link} from 'react-router-dom';
 import Context from '../component/context';
 import Cookies from 'universal-cookie';
  const cookies =new Cookies();
- class LoginTeam extends Component{
+ class Admin_login extends Component{
     constructor(props){
         super(props);
     this.state={
@@ -19,37 +19,11 @@ import Cookies from 'universal-cookie';
      
     }}
 
-    // login(){
-    //   var password=this.state.password;
-    //    var phone=this.state.phone; 
-    //    let formData = new FormData();
-    //    var headers = {
-    //      "Content-Type": "application/json",
-    //      token: cookies.get("token")
-    //    };
-    //    formData.append("phone", phone);
-    //    formData.append("password", password);
-  
-    //    axios({
-    //      url:host+ `api/v1/user/login/`,
-    //      method: "POST",
-    //      data: formData,
-    //        headers: headers
-    //    })
-    //      .then(response => {
-    //       toaster.success('تم تسجيل الدخول بنجاح');
-    //      })
-    //      .catch(function (error) {
-    //        if (error.response) {
-    //          toaster.danger('قم بأدخال رقم الموبايل و الباسورد');
-    //        }
-    //      });
 
-    //     }
 
     login(e) {
-      // e.preventDefault()
-      axios.post(host + `api/v1/auth/login`, {
+   
+      axios.post(host + `api/v1/admin/auth/login`, {
         email: this.state.email,
         password: this.state.password
       })
@@ -57,27 +31,18 @@ import Cookies from 'universal-cookie';
         .then(response => {
           console.log(response.data);
       
-            if (response.data.redirect === false) {
-         window.location.href = '/HomeUser'
-            cookies.set("Usertoken",response.data.token,"redirect",response.data.redirect,{
+            // if (response.data.redirect === false) {
+         window.location.href = '/Home'
+            cookies.set("token_admin",response.data.token,"redirect",response.data.redirect,{
               path:'/',
               expires:new Date(Date.now() + 60480000),
               
             }
          
             );
-          }
+        //   }
 
-         else if (response.data.redirect === true) {
-            window.location.href = '/Warning'
-               cookies.set("Usertoken",response.data.token,"redirect",response.data.redirect,{
-                 path:'/',
-                 expires:new Date(Date.now() + 60480000),
-                 
-               }
-            
-               );
-             }
+  
 
 
 
@@ -130,9 +95,9 @@ import Cookies from 'universal-cookie';
 </div>
 
 
-<div id='forgot'>
+{/* <div id='forgot'>
   <p id='p3'>Forgot Password?</p>
-</div>
+</div> */}
        
         <div id='log1'>
      <button  id='log'     onClick={(e) => {
@@ -143,7 +108,7 @@ import Cookies from 'universal-cookie';
         </button>
    
      </div>
-    <div id='teamfree'>New User?
+    {/* <div id='teamfree'>New User?
     <div className="dropdown3">
 
      <div  style={{paddingLeft:'10px',color:'#3e91b3'}}> Sign up FREE Now </div>
@@ -162,7 +127,7 @@ import Cookies from 'universal-cookie';
        </div>
        </div>
 
-  </div>
+  </div> */}
         </Col>
     </Row>
 </div>
@@ -180,4 +145,4 @@ import Cookies from 'universal-cookie';
         
     }
 }
-export default LoginTeam;
+export default Admin_login;

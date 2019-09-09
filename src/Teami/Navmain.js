@@ -1,17 +1,13 @@
 import React from 'react';
 import { Navbar, Nav} from 'react-bootstrap';
-import { NavLink,Link} from 'react-router-dom';
-import axios from 'axios';
-import host from '../component/host';
-// import Autosuggest from 'react-autosuggest';
+import { Link} from 'react-router-dom';
 import Context from '../component/context';
 import { Popover, Pane,Button } from 'evergreen-ui';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+
+
 
 
 var languages = [];
-var id = '';
 const getSuggestions = value => {
 
   const inputValue = value.trim().toLowerCase();
@@ -25,16 +21,6 @@ const getSuggestions = value => {
   );
 };
 
-function getSuggestionValue(suggestion) {
-  id = suggestion._id
-  return suggestion.name
-
-}
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.name}
-  </div>
-);
 
 
 
@@ -68,8 +54,7 @@ class Navmain extends React.Component {
 
   onChange = (event, { newValue }) => {
 
-    //   var name=newValue.split
-    //  var res = name.split("  ");
+
     this.setState({
       value: newValue
     });
@@ -82,7 +67,7 @@ class Navmain extends React.Component {
     });
   };
 
-  // Autosuggest will call this function every time you need to clear suggestions.
+
   onSuggestionsClearRequested = () => {
 
     this.setState({
@@ -117,15 +102,7 @@ class Navmain extends React.Component {
   });
   }
   render() {
-    const { value, suggestions } = this.state;
-    const inputProps = {
-      placeholder: '',
-      value,
-      width: '400px',
-      onChange: this.onChange,
-
-    };
-
+ 
     return (
       <Context.Consumer>{ctx => {
         return (
@@ -166,8 +143,24 @@ class Navmain extends React.Component {
      <div id='stnav' style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}} > 
      <Link to='./LoginTeam' style={{textDecoration:'none'}}> User Login   </Link>  </div>
      </div>
+     <div style={{paddingBottom:'10%'}} >
    <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
       <Link to='./ComLogin'style={{textDecoration:'none'}} > Company Login  </Link>  </div>
+      </div>
+      {ctx.value.auth === false ? (
+      <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
+      <Link to='./Admin_login'style={{textDecoration:'none'}} > Admin Login  </Link>  </div>
+       ) : (<React.Fragment>
+
+<div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
+      <Link to='./Home'style={{textDecoration:'none'}} > Dashbord   </Link></div>
+       </React.Fragment>)}
+      {/* {ctx.value.auth === true ? ( */}
+                          
+                           {/* <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
+      <Link to='./Home'style={{textDecoration:'none'}} > Dashbord   </Link></div> */}
+                          
+                          {/* ) : (<React.Fragment></React.Fragment>)} */}
 
 
     </Pane>
@@ -176,11 +169,6 @@ class Navmain extends React.Component {
   <Button> Login </Button>
 </Popover>
             
-
-             
-                    {/* <NavLink to='/LoginTeam' style={{textDecoration:'none'}} >
-                    <Button> Log in </Button>
-                    </NavLink> */}
                 
            
                   <Popover
@@ -207,23 +195,16 @@ class Navmain extends React.Component {
   <Button> Sign Up </Button>
 </Popover>
    
-              
-             
-                
-               
-              
+            
                 </div>
-
-
-
 
               {/* </Navbar.Collapse> */}
 
             </Navbar>
             <div className="container1">
-              {/* <div style={{float:'right'}}> */}
+      
 <img src={require('../assets/img/Bg.png')} id='homeimgteam' alt='img'  />
-{/* </div> */}
+
 <div className="text-block">
   
   </div>
@@ -240,12 +221,6 @@ Welcome to your professional community
 
 
 </div>
-
-
-
-
-
-
 
           </div>
         )

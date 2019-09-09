@@ -1,0 +1,27 @@
+[
+    {
+        "name":"Pharmacuitical Drugs",
+        "data":["Pharmacuitical Drugs"]
+    },
+    {
+        "name":"Food Suplement",
+        "data":["Food Suplement"]
+    },
+    {
+        "name":"Medical Device",
+        "data":["Medical Device"]
+    },
+    {
+        "name":"Children Milk",
+        "data":["Children Milk"]
+    },
+    {
+        "name":"Medical Instrument",
+        "data":["Medical Instrument"]
+    },
+    {
+        "name":"other",
+        "data":["other"]
+    }
+   
+]

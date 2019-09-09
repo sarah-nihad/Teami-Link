@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Row,Col} from 'react-bootstrap';
-import {TextInput,toaster} from 'evergreen-ui';
+import {TextInput} from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 import { Link} from 'react-router-dom';
@@ -27,21 +27,52 @@ import Cookies from 'universal-cookie';
         name: this.state.name
       })
   
-        .then(response => {
-          // if (response === 200) {
-            window.location.href = '/HomeUser'
-            cookies.set("token",response.data.token,{
-              path:'/HomeUser',
-              expires:new Date(Date.now() + 60480000)
-            }
-            );
-          // }
-        })
-        .catch(function (error) {
-          console.log(error.message)
-        });
-    }
+    //     .then(response => {
+       
+    //         window.location.href = '/HomeUser'
+    //         cookies.set("Usertoken",response.data.token,{
+    //           path:'/',
+    //           expires:new Date(Date.now() + 60480000)
+    //         }
+    //         );
+      
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error.message)
+    //     });
+    // }
+    .then(response => {
+      console.log(response.data);
+  
+        if (response.data.redirect === false) {
+     window.location.href = '/HomeUser'
+        cookies.set("Usertoken",response.data.token,"redirect",response.data.redirect,{
+          path:'/',
+          expires:new Date(Date.now() + 60480000),
+          
+        }
+     
+        );
+      }
 
+     else if (response.data.redirect === true) {
+        window.location.href = '/Warning'
+           cookies.set("Usertoken",response.data.token,"redirect",response.data.redirect,{
+             path:'/',
+             expires:new Date(Date.now() + 60480000),
+             
+           }
+        
+           );
+         }
+
+
+
+    })
+    .catch(function (error) {
+      console.log(error.message)
+    });
+}
     
 
     render(){
@@ -49,9 +80,7 @@ import Cookies from 'universal-cookie';
      
           <Context.Consumer>{ctx => {
             return (
-            <div id='mm'>
-        
-       
+            <div id='mm'>     
               <div id='m2'>
             
 <div id='main'>

@@ -62,5 +62,10 @@
     {
         "name":"General manager",
         "data":["General manager"]
+    },
+    {
+        "name":"other",
+        "data":["other"]
     }
+   
 ]

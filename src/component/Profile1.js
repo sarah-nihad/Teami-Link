@@ -6,11 +6,9 @@ import Context from '../component/context';
 import { Row, Col } from 'react-bootstrap';
 import { Redirect} from 'react-router-dom';
 import Nav2 from './Nav2';
-// import { Link} from 'react-router-dom';
-// import Select from 'react-select';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 
-// import Cookies from 'universal-cookie';
-// const cookies = new Cookies();
 
 class Company2 extends React.Component {
   constructor() {
@@ -82,7 +80,7 @@ class Company2 extends React.Component {
         <div style={{ backgroundColor: '#F5F5F5' }}>
 
 
-<Row style={{ marginRight: '0px' }} id='filrow1'>
+<Row style={{ marginRight: '0px' }} id='filrow1cooo'>
 
   <Col xs={12} id='colpost23' >
    <div id='adver'>
@@ -96,34 +94,26 @@ class Company2 extends React.Component {
 </div>
 <div id='abbtext'>
 <div  style={{paddingBottom:'2%',display:'flex',justifyContent:'space-between',width:'100%'}}>
-<div style={{paddingLeft:'2%',fontSize:'24px',paddingBottom:'2%',width:'50%'}}>{this.state.data1.company_name} </div>
-
-
-
-
-
-
-
-
-
-
+<div style={{paddingLeft:'2%',fontSize:'24px',paddingBottom:'2%',width:'100%'}}>{this.state.data1.company_name} </div>
 
 
 </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'20px'}}> 
-<span style={{color:'#1A5491'}} >Office Name : </span>  {this.state.data1.OfficeName} </div>
+<span style={{color:'#1A5491'}} id='nbhk' >Office Name : </span> <span id='s2drv'  >  {this.state.data1.OfficeName} </span> </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} >Company Name : </span>  {this.state.data1.name} </div>
-<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > Position : </span> {this.state.data1.Position} </div>
+<span style={{color:'#1A5491'}} id='nbhk'  >Company Name : </span> <span id='s2drv' >  {this.state.data1.company_name}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} > Ctiy : </span> {this.state.data1.ctiy}</div>
+<span style={{color:'#1A5491'}} id='nbhk' > Name : </span> <span id='s2drv' >  {this.state.data1.name}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > E-mail : </span> {this.state.data1.email}  </div>
-<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > Phone : </span> {this.state.data1.phone} </div>
+<span style={{color:'#1A5491'}} id='nbhk' > Position : </span> <span id='s2drv' >  {this.state.data1.Position}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} > Number Of Team : </span> {this.state.data1.numberOfTeam} </div>
+<span style={{color:'#1A5491'}}  id='nbhk'> Ctiy : </span> <span id='s2drv'>  {this.state.data1.ctiy} </span> </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
+<span style={{color:'#1A5491'}}  id='nbhk' > E-mail : </span>  <span id='s2drv' > {this.state.data1.email} </span>  </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
+<span style={{color:'#1A5491'}}  id='nbhk' > Phone : </span> <span id='s2drv' >   {this.state.data1.phone} </span> </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
+<span style={{color:'#1A5491'}}  id='nbhk'> Number Of Team : </span> <span id='s2drv' >  {this.state.data1.numberOfTeam}</span>  </div>
             </div>
 
 
@@ -149,7 +139,16 @@ class Company2 extends React.Component {
           )
         }else if (ctx.value.chech_userLOgin==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+        options={{
+          animationData: jssson,
+        }}
+        width={300}
+        height={300}
+      />
+        </div>
           )
         }
 

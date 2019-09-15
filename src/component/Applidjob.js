@@ -7,6 +7,9 @@ import Context from '../component/context';
 import Cookies from 'universal-cookie';
 import host from './host';
 import '../assets/css/teami.css';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
+// import '@lottiefiles/lottie-player';
 const cookies = new Cookies();
 class Applidjob extends Component {
   constructor(props) {
@@ -56,7 +59,9 @@ class Applidjob extends Component {
 
              }}  style={{cursor:'pointer'}}   >
 
-<div   >  <img src={host + item.company_id.File} style={{height:'100px',width:'100px',borderRadius:'300px'}} alt='img'  /></div>
+<div   >  
+  <img src={host + item.company_id.File} style={{height:'100px',width:'100px',borderRadius:'300px'}} alt='img'  />
+  </div>
 <div style={{display:'flex',width:'100%',alignItems:'center',justifyContent:'spase-between'}} id='job2w3' >
 <div style={{width:'100%',paddingLeft:'2%'}}  >
 <div style={{width:'100%'}}>Name :  {item.company_id.name} </div>
@@ -71,8 +76,8 @@ class Applidjob extends Component {
 
 
 <div style={{width:'100%',paddingLeft:'2%'}} >
-<div style={{width:'100%'}}> status</div>
-<div style={{width:'100%'}}> {item.status}</div>
+<div style={{width:'100%'}}> status  :   <span style={{paddingLeft:'5px'}}> {item.status}</span>     </div>
+
 </div>
 
 
@@ -105,7 +110,16 @@ class Applidjob extends Component {
           )
         }else if (ctx.value.chech_userLOgin==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+        options={{
+          animationData: jssson,
+        }}
+        width={300}
+                height={300}
+      />
+        </div>
           )
         }
 

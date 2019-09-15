@@ -27,7 +27,7 @@ class Resturant extends Component{
       rating:'',
       has_more:false,
       page:1,
-      limit:2
+      limit:50
 
     }
     this.getData =this.getData.bind(this)
@@ -146,8 +146,8 @@ axios({
             //     <h3>{d.name}</h3>
              
             // </li>
-<div>
-<Table striped bordered hover>
+<div id='tabss'   >
+<Table striped bordered hover responsive  >
   <thead>
     <tr>
       <th>Name</th>

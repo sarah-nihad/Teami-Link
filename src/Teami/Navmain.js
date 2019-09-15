@@ -155,12 +155,7 @@ class Navmain extends React.Component {
 <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
       <Link to='./Home'style={{textDecoration:'none'}} > Dashbord   </Link></div>
        </React.Fragment>)}
-      {/* {ctx.value.auth === true ? ( */}
-                          
-                           {/* <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
-      <Link to='./Home'style={{textDecoration:'none'}} > Dashbord   </Link></div> */}
-                          
-                          {/* ) : (<React.Fragment></React.Fragment>)} */}
+      
 
 
     </Pane>
@@ -206,7 +201,7 @@ class Navmain extends React.Component {
 <img src={require('../assets/img/Bg.png')} id='homeimgteam' alt='img'  />
 
 <div className="text-block">
-  
+ 
   </div>
 
   <div id='text-block'>

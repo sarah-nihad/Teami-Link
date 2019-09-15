@@ -11,16 +11,18 @@ import State from './state.json';
 import speciality from './speciality.json';
 import position2 from '../json/position2.json';
 import city1 from '../json/city1.json';
+import state from '../json/state.json';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const city = State;
 var sp = speciality;
 var pos = position2;
+var st = state;
 var cit = city1;
 const options = [
-  { value: 'true', label: 'true' },
-  { value: 'false', label: 'false' },
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
   { value: 'all', label: 'all' },
 
 ]
@@ -39,8 +41,8 @@ const options2 = [
 ]
 
 const options3 = [
-  { value: 'yes', label: 'yes' },
-  { value: 'no', label: 'no' },
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
 
 
 ]
@@ -67,7 +69,7 @@ const options5 = [
   { value: 'Team Leader', label: 'Team Leader' },
   { value: 'Educator', label: 'Educator' },
   { value: 'Data Entry', label: 'Data Entry' },
-  { value: 'Store manager', label: 'Store manager' },
+  { value: 'Warehouse', label: 'Warehouse' },
   { value: 'Merchendiser', label: 'Merchendiser' },
   { value: 'Product Specialist', label: 'Product Specialist' },
   { value: 'Product Manager', label: 'Product Manager' },
@@ -158,6 +160,7 @@ class MainCom extends React.Component {
       Positioninput: '',
       specialityofDoctor: '',
       wait1: true,
+      wait: true,
       exp1: '',
       poss: '',
    
@@ -183,7 +186,16 @@ class MainCom extends React.Component {
     return arr
   }
 
+  stateFun() {
 
+    var arr = [{ value: 'st', label: 'city' }];
+    for (let i = 0; i < st.length; i++) {
+      arr.push(
+        { value: st[i].name, label: st[i].name }
+      )
+    }
+    return arr
+  }
 
 
 
@@ -196,13 +208,22 @@ class MainCom extends React.Component {
       token: cookies.get("token")
     };
 
-    if (this.state.exp1 === 'yes') {
+    if (this.state.exp1 === 'Yes') {
       formData.append("collage", this.state.Collage1)
       formData.append("position", this.state.Positioninput)
       formData.append("category", this.state.category);
-      formData.append("speciality", this.state.Speciality);
+      // formData.append("speciality", this.state.Speciality);
+if (this.state.Positioninput === 'Medical Supervisor' || this.state.Positioninput ==='Medical Representative' || this.state.Positioninput ==='Product Specialist'
+|| this.state.Positioninput ==='Product Manager'  || this.state.Positioninput ==='General manager'|| this.state.Positioninput ==='Team Leader') {
+  formData.append("speciality", this.state.Speciality);
+}
+else{
+  formData.append("speciality", "all");
+}
+
+
     }
-    else if (this.state.exp1 === 'no') {
+    else if (this.state.exp1 === 'No') {
       formData.append("collage", "all")
       formData.append("position", "all")
       formData.append("category", "all");
@@ -231,15 +252,21 @@ class MainCom extends React.Component {
       })
       .catch(function (error) {
 
-        if (error.response) {
-        }
+        console.log(error.response.data.error)
+        toaster.danger(error.response.data.error);
       });
 
   }
 
-  positionwait() {
+  expnwait() {
     this.setState({
       wait1: false
+    })
+
+  }
+  positionwait() {
+    this.setState({
+      wait: false
     })
 
   }
@@ -298,7 +325,7 @@ class MainCom extends React.Component {
                               >
 
                                 <div id='dd'>
-                                  <div>title :</div>
+                                  <div>Title :</div>
                                   <TextInput id='width'
                                     name="text-input-name"
                                     placeholder="title"
@@ -307,7 +334,7 @@ class MainCom extends React.Component {
                                     }} />
                                 </div>
                                 <div id='dd'>
-                                  <div> text :</div>
+                                  <div> Text :</div>
                                   <TextInput id='width'
                                     name="text-input-name"
                                     placeholder="text ..."
@@ -326,7 +353,7 @@ class MainCom extends React.Component {
 
 
                                 <div id='dd'>
-                                  <div> ctiy :</div>
+                                  <div> City :</div>
                                   <Select
                                     onChange={(e) => {
                                       if (e.value !== 'city') {
@@ -334,13 +361,13 @@ class MainCom extends React.Component {
                                         console.log(e.value);
                                       }
                                     }}
-                                    defaultValue={this.CityFun()[0]}
-                                    options={this.CityFun()}
+                                    defaultValue={this.stateFun()[0]}
+                                    options={this.stateFun()}
                                   />
                                 </div>
 
                                 <div id='dd'>
-                                  <div> gender :</div>
+                                  <div> Gender :</div>
 
                                   <Select
                                     onChange={(e) => {
@@ -399,9 +426,9 @@ class MainCom extends React.Component {
                                     onChange={(e) => {
                                       this.setState({ exp1: e.value })
                                       console.log(e.value);
-                                      if (e.value === 'yes') {
+                                      if (e.value === 'Yes') {
                                         setTimeout(() => {
-                                          this.positionwait()
+                                          this.expnwait()
                                         }, 200);
                                       }
 
@@ -423,12 +450,40 @@ class MainCom extends React.Component {
                                         onChange={(e) => {
                                           this.setState({ Positioninput: e.value })
                                           console.log(e.value);
+                                          if (e.value === 'Medical Supervisor' || e.value ==='Medical Representative' || e.value ==='Product Specialist'
+                                          || e.value ==='Product Manager'  || e.value ==='General manager'|| e.value ==='Team Leader') {
+                                            setTimeout(() => {
+                                              this.positionwait()
+                                            }, 200);
+
+                                          }
                                         }}
+                                        
                                         options={options5}
                                       />
-
-
                                     </div>
+
+{!this.state.wait ?(
+
+  <div id='dd'>
+  <div> Speciality of Doctor:</div>
+
+  <Select
+    onChange={(e) => {
+      this.setState({ Speciality: e.value })
+      console.log(e.value);
+    }}
+    options={options7}
+  />
+
+</div>
+):(
+  <div></div>
+)
+
+}
+
+
 
 
                                     <div id='dd'>
@@ -445,18 +500,7 @@ class MainCom extends React.Component {
                                     </div>
 
 
-                                    <div id='dd'>
-                                      <div> Speciality of Doctor:</div>
-
-                                      <Select
-                                        onChange={(e) => {
-                                          this.setState({ Speciality: e.value })
-                                          console.log(e.value);
-                                        }}
-                                        options={options7}
-                                      />
-
-                                    </div>
+                            
 
                                     <div id='dd'>
                                       <div> Phamacuitical Category:</div>
@@ -542,7 +586,7 @@ class MainCom extends React.Component {
                                       height={180}
                                       width={280}
                                       isMultiSelect
-                                      title="speciality"
+                                      title="Speciality of Doctor"
                                       options={state.options}
                                       selected={state.selected}
                                       onSelect={item => {
@@ -582,6 +626,9 @@ class MainCom extends React.Component {
                                           selectedNames = selectedItemsLength.toString() + ' selected...'
                                         }
                                         setState({ selected: selectedItems, selectedNames })
+                                        this.setState({
+                                          specialityofDoctor: selectedItems
+                                        })
                                       }}
                                     >
                                       <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Speciality of Doctor'}</Button>
@@ -603,7 +650,7 @@ class MainCom extends React.Component {
                                       height={180}
                                       width={280}
                                       isMultiSelect
-                                      title="Select multiple names"
+                                      title="Position"
                                       options={state.options}
                                       selected={state.selected}
                                       onSelect={item => {
@@ -642,6 +689,9 @@ class MainCom extends React.Component {
                                           selectedNames = selectedItemsLength.toString() + ' selected...'
                                         }
                                         setState({ selected: selectedItems, selectedNames })
+                                        this.setState({
+                                          poss: selectedItems
+                                        })
                                       }}
                                     >
                                       <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Position'}</Button>
@@ -664,7 +714,7 @@ class MainCom extends React.Component {
                                       height={180}
                                       width={280}
                                       isMultiSelect
-                                      title="Select multiple names"
+                                      title="City"
                                       options={state.options}
                                       selected={state.selected}
                                       onSelect={item => {
@@ -706,6 +756,9 @@ class MainCom extends React.Component {
 
 
                                         setState({ selected: selectedItems, selectedNames })
+                                        this.setState({
+                                          city: selectedItems
+                                        })
                                       }}
                                     >
                                       <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'City '}</Button>
@@ -728,7 +781,7 @@ class MainCom extends React.Component {
                                       height={180}
                                       width={280}
                                       isMultiSelect
-                                      title="Select multiple names"
+                                      title="Phamacuitical Category"
                                       options={state.options}
                                       selected={state.selected}
                                       onSelect={item => {
@@ -767,6 +820,9 @@ class MainCom extends React.Component {
                                           selectedNames = selectedItemsLength.toString() + ' selected...'
                                         }
                                         setState({ selected: selectedItems, selectedNames })
+                                        this.setState({
+                                          category1: selectedItems
+                                        })
                                       }}
                                     >
                                       <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Phamacuitical Category'}</Button>
@@ -788,7 +844,7 @@ class MainCom extends React.Component {
                                       height={180}
                                       width={280}
                                       isMultiSelect
-                                      title="Select multiple names"
+                                      title="Education"
                                       options={state.options}
                                       selected={state.selected}
                                       onSelect={item => {
@@ -827,6 +883,9 @@ class MainCom extends React.Component {
                                           selectedNames = selectedItemsLength.toString() + ' selected...'
                                         }
                                         setState({ selected: selectedItems, selectedNames })
+                                        this.setState({
+                                          education1: selectedItems
+                                        })
                                       }}
                                     >
                                       <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Education'}</Button>
@@ -848,7 +907,7 @@ class MainCom extends React.Component {
                                       height={180}
                                       width={280}
                                       isMultiSelect
-                                      title="Select multiple names"
+                                      title="Gender"
                                       options={state.options}
                                       selected={state.selected}
                                       onSelect={item => {
@@ -889,6 +948,9 @@ class MainCom extends React.Component {
                                           selectedNames = selectedItemsLength.toString() + ' selected...'
                                         }
                                         setState({ selected: selectedItems, selectedNames })
+                                        this.setState({
+                                          gender1: selectedItems
+                                        })
                                       }}
                                     >
                                       <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Gender'}</Button>
@@ -899,7 +961,7 @@ class MainCom extends React.Component {
                               <div id='filtercomp' style={{ display: 'flex', justifyContent: 'center' }}>
                                 <Component
                                   initialState={{
-                                    options: ['true', 'false']
+                                    options: ['Yes', 'No']
                                       .map(label => ({ label, value: label })),
                                     selected: []
                                   }}
@@ -909,7 +971,7 @@ class MainCom extends React.Component {
                                       height={180}
                                       width={280}
                                       isMultiSelect
-                                      title="Select multiple names"
+                                      title="Car"
                                       options={state.options}
                                       selected={state.selected}
                                       onSelect={item => {
@@ -948,6 +1010,9 @@ class MainCom extends React.Component {
                                           selectedNames = selectedItemsLength.toString() + ' selected...'
                                         }
                                         setState({ selected: selectedItems, selectedNames })
+                                        this.setState({
+                                          car1: selectedItems
+                                        })
                                       }}
                                     >
                                       <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Car'}</Button>
@@ -992,7 +1057,7 @@ class MainCom extends React.Component {
                             height={180}
                             width={280}
                             isMultiSelect
-                            title="speciality"
+                            title="Speciality of Doctor"
                             options={state.options}
                             selected={state.selected}
                             onSelect={item => {
@@ -1032,6 +1097,9 @@ class MainCom extends React.Component {
                                 selectedNames = selectedItemsLength.toString() + ' selected...'
                               }
                               setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                specialityofDoctor: selectedItems
+                              })
                             }}
                           >
                             <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Speciality of Doctor'}</Button>
@@ -1053,7 +1121,7 @@ class MainCom extends React.Component {
                             height={180}
                             width={280}
                             isMultiSelect
-                            title="Select multiple names"
+                            title="Position"
                             options={state.options}
                             selected={state.selected}
                             onSelect={item => {
@@ -1092,6 +1160,9 @@ class MainCom extends React.Component {
                                 selectedNames = selectedItemsLength.toString() + ' selected...'
                               }
                               setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                poss: selectedItems
+                              })
                             }}
                           >
                             <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Position'}</Button>
@@ -1114,7 +1185,7 @@ class MainCom extends React.Component {
                             height={180}
                             width={280}
                             isMultiSelect
-                            title="Select multiple names"
+                            title="City"
                             options={state.options}
                             selected={state.selected}
                             onSelect={item => {
@@ -1156,6 +1227,9 @@ class MainCom extends React.Component {
 
 
                               setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                city: selectedItems
+                              })
                             }}
                           >
                             <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'City '}</Button>
@@ -1178,7 +1252,7 @@ class MainCom extends React.Component {
                             height={180}
                             width={280}
                             isMultiSelect
-                            title="Select multiple names"
+                            title="Phamacuitical Category"
                             options={state.options}
                             selected={state.selected}
                             onSelect={item => {
@@ -1217,6 +1291,9 @@ class MainCom extends React.Component {
                                 selectedNames = selectedItemsLength.toString() + ' selected...'
                               }
                               setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                category1: selectedItems
+                              })
                             }}
                           >
                             <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Phamacuitical Category'}</Button>
@@ -1238,7 +1315,7 @@ class MainCom extends React.Component {
                             height={180}
                             width={280}
                             isMultiSelect
-                            title="Select multiple names"
+                            title="Education"
                             options={state.options}
                             selected={state.selected}
                             onSelect={item => {
@@ -1277,6 +1354,9 @@ class MainCom extends React.Component {
                                 selectedNames = selectedItemsLength.toString() + ' selected...'
                               }
                               setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                education1: selectedItems
+                              })
                             }}
                           >
                             <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Education'}</Button>
@@ -1298,7 +1378,7 @@ class MainCom extends React.Component {
                             height={180}
                             width={280}
                             isMultiSelect
-                            title="Select multiple names"
+                            title="Gender"
                             options={state.options}
                             selected={state.selected}
                             onSelect={item => {
@@ -1339,6 +1419,9 @@ class MainCom extends React.Component {
                                 selectedNames = selectedItemsLength.toString() + ' selected...'
                               }
                               setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                gender1: selectedItems
+                              })
                             }}
                           >
                             <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Gender'}</Button>
@@ -1349,7 +1432,7 @@ class MainCom extends React.Component {
                     <div id='filtercomp'>
                       <Component
                         initialState={{
-                          options: ['true', 'false']
+                          options: ['Yes', 'No']
                             .map(label => ({ label, value: label })),
                           selected: []
                         }}
@@ -1359,7 +1442,7 @@ class MainCom extends React.Component {
                             height={180}
                             width={280}
                             isMultiSelect
-                            title="Select multiple names"
+                            title="Car"
                             options={state.options}
                             selected={state.selected}
                             onSelect={item => {
@@ -1398,6 +1481,9 @@ class MainCom extends React.Component {
                                 selectedNames = selectedItemsLength.toString() + ' selected...'
                               }
                               setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                car1: selectedItems
+                              })
                             }}
                           >
                             <Button style={{ width: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{state.selectedNames || 'Car'}</Button>
@@ -1419,11 +1505,7 @@ class MainCom extends React.Component {
               </Row>
 
             </div>
-            {/* // ):(
-            //   <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100vh'}}>
-            //   <img src={require('../assets/img/_food.gif')}   alt='gif'/>
-            //   </div> 
-            // )} */}
+         
           </div>
 
         )

@@ -57,7 +57,15 @@
     margin-bottom: 15px;
     width: 100%;
 }
-#dds{  margin-right: 30px;
+#dds{ 
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#ddss{ 
     margin-bottom: 15px;
     width: 100%;
     display: flex;
@@ -439,7 +447,16 @@
 #poerdsrAA{
     width: 160px;
 }
+#dashimgl{
+    height: 300px;
+}
 @media (max-width: 575.98px) { 
+    #tabss{
+        margin-top: 10%;
+    }
+    #dashimgl{
+        height: 200px;
+    }
    #poerdsrAA{
        width: 100px;
    }

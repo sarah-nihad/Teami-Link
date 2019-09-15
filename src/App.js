@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Context from './component/context';
 // import NotFound from './component/notfound';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Si from './Dashbord/Si';
 import Main from './Teami/Main';
 import './assets/css/nav1.css';
@@ -17,6 +18,7 @@ import HomeUser from './component/HomeUser';
 import Candidates from './component/Candidates';
 import host from './component/host';
 import { BrowserRouter, Route ,Switch } from 'react-router-dom';
+import {toaster } from 'evergreen-ui'
 import Cookies from 'universal-cookie';
 import UserProfile from './Teami/UserProfile';
 import Company_profile from './Teami/Company_profile';
@@ -27,7 +29,11 @@ import Warning from './component/Warning';
 import Applidjob from './component/Applidjob';
 import Accept from './component/Accept';
 import finduser from './component/finduser';
-
+import Forget_password from './Teami/Forget_password';
+import Forget_pass from './Teami/Forget_pass';
+import Activation from './component/Activation';
+import Check_com from './component/Check_com';
+import Ahmed from './component/Ahmed';
 const cookies = new Cookies();
 class App extends Component {
   constructor() {
@@ -72,7 +78,7 @@ pro:[]
         this.setState({
           pro: res.data.profile
         })
-        console.log(res.data.profile);
+        // console.log(res.data.profile);
         
         if (res.data.profile.isActive === true) {
           this.setState({ auth: true })
@@ -123,14 +129,17 @@ if (Usertoken) {
 
   axios.get(host + 'api/v1/Advertising/me', { headers: { token: cookies.get("Usertoken") } })
   .then(res => {
-  
+  if (res.data.ads) {
     this.setState({
       data3: res.data.ads
     })
+  }
+ 
+//  console.log('data3',res.data);
  
   })
   .catch(err => {
-    console.log('error:' + err);
+    console.log('data3:' ,err);
   })
 
 
@@ -267,13 +276,49 @@ if (token) {
           <Context.Provider value={{
             value: this.state,
             action: {
+          
+              aplay: (item)=> {
+                let formData = new FormData();
+                var headers = {
+                  "Content-Type": "application/json",
+                  token: cookies.get("Usertoken")
+                };
+
+
+                formData.append("company_id", item.company_id._id);
+                formData.append("ads_id", item._id);
+
+
+
+                axios({
+                  url: host + `api/v1/user/job/`,
+                  method: "POST",
+                  data: formData,
+                  headers: headers,
+
+                })
+                  .then(response => {
+                    if (response.status === 200) {
+                      toaster.success(' Done ');
+                   this.componentDidMount()
+                    }
+                 //   window.location.reload();
+                  })
+                  .catch(function (error) {
+                    console.log(error)
+                    // if (error.response) {
+                    //   console.log(error.response.data);
+                    // }
+                  });
+
+              }
             }
           }}>
-
-<Route exact path='/' component={Main} />
-<Route path='/LoginTeam' component={LoginTeam} />
-<Route path='/SignupTeam' component={SignupTeam} />
-          <Route  path='/Companysignup' component={Companysignup} />
+{/* <Ahmed /> */}
+              <Route exact path='/' component={Main} />
+              <Route path='/LoginTeam' component={LoginTeam} />
+              <Route path='/SignupTeam' component={SignupTeam} />
+              <Route  path='/Companysignup' component={Companysignup} />
             <Route exact path='/HomeUser' component={HomeUser} />
              <Route path='/UserProfile' component={UserProfile} />
             <Route path='/Profile' component={Profile} />
@@ -281,7 +326,8 @@ if (token) {
         <Route path='/HomeCom' component={HomeCom} /> 
         <Route path='/Company_profile' component={Company_profile} /> 
         <Route path='/Advertising' component={Advertising} /> 
-     
+        <Route path='/Forget_password' component={Forget_password} /> 
+        <Route path='/Forget_pass' component={Forget_pass} /> 
         <Route path='/Applidjob' component={Applidjob} /> 
         <Route path='/Warning' component={Warning} /> 
         <Route path='/ComLogin' component={ComLogin} /> 
@@ -289,6 +335,8 @@ if (token) {
         <Route path='/finduser' component={finduser} /> 
         <Route path='/Accept' component={Accept} /> 
             <Route path='/Admin_login' component={Admin_login} />   
+            <Route path='/Activation' component={Activation} />   
+            <Route path='/Check_com' component={Check_com} />  
             <Switch>
             <Route path='/Home' component={Si} />
             <Route path='/Change' component={Si} />

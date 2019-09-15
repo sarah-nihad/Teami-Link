@@ -31,7 +31,7 @@ class Allcompany extends React.Component{
       has_more:false,
       startDate: new Date(),
       page:1,
-      limit:1
+      limit:50
 
     }
     this.getData =this.getData.bind(this)
@@ -176,8 +176,8 @@ componentDidMount(){
             //     <h3>{d.name}</h3>
              
             // </li>
-<div>
-<Table striped bordered hover>
+<div id='tabss'    >
+<Table striped bordered hover responsive  >
   <thead>
     <tr  >
       <th>company_name </th>
@@ -213,7 +213,7 @@ componentDidMount(){
                             <Pane >
                               <Dialog
                                 isShown={state.isShown}
-                                title="Change Password"
+                                title="Edit licenseDate"
                                 width={'60%'}
                                 confirmLabel="Edit"
                                 onCloseComplete={() => setState({ isShown: false })}
@@ -235,7 +235,7 @@ componentDidMount(){
 
                               </Dialog>
 
-                              <Button style={{width:'100%'}}  onClick={() => { setState({ isShown: true }) }}> edit licenseDate  </Button>
+                              <Button style={{width:'100%'}}  onClick={() => { setState({ isShown: true }) }}> Edit  </Button>
                             </Pane>
                           )}
                         </Component> </td>

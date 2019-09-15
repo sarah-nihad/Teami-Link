@@ -52,7 +52,7 @@ class Profile extends React.Component {
           toaster.success(' Done ');
         
         }
-
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error)
@@ -116,7 +116,10 @@ class Profile extends React.Component {
                   <div id='mainpost' key={i}  >
                   {/* <div id='filterhome'> */}
 <div id='carduserff'>
-<div id='carduserff2' >
+<div id='carduserff2'  onClick={() => {
+               window.location.href = `/profile1?id=${item.company_id._id}`;
+
+             }}  style={{cursor:'pointer'}}    >
    
 <div>  
   
@@ -135,19 +138,23 @@ class Profile extends React.Component {
 
 </div>  </div>
 <div>{item.title} </div>
- <div style={{width:'100%',paddingLeft:'8px'}}>  {item.body} </div>
- <div style={{width:'100%',paddingLeft:'8px'}}> City :   {item.city} </div> 
- <div style={{width:'100%',paddingLeft:'8px'}}> gender :  {item.gender} </div> 
-<div style={{width:'100%',paddingLeft:'8px'}}> Education :  {item.education}   </div> 
-<div style={{width:'100%',paddingLeft:'8px'}}> Car :  {`${item.car}`}  </div> 
-<div style={{width:'100%',paddingLeft:'8px'}}> Collage :  {item.collage}  </div> 
-<div style={{width:'100%',paddingLeft:'8px'}}> Position : {item.position}  </div> 
-<div style={{width:'100%',paddingLeft:'8px'}}> Time of Work : {item.timeofWork}  </div> 
-<div style={{width:'100%',paddingLeft:'8px'}}> Experience :  {item.experience}  </div> 
+ <div style={{width:'100%',padding:'10px'}}>  {item.body} </div>
+ <div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} > City :  </span>  {item.city} </div> 
+
+ <div style={{width:'100%',paddingLeft:'8px'}}>   <span style={{color:'rgb(6, 105, 210)'}} >  gender : </span> {item.gender} </div> 
+<div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Education : </span> {item.education}   </div> 
+{/* <div style={{width:'100%',paddingLeft:'8px'}}> Car :  {`${item.car}`}  </div>  */}
+<div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Collage : </span> {item.collage}  </div> 
+<div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Position : </span>{item.position}  </div> 
+<div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Time of Work : </span> {item.timeofWork}  </div> 
+<div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} > Experience : </span> {item.experience}  </div> 
 <div style={{width:'100%',display:'flex',justifyContent:'center',paddingBottom:'2%',paddingTop:'2%'}}  >   
 
   <div id='aplay_user'  onClick={(e) => {
-                    this.aplay(item) }}    >  Aplay  </div>    </div>
+                   // this.aplay(item) 
+                    
+                    ctx.action.aplay(item) 
+                    }}    >  Apply  </div>    </div>
 </div>
                 ))}
 

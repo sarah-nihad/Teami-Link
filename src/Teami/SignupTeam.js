@@ -44,8 +44,8 @@ import Cookies from 'universal-cookie';
     .then(response => {
       console.log(response.data);
   
-        if (response.data.redirect === false) {
-     window.location.href = '/HomeUser'
+        // if (response.data.redirect === false) {
+     window.location.href = '/Check_com'
         cookies.set("Usertoken",response.data.token,"redirect",response.data.redirect,{
           path:'/',
           expires:new Date(Date.now() + 60480000),
@@ -53,18 +53,18 @@ import Cookies from 'universal-cookie';
         }
      
         );
-      }
+      // }
 
-     else if (response.data.redirect === true) {
-        window.location.href = '/Warning'
-           cookies.set("Usertoken",response.data.token,"redirect",response.data.redirect,{
-             path:'/',
-             expires:new Date(Date.now() + 60480000),
+    //  else if (response.data.redirect === true) {
+    //     window.location.href = '/Warning'
+    //        cookies.set("Usertoken",response.data.token,"redirect",response.data.redirect,{
+    //          path:'/',
+    //          expires:new Date(Date.now() + 60480000),
              
-           }
+    //        }
         
-           );
-         }
+    //        );
+    //      }
 
 
 
@@ -85,7 +85,7 @@ import Cookies from 'universal-cookie';
             
 <div id='main'>
 <Row style={{marginRight:'0px',paddingBottom:'3%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}} >
- <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center'}} id='textmaint1' > Make the most of your professional life</div> 
+ <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center'}} id='textmaint1' > Together To The Professionality</div> 
 </Row>
     <Row style={{marginRight:'0px'}}id='rowlogins1'>
 

@@ -5,9 +5,11 @@ import axios from 'axios';
 import host from '../component/host';
 import NavCom from '../Teami/NavCom';
 import { Redirect} from 'react-router-dom';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 // import { TextInput, Button} from 'evergreen-ui';
 import '../assets/css/teami.css';
-
+// import '@lottiefiles/lottie-player';
 class Accept extends Component {
   constructor(props) {
     super(props);
@@ -154,7 +156,7 @@ class Accept extends Component {
             
             
             
-                                    <div id='eduction'> Experience
+                                    <div id='eduction'  style={this.state.data1.experience < 1 ?  {display:'none'} : { display:'',color:'#9400dc'}}     > Experience
                                   
                             
                                   
@@ -167,37 +169,38 @@ class Accept extends Component {
                                                         <div style={{ width: '100%', paddingLeft: '15px', fontSize: '16px', fontWeight: '500',paddingRight:'13px' }}> 
                     
                                                         
-                                                        <span style={{color:'#1A5491'}} >  Company Name: </span>  <span style={{paddingLeft:'8px'}}> {item.CompanyName}</span> 
+                                                        <span style={{color:'rgb(109, 28, 148)'}} >  Company Name: </span>  <span style={{paddingLeft:'8px'}}> {item.CompanyName}</span> 
                     
                     
                      </div>
             
                                                          </div>
                                                          <div style={{ width: '100%', paddingLeft: '15px'}} > 
-                                                         <span style={{color:'#1A5491'}} >     Office Name : </span> <span style={{paddingLeft:'8px'}}>  {item.OfficeName}</span> 
+                                                         <span style={{color:'rgb(109, 28, 148)'}} >     Office Name : </span> <span style={{paddingLeft:'8px'}}>  {item.OfficeName}</span> 
                                                          </div>
                                                         <div style={{ width: '100%', paddingLeft: '15px' }} > 
-                                                        <span style={{color:'#1A5491'}} >      Position : </span> <span style={{paddingLeft:'8px'}}>  {item.Position}</span> 
+                                                        <span style={{color:'rgb(109, 28, 148)'}} >      Position : </span> <span style={{paddingLeft:'8px'}}>  {item.Position}</span> 
                                                          </div>
                                                  
                                                      
-                                                         <div style={ctx.value.data.SpecialityofDoctor === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
-                                                         <span style={{color:'#1A5491'}} >       Speciality Of Doctor : </span>
+                                                         <div  style={item.SpecialityofDoctor.length < 1 ?  {display:'none'} : { display:'',width:'100%',paddingLeft:'15px'}}  >
+                                                         <span style={{color:'rgb(109, 28, 148)'}} >       Speciality Of Doctor : </span>
                                                   
                                              <span style={{paddingLeft:'8px'}}>  {item.SpecialityofDoctor[0]} </span>,  
                                              <span> {item.SpecialityofDoctor[1]} </span> ,  <span> {item.SpecialityofDoctor[2]} </span>
                                                     
                                                          </div>
                                                          <div style={{ width: '100%', paddingLeft: '15px' }} > 
-                                                         <span style={{color:'#1A5491'}} >  Phamacuitical Category: </span>  <span style={{paddingLeft:'8px'}}>   {item.PhamacuiticalCategory}</span> 
+                                                         <span style={{color:'rgb(109, 28, 148)'}} >  Phamacuitical Category: </span>  <span style={{paddingLeft:'8px'}}>   {item.PhamacuiticalCategory}</span> 
                                                          </div>
                                                          <div style={{ width: '100%', paddingLeft: '15px' }} > 
-                                                         <span style={{color:'#1A5491'}} >      Time Of Work:  </span> <span style={{paddingLeft:'8px'}}>  {item.TimeofWork}</span> 
+                                                         <span style={{color:'rgb(109, 28, 148)'}} >      Time Of Work:  </span> <span style={{paddingLeft:'8px'}}>  {item.TimeofWork}</span> 
                                                          </div>
             
             
-                                                        <div style={{ width: '100%', paddingLeft: '15px' }}  >   {item.Startingwork} - {item.EndWork}  </div>
-            
+                                                 
+                                                        <div style={item.EndWork==="in Work"?{ display:'none' }:{width: '100%', paddingLeft: '15px'}}  >   {item.Startingwork} - {item.EndWork}  </div>
+                                            <div style={item.EndWork!=="in Work"?{ display:'none' }:{width: '100%', paddingLeft: '15px'}}  >   {item.Startingwork} - Present  </div>
             
             
                                
@@ -205,10 +208,10 @@ class Accept extends Component {
                                                         <div style={{width:'100%',borderBottom:'1px solid #efe2e2',paddingTop:'5%'}} >
                                   
                                                       </div>
-                                  </div>
+                                                             </div>
                                                     ))} 
             
-                                                      <div id='eduction'> Training
+                                                      <div id='eduction'  style={this.state.data1.training < 1 ?  {display:'none'} : { display:'',color:'#108863'}}   > Training
                                   
                                
                                   
@@ -217,14 +220,14 @@ class Accept extends Component {
                                                         <div key={i} style={{width:'100%'}} >
                                                         <div id='editesss' >
                                                         <div style={{ width: '100%', paddingLeft: '15px', fontSize: '16px', fontWeight: '500',paddingRight:'15px' }}> 
-                                                        <span style={{color:'#1A5491'}} >  Place :  </span>   
+                                                        <span style={{color:'rgb(59, 130, 81)'}} >  Place :  </span>   
                                                         <span style={{paddingLeft:'8px'}}>    {item.place} </span>
               
                                                         
                                                         
                                                          </div>
                                                          </div>
-                                                        <div style={{ width: '100%', paddingLeft: '15px' }} >        <span style={{color:'#1A5491'}} >  Subject :  </span>   
+                                                        <div style={{ width: '100%', paddingLeft: '15px' }} >        <span style={{color:'rgb(59, 130, 81)'}} >  Subject :  </span>   
                                                         <span style={{paddingLeft:'8px'}}>     {item.subject}  </span> </div>
                                                         <div style={{ width: '100%', paddingLeft: '15px' }}  > {item.date} </div>
             
@@ -239,12 +242,12 @@ class Accept extends Component {
                                                       </div>
                                                         ))}
             
-            <div  style={ctx.value.data.Notes === 'NON' ?  {display:'none'} : { display:'',fontSize:'14px',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
-                                             {ctx.value.data.Notes}
+            <div  style={this.state.data1.Notes === 'NON' ?  {display:'none'} : { display:'',fontSize:'14px',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
+                                             {this.state.data1.Notes}
                                                                     </div>
-                                                                    <div  style={ctx.value.data.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
+                                                                    <div  style={this.state.data1.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                                                     <div  style={{cursor:'pointer',zIndex:'3'}}   onClick={() => {
-                                        window.open( `https://sky-link.herokuapp.com/` + ctx.value.data.cv,'_blank');
+                                        window.open( `https://sky-link.herokuapp.com/` + this.state.data1.cv,'_blank');
                                      
                 
                                     }}>
@@ -256,7 +259,7 @@ class Accept extends Component {
             
             
             
-                              </Col>
+                                      </Col>
             
                             </Row>
             
@@ -267,7 +270,16 @@ class Accept extends Component {
           )
         }else if (ctx.value.chech_compLOgin==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+        options={{
+          animationData: jssson,
+        }}
+        width={300}
+        height={300}
+      />
+        </div>
           )
         }
       

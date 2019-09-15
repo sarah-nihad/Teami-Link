@@ -70,35 +70,28 @@ class Company extends Component {
 </div>
 <div id='abbtext'>
 <div  style={{paddingBottom:'2%',display:'flex',justifyContent:'space-between',width:'100%'}}>
-<div style={{paddingLeft:'2%',fontSize:'24px',paddingBottom:'2%',width:'50%'}}>{this.state.data1.company_name} </div>
-
-
-
-
-
-
-
-
-
-
+<div style={{paddingLeft:'2%',fontSize:'24px',paddingBottom:'2%',width:'100%'}}>{this.state.data1.company_name} </div>
 
 
 </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'20px'}}> 
-<span style={{color:'#1A5491'}} >Office Name : </span>  {this.state.data1.OfficeName} </div>
+<span style={{color:'#1A5491'}} id='nbhk' >Office Name : </span> <span id='s2drv'  >  {this.state.data1.OfficeName} </span> </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} >Company Name : </span>  {this.state.data1.name} </div>
-<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > Position : </span> {this.state.data1.Position} </div>
+<span style={{color:'#1A5491'}} id='nbhk'  >Company Name : </span> <span id='s2drv' >  {this.state.data1.company_name}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} > Ctiy : </span> {this.state.data1.ctiy}</div>
+<span style={{color:'#1A5491'}} id='nbhk' > Name : </span> <span id='s2drv' >  {this.state.data1.name}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > E-mail : </span> {this.state.data1.email}  </div>
-<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > Phone : </span> {this.state.data1.phone} </div>
+<span style={{color:'#1A5491'}} id='nbhk' > Position : </span> <span id='s2drv' >  {this.state.data1.Position}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} > Number Of Team : </span> {this.state.data1.numberOfTeam} </div>
+<span style={{color:'#1A5491'}}  id='nbhk'> Ctiy : </span> <span id='s2drv'>  {this.state.data1.ctiy} </span> </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
+<span style={{color:'#1A5491'}}  id='nbhk' > E-mail : </span>  <span id='s2drv' > {this.state.data1.email} </span>  </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
+<span style={{color:'#1A5491'}}  id='nbhk' > Phone : </span> <span id='s2drv' >   {this.state.data1.phone} </span> </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
+<span style={{color:'#1A5491'}}  id='nbhk'> Number Of Team : </span> <span id='s2drv' >  {this.state.data1.numberOfTeam}</span>  </div>
             </div>
+
 
 
 

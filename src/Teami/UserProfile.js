@@ -2,10 +2,10 @@ import React from 'react';
 import '../assets/css/teami.css';
 import axios from 'axios';
 import Select from 'react-select';
-
+// import '@lottiefiles/lottie-player';
 import host from '../component/host';
 import Nav2 from '../component/Nav2';
-import { SelectMenu, Button, TextInput, Dialog, Pane, FilePicker ,toaster} from 'evergreen-ui';
+import { SelectMenu, Button, Textarea, TextInput,Dialog, Pane, FilePicker ,toaster,Switch} from 'evergreen-ui';
 import Component from '@reactions/component';
 import Context from '../component/context';
 import { Row, Col } from 'react-bootstrap';
@@ -18,6 +18,8 @@ import Category from './Category.json';
 import speciality from './speciality.json';
 import colleage from './colleage.json';
 import moment from 'moment';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 import Cookies from 'universal-cookie';
 var sp=speciality;
 const cookies = new Cookies();
@@ -32,13 +34,13 @@ const options = [
   
 ]
 const options1 = [
-  { value: 'true', label: 'true' },
-  { value: 'false', label: 'false' },
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
   
 ]
 const options2 = [
-  { value: 'true', label: 'true' },
-  { value: 'false', label: 'false' },
+  { value: 'true', label: 'Yes' },
+  { value: 'false', label: 'No' },
   
 ]
 
@@ -102,6 +104,7 @@ data2:[],
       startDate5: new Date(),
       startDate6: new Date(),
       wait:true,
+      still:true,
       wait1:true,
       wait2:true,
       spesh:true,
@@ -109,7 +112,9 @@ data2:[],
       Collage1:'',
       Positioninput1:'',
       gender:'',
-      car:''
+      car:'',
+      checked:'',
+
      
     }
     this.handleChange = this.handleChange.bind(this);
@@ -216,7 +221,37 @@ data2:[],
   
   }
 
+componentDidMount(){
 
+  axios.get(host + 'api/v1/auth/profile', { headers: { token: cookies.get("Usertoken") } })
+  .then(res => {
+  
+    this.setState({
+      data: res.data.data,
+    data1:res.data.data.experience,
+    data2:res.data.data.training,
+
+    phone: res.data.data.phone,
+    ctiy: res.data.data.ctiy,
+    Education: res.data.data.Education,
+    University: res.data.data.University,
+    Collage: res.data.data.Collage,
+    DateofGarduation: res.data.data.DateofGarduation,
+    BirthDate: res.data.data.BirthDate,
+    name: res.data.data.name,
+    Notes: res.data.data.Notes,
+
+    })
+ 
+  })
+  .catch(err => {
+    this.setState({
+      chech_userLOgin:'notlogin',
+    })
+    console.log('error:' + err);
+  })
+
+}
 
 
   change() {
@@ -232,16 +267,17 @@ data2:[],
     axios({
       url: host+`api/v1/auth/chnagepassword?`,
       method: "PUT",
+      
       data: formData,
       headers: headers
     })
       .then(response => {
         toaster.success('Password has been changed successfully');
+        this.componentDidMount()
       })
       .catch(function (error) {
         console.log(error.response.data)
-        if (error.response) {
-        }
+        toaster.danger(error.response.data.msg);
       });
 
   }
@@ -261,6 +297,7 @@ data2:[],
       .then(response => {
         toaster.success('experence has been deleted successfully');
         this.componentDidMount()
+        // window.location.reload();
       })
       .catch(function (error) {
     
@@ -282,6 +319,7 @@ data2:[],
       .then(response => {
         toaster.success('training has been deleted successfully');
         this.componentDidMount()
+        // window.location.reload();
       })
       .catch(function (error) {
       });
@@ -289,13 +327,23 @@ data2:[],
   getCateById() {
     this.setState({
       wait: false
+      
     })
+ 
   }
  positionwait() {
     this.setState({
       wait1: false
     })
   }
+
+  still() {
+    this.setState({
+      still: false
+    })
+  }
+
+
   positionwait1() {
     this.setState({
       spesh: false
@@ -318,7 +366,7 @@ data2:[],
     };
     if (this.state.Positioninput === 'Medical Representative'|| this.state.Positioninput === 'Medical Supervisor'
     || this.state.Positioninput === 'Product Specialist' || this.state.Positioninput === 'General manager'
-    || this.state.Positioninput === 'Product Manager') {
+    || this.state.Positioninput === 'Product Manager' || this.state.Positioninput === 'Team Leader') {
     for (let index = 0; index < this.state.specialityofDoctor.length; index++) {
       formData.append("specialityofDoctor[]",this.state.specialityofDoctor[index]);
     }
@@ -341,11 +389,19 @@ data2:[],
     if (this.state.categoryinput === 'other') {
       formData.append("position", this.state.Positioninput1)
     }
+    if ( this.state.checked === "on") {
+      formData.append("endWork", "in Work")
+    }
+   else{ 
+      formData.append("endWork",endWork )
+    }
+
+
     formData.append("officeName", this.state.officeName);
     formData.append("companyName", this.state.companyName);
     formData.append("timeofWork", this.state.timeofWork);
        formData.append("startingwork",startingwork);
-       formData.append("endWork",endWork);
+    
     
 
     axios({
@@ -356,10 +412,13 @@ data2:[],
     })
       .then(response => {
         toaster.success('Experience has been added successfully');
+        this.componentDidMount()
       })
       .catch(function (error) {
         if (error.response) {
-          toaster.danger(error.response.data.mgs);
+          console.log(error.response.data);
+          
+          toaster.danger(error.response.data);
         }
       });
 
@@ -386,46 +445,67 @@ data2:[],
     })
       .then(response => {
         toaster.success('training has been added successfully');
-    
+        this.componentDidMount()
       })
       .catch(function (error) {
     
         if (error.response) {
-          toaster.danger(error.response.data.mgs);
+          console.log(error.response.data.error);
+          
+          toaster.danger(error.response.data.error);
         }
       });
 
   }
 
   edit() {
-    var DateofGarduation=moment(this.state.DateofGarduation).format("YYYY-MM-DD");
-    var BirthDate=moment(this.state.BirthDate).format("YYYY-MM-DD");
+
+
     let formData = new FormData();
   
     var headers = {
       "Content-Type": "application/json",
       token: cookies.get("Usertoken")
     };
-    if (this.state.categoryinput !== 'other') {
+    if (this.state.Collage !== 'other') {
      
       formData.append("Collage", this.state.Collage)
     }
     
-    if (this.state.categoryinput === 'other') {
+    if (this.state.Collage === 'other') {
       formData.append("Collage", this.state.Collage1)
     }
     formData.append("Notes",this.state.Notes);
+    formData.append("name",this.state.name);
     formData.append("phone", this.state.phone);
     formData.append("ctiy", this.state.Cityinput);
     formData.append("Education", this.state.Education);
     formData.append("University", this.state.University);
     formData.append("cv", this.state.cv);
     formData.append("file", this.state.File);
-    formData.append("DateofGarduation",DateofGarduation);
-    formData.append("BirthDate",BirthDate);
+
     formData.append("gender",this.state.gender);
     formData.append("car",this.state.car);
-    formData.append("working",this.state.working);
+ 
+    if (this.state.working) {
+      formData.append("working",this.state.working);
+      
+    }
+   
+
+    if (this.state.DateofGarduation) {
+    var DateofGarduation=moment(this.state.DateofGarduation).format("YYYY-MM-DD");
+    formData.append("DateofGarduation",DateofGarduation);
+  
+      
+    }
+    if (this.state.BirthDate) {
+      var BirthDate=moment(this.state.BirthDate).format("YYYY-MM-DD");
+    
+      formData.append("BirthDate",BirthDate);
+      }
+    
+   
 
 
   
@@ -437,9 +517,13 @@ data2:[],
     })
       .then(response => {
         toaster.success('info has been edit successfully');
+        this.componentDidMount()
       })
       .catch(function (error) {
         if (error.response) {
+          console.log(error.response.data);
+          
+          toaster.danger(error.response.data.mgs);
         }
       });
 
@@ -484,28 +568,28 @@ data2:[],
 
                       <div id='name1user' >
                       
-                             <img src={host + ctx.value.data.File} id='img123user'alt='img' />
+                             <img src={host +this.state.data.File} id='img123user'alt='img' />
                              </div>
      
                       <div id='name1user' >
                      
-                        {ctx.value.data.name}
+                        {this.state.data.name}
                    
                          </div>
                       <div id='name22user' style={{color:'#1A5491'}} >
-                      <i className="fas fa-envelope"style={{fontSize:'15px'}}></i>   <span style={{paddingLeft:'10px',width:'100%'}}  >{ctx.value.data.email}</span>  
+                      <i className="fas fa-envelope"style={{fontSize:'15px'}}></i>   <span style={{paddingLeft:'10px',width:'100%'}}  >{this.state.data.email}</span>  
                           </div>
-                        <div id='name22user'style={ctx.value.data.phone === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
-                        <i className="fas fa-phone-volume"></i> <span style={{paddingLeft:'10px',width:'100%'}}  > {ctx.value.data.phone} </span> 
+                        <div id='name22user'style={this.state.data.phone === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                        <i className="fas fa-phone-volume"></i> <span style={{paddingLeft:'10px',width:'100%'}}  > {this.state.data.phone} </span> 
                             </div>
-                    <div id='name22user'style={ctx.value.data.ctiy === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
-                    <i className="fas fa-map-marker-alt" style={{fontSize:'14px'}} ></i>  <span style={{paddingLeft:'10px',width:'100%'}}  >  {ctx.value.data.ctiy} </span>
+                    <div id='name22user'style={this.state.data.ctiy === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                    <i className="fas fa-map-marker-alt" style={{fontSize:'14px'}} ></i>  <span style={{paddingLeft:'10px',width:'100%'}}  >  {this.state.data.ctiy} </span>
                             </div>
-                                <div id='name22user' style={ctx.value.data.BirthDate === 'NON' ?  {display:'none'} : { display:'',fontSize:'12px',color:'#1A5491'}}  >
-                  <span style={{fontSize:'14px'}}> <i className="fas fa-calendar-alt"></i> </span> <span style={{paddingLeft:'10px'}}  >   {ctx.value.data.BirthDate} </span>
+                                <div id='name22user' style={this.state.data.BirthDate === 'NON' ?  {display:'none'} : { display:'',fontSize:'12px',color:'#1A5491'}}  >
+                  <span style={{fontSize:'14px'}}> <i className="fas fa-calendar-alt"></i> </span> <span style={{paddingLeft:'10px'}}  >   {this.state.data.BirthDate} </span>
                                        </div>
-                                        <div id='name22user'style={ctx.value.data.experience_months === 0 ?  {display:'none'} : { display:'',fontSize:'12px'}}  >
-                               experience months :     {ctx.value.data.experience_months}
+                                        <div id='name22user'style={this.state.data.experience_months === 0 ?  {display:'none'} : { display:'',fontSize:'12px'}}  >
+                               experience months :     {this.state.data.experience_months}
                                        </div>
 
                   
@@ -569,15 +653,15 @@ data2:[],
                                   setState({ isShown: false })
                                   this.edit() }} 
                                    > 
-
-                                <div id='dd'>
-                                  <div>Notes :</div>
+     <div id='dd'>
+                                  <div>name :</div>
                                   <TextInput id='width'
                                     name="text-input-name"
-                                    placeholder="Notes"
-                                    required value={this.state.Notes} onChange={(e) => {
-                                      this.setState({ Notes: e.target.value })
-                                    }} />
+                                    placeholder="name"
+                                    required value={this.state.name} onChange={(e) => {
+                                      this.setState({ name: e.target.value })
+                                    }}
+                                  />
                                 </div>
                                 <div id='dd'>
                                   <div>phone :</div>
@@ -590,7 +674,7 @@ data2:[],
                                   />
                                 </div>
                                 <div id='dd'>
-                                  <div> ctiy :</div>
+                                  <div> city :</div>
                                   <Select
                                   onChange={(e) => {
                                     if (e.value !== 'city') {
@@ -621,7 +705,7 @@ data2:[],
                                 <div id='dd'>
                                   <div> Have a Car?:</div>
                            
-            <Select
+                                      <Select
                                   onChange={(e) => {
                                
                                       this.setState({ car: e.value })
@@ -637,14 +721,14 @@ data2:[],
                                 <div id='dd'>
                                   <div> working?:</div>
                            
-            <Select
+                                 <Select
                                   onChange={(e) => {
                                
                                       this.setState({ working: e.value })
-                                      console.log( e.value );
+                                      console.log( e.value   );
                                
                                   }}
-                             
+                                  
                                   options={options2}
                                 />
 
@@ -703,16 +787,8 @@ data2:[],
 
                                 <div id='dd'>
                                   <p > Education:</p>
-
-                                  {/* <TextInput id='width'
-                                    name="text-input-name"
-                                    placeholder="Education" required
-                                    value={this.state.Education} onChange={(e) => {
-                                      this.setState({ Education: e.target.value })
-                                    }} /> */}
-
-<Select
-                                  onChange={(e) => {
+                                    <Select
+                                        onChange={(e) => {
                                
                                       this.setState({ Education: e.value })
                                       console.log( e.value );
@@ -725,7 +801,16 @@ data2:[],
                                 </div>
 
                                 <div id='dd'>
-                                  <div> edit photo</div>
+                                  <div>Notes :</div>
+                                  <Textarea id='width'
+                                    name="text-input-name"
+                                    placeholder="Notes"
+                                    required value={this.state.Notes} onChange={(e) => {
+                                      this.setState({ Notes: e.target.value })
+                                    }} />
+                                </div>
+                                <div id='dd'>
+                                  <div> Edit photo</div>
                                   <FilePicker id='width'
                                     multiple
                                     onChange={files =>
@@ -792,26 +877,26 @@ data2:[],
 
                       </div>
                       <div id='editesss' >
-                      <div style={ctx.value.data.University === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px', fontWeight: '500',paddingRight:'15px',fontSize:'16px'}}>
+                      <div style={this.state.data.University === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px', fontWeight: '500',paddingRight:'15px',fontSize:'16px'}}>
                    
                        {/* Al-Nahrain University  */}
-         <span style={{color:'#1A5491'}} > University :  </span>     {ctx.value.data.University}
+         <span style={{color:'#1A5491'}} > University :  </span>     {this.state.data.University}
                        </div>
                        </div>
-                      <div style={ctx.value.data.Collage === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
+                      <div style={this.state.data.Collage === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
                      
                          {/* Information and Communication Engineering   */}
-                         <span style={{color:'#1A5491'}} > Collage :  </span>        {ctx.value.data.Collage}
+                         <span style={{color:'#1A5491'}} > Collage :  </span>        {this.state.data.Collage}
                          </div>
 
-                         <div style={ctx.value.data.Education === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
+                         <div style={this.state.data.Education === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
                             
-                         <span style={{color:'#1A5491'}} >        {ctx.value.data.Education} </span>
+                         <span style={{color:'#1A5491'}} >        {this.state.data.Education} </span>
 
                               </div>
 
-                        <div style={ctx.value.data.DateofGarduation === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
-                        <span style={{color:'#1A5491'}} >  graduation date  :  </span> {ctx.value.data.DateofGarduation}
+                        <div style={this.state.data.DateofGarduation === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
+                        <span style={{color:'#1A5491'}} >  graduation date  :  </span> {this.state.data.DateofGarduation}
                       </div>
 
                       <div style={{width:'100%',borderBottom:'1px solid #efe2e2',paddingTop:'5%'}} >
@@ -824,7 +909,7 @@ data2:[],
 
 
 
-                        <div id='eduction'> Experience
+                        <div id='eduction' style={{color:'#9400dc'}}  > Experience
                       
                       <div style={{ float: 'right' }}>
                       
@@ -835,13 +920,16 @@ data2:[],
                                                     <Pane >
                                                       <Dialog
                                                         isShown={state.isShown}
-                                                        title="Add Experience"
+                                                        title=" Add Experience"
                                                         width='70%'
                                                         confirmLabel="Add"
                                                         onCloseComplete={() => setState({ isShown: false })}
                                                         onConfirm={() => {
                                                           setState({ isShown: false })
-                                                          this.add() }} 
+                                                          this.add() 
+                                                        
+                                                          
+                                                        }} 
                                                            > 
                                                      <div id='dd'>
                                                    <p > Position:</p>
@@ -857,7 +945,7 @@ data2:[],
                                         }, 200);
                                       }
                                       if (e.value === 'Medical Supervisor' || e.value ==='Medical Representative' || e.value ==='Product Specialist'
-                                      || e.value ==='Product Manager'  || e.value ==='General manager') {
+                                      || e.value ==='Product Manager'  || e.value ==='General manager'|| e.value ==='Team Leader') {
                                         setTimeout(() => {
                                           this.positionwait1()
                                         }, 200);
@@ -871,82 +959,107 @@ data2:[],
 
                                 {!this.state.wait1 ? (
    
-   <div id='dd'>
-   <div>write your position:</div>
-   <TextInput id='width'
-     name="text-input-name"
-     placeholder="Position"
-     required value={this.state.Positioninput1} onChange={(e) => {
-       this.setState({ Positioninput1: e.target.value })
-     }} />
- </div>
+                                      <div id='dd'>
+                                     <div>write your position:</div>
+                                  <TextInput id='width'
+                                          name="text-input-name"
+                                      placeholder="Position"
+                                  required value={this.state.Positioninput1} onChange={(e) => {
+                                            this.setState({ Positioninput1: e.target.value })
+                                            }} />
+                                             </div>
 
 
-   ) : (<div></div>)}
+                                      ) : (<div></div>)}
 
 
-{!this.state.spesh ? (
+                    {!this.state.spesh ? (
    
-  <div id='dd'>
-  <p > Speciality of Doctor:</p>
+                                      <div id='dd'>
+                                      <p > Speciality of Doctor:</p>
 
-  <Component
-initialState={{
-options: sp
-.map(label => ({ label, value: label })),
-selected: []
-}}
->
-{({ state, setState }) => (
-<SelectMenu
-isMultiSelect
-title="Speciality of Doctor"
-options={state.options}
-selected={state.selectedNames}
-onSelect={item => {
-const selected = [...state.selected, item.value]
-this.setState({
-specialityofDoctor:selected
-})
-// console.log(selected);
+ 
+<Component
+                        initialState={{
+                          options: sp
+                            .map(label => ({ label, value: label })),
+                          selected: []
+                         
 
-const selectedItems = selected
-const selectedItemsLength = selectedItems.length
-let selectedNames = ''
-if (selectedItemsLength === 0) {
-selectedNames = ''
-} else if (selectedItemsLength === 1) {
-selectedNames = selectedItems.toString()
-} else if (selectedItemsLength > 1) {
-selectedNames = selectedItemsLength.toString() + ' selected...'
-}
-setState({
-selected,
-selectedNames
-})
-console.log(selectedNames);
-}}
-onDeselect={item => {
-const deselectedItemIndex = state.selected.indexOf(item.value)
-const selectedItems = state.selected.filter(
-(_item, i) => i !== deselectedItemIndex
-)
-const selectedItemsLength = selectedItems.length
-let selectedNames = ''
-if (selectedItemsLength === 0) {
-selectedNames = ''
-} else if (selectedItemsLength === 1) {
-selectedNames = selectedItems.toString()
-} else if (selectedItemsLength > 1) {
-selectedNames = selectedItemsLength.toString() + ' selected...'
-}
-setState({ selected: selectedItems, selectedNames })
-}}
->
-<Button style={{width:'100%',display:'flex',justifyContent:'center'}} >{state.selectedNames || 'Speciality of Doctor'}</Button>
-</SelectMenu>
-)}
-</Component>
+                        }}
+                      >
+                        {({ state, setState }) => (
+                          <SelectMenu
+                            height={180}
+                            width={280}
+                            isMultiSelect
+                            title="speciality of Doctor"
+                            options={state.options}
+                            selected={state.selected}
+                            onSelect={item => {
+                              const selected = [...state.selected, item.value]
+
+                            
+                             
+                              
+
+                              const selectedItems = selected
+                              const selectedItemsLength = selectedItems.length
+                              let selectedNames = ''
+                              if (selectedItemsLength === 0) {
+                                selectedNames = ''
+                              } else if (selectedItemsLength === 1) {
+                                selectedNames = selectedItems.toString()
+                              } else if (selectedItemsLength > 1) {
+                                selectedNames = selectedItemsLength.toString() + ' selected...'
+                              }
+
+                              if (selected.length<=3) {
+                                setState({
+                                  selected,
+                                  selectedNames
+                                })
+                                this.setState({
+                                  specialityofDoctor: selected
+                                })
+  
+
+                              }else{
+                                toaster.danger('You cant select more then 3 ')
+                                
+                              }
+
+
+                            }}
+                            onDeselect={item => {
+                              const deselectedItemIndex = state.selected.indexOf(item.value)
+                              const selectedItems = state.selected.filter(
+                                (_item, i) => i !== deselectedItemIndex
+                              )
+                              const selectedItemsLength = selectedItems.length
+                              let selectedNames = ''
+                              if (selectedItemsLength === 0) {
+                                selectedNames = ''
+                              } else if (selectedItemsLength === 1) {
+                                selectedNames = selectedItems.toString()
+                              } else if (selectedItemsLength > 1) {
+                                selectedNames = selectedItemsLength.toString() + ' selected...'
+                              }
+                              setState({ selected: selectedItems, selectedNames })
+                              this.setState({
+                                specialityofDoctor: selectedItems
+                              })
+                            }}
+
+                          >
+                            <Button  style={{width:'100%',display:'flex',justifyContent:'center'}}>{state.selectedNames || 'Speciality of Doctor'}</Button>
+                          </SelectMenu>
+                        )}
+                      </Component>
+
+
+
+
 
 
 </div>
@@ -988,17 +1101,10 @@ setState({ selected: selectedItems, selectedNames })
  </div>
 
 
-   ) : (<div></div>)}
+                                    ) : (<div></div>)}
                                 </div>
                             
-                            
-
-
-                          
-
-
-
-
+                             
                                                         <div id='dd'>
                                                           <div> Office Name :</div>
                                                           <TextInput id='width'
@@ -1011,25 +1117,15 @@ setState({ selected: selectedItems, selectedNames })
 
                                                         <div id='dd'>
                                                           <div> time of Work :</div>
-                                                          {/* <TextInput id='width'
-                                                            name="text-input-name"
-                                                            placeholder="full or part"
-                                                            required value={this.state.timeofWork} onChange={(e) => {
-                                                              this.setState({ timeofWork: e.target.value })
-                                                            }} /> */}
-                  <Select
+                                                     
+                                  <Select
                                   onChange={(e) => {
-                               
                                       this.setState({ timeofWork: e.value })
                                       console.log( e.value );
-                               
+                                      
                                   }}
-                             
                                   options={options3}
                                 />
-
-
-
                                                         </div>
 
 
@@ -1044,22 +1140,51 @@ setState({ selected: selectedItems, selectedNames })
                                                             }}
                                                           />
                                                         </div>
-                                                        <div  style={{display:'flex',width:'100%',justifyContent:'space-between'}}   >
+                                                        <div id='date_user1'  >
+
 
                                                           <div id='dds'  >  
-                      <div>Starting Work:</div>
+                                                           <div>Starting Work</div>
                                                           <DatePicker id='width'
                                                             selected={this.state.startDate5}
                                                             onChange={this.handleChange5}
                                                           />
+                                                                </div>
+                                                                <div id='ddss'>  
+                                                                <div> Still Working?</div>
+                           
+                     
+                     <Component initialState={{ checked: false }}>
+  {({ state, setState }) => (
+    <Switch
+      checked={state.checked}  
+      onChange={(e) => {
+        setState({ checked: e.target.checked })
+        this.setState({ checked: e.target.value })
+        console.log(e.target.value);
+        
+        if (e.target.checked ) {
+         setTimeout(() => {
+           this.still()
+         }, 200);
+       }
+    }}
+      
+    />
+  )}
+</Component>
 </div>
-<div id='dds'>  
-   <div>End Work </div>                   
-                      <DatePicker id='width'
-                        selected={this.state.startDate6}
-                        onChange={this.handleChange6}
-                      />
-</div>
+
+{!this.state.still ? (
+
+                               <div></div>
+):(   <div id='dds'>  
+<div>End Work </div>                   
+ <DatePicker id='width'
+ selected={this.state.startDate6}
+     onChange={this.handleChange6}
+          />
+         </div>)}
                                                         </div>
                       
                                                       </Dialog>
@@ -1073,43 +1198,46 @@ setState({ selected: selectedItems, selectedNames })
                       
                                             </div>
 
-                                            {ctx.value.data1.map(((item, i) =>
+                                            {this.state.data1.map(((item, i) =>
                                             <div key={i} style={{width:'100%'}}>
                                             <div id='editesss' >
 
                                             <div style={{ width: '100%', paddingLeft: '15px', fontSize: '16px', fontWeight: '500',paddingRight:'13px' }}> 
         
                                             
-                                            <span style={{color:'#1A5491'}} >  Company Name: </span>  <span style={{paddingLeft:'8px'}}> {item.CompanyName}</span> 
+                                            <span style={{color:'rgb(109, 28, 148)'}} >  Company Name: </span>  <span style={{paddingLeft:'8px'}}> {item.CompanyName}</span> 
         
         
          </div>
 
                                              </div>
                                              <div style={{ width: '100%', paddingLeft: '15px'}} > 
-                                             <span style={{color:'#1A5491'}} >     Office Name : </span> <span style={{paddingLeft:'8px'}}>  {item.OfficeName}</span> 
+                                             <span style={{color:'rgb(109, 28, 148)'}} >     Office Name : </span> <span style={{paddingLeft:'8px'}}>  {item.OfficeName}</span> 
                                              </div>
                                             <div style={{ width: '100%', paddingLeft: '15px' }} > 
-                                            <span style={{color:'#1A5491'}} >      Position : </span> <span style={{paddingLeft:'8px'}}>  {item.Position}</span> 
+                                            <span style={{color:'rgb(109, 28, 148)'}} >      Position : </span> <span style={{paddingLeft:'8px'}}>  {item.Position}</span> 
                                              </div>
                                      
                                          
                                              <div style={item.SpecialityofDoctor.length< 1||item.SpecialityofDoctor[0] === 'NON'  ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
-                                             <span style={{color:'#1A5491'}} >       Speciality Of Doctor : </span>
+                                             <span style={{color:'rgb(109, 28, 148)'}} >       Speciality Of Doctor : </span>
                                       
                                  <span style={{paddingLeft:'8px'}}>  {item.SpecialityofDoctor[0]} </span>,  
                                  <span> {item.SpecialityofDoctor[1]} </span> ,  <span> {item.SpecialityofDoctor[2]} </span>
                                         
                                              </div>
                                              <div style={{ width: '100%', paddingLeft: '15px' }} > 
-                                             <span style={{color:'#1A5491'}} >  Phamacuitical Category: </span>  <span style={{paddingLeft:'8px'}}>   {item.PhamacuiticalCategory}</span> 
+                                             <span style={{color:'rgb(109, 28, 148)'}} >  Phamacuitical Category: </span>  <span style={{paddingLeft:'8px'}}>   {item.PhamacuiticalCategory}</span> 
                                              </div>
                                              <div style={{ width: '100%', paddingLeft: '15px' }} > 
-                                             <span style={{color:'#1A5491'}} >      Time Of Work:  </span> <span style={{paddingLeft:'8px'}}>  {item.TimeofWork}</span> 
+                                             <span style={{color:'rgb(109, 28, 148)'}} >      Time Of Work:  </span> <span style={{paddingLeft:'8px'}}>  {item.TimeofWork}</span> 
                                              </div>
 
 
-                                            <div style={{ width: '100%', paddingLeft: '15px' }}  >   {item.Startingwork} - {item.EndWork}  </div>
+                                            <div style={item.EndWork==="in Work"?{ display:'none' }:{width: '100%', paddingLeft: '15px'}}  >   {item.Startingwork} - {item.EndWork}  </div>
+                                            <div style={item.EndWork!=="in Work"?{ display:'none' }:{width: '100%', paddingLeft: '15px'}}  >   {item.Startingwork} - Present  </div>
+                                            
+                                            {/* <div style={{ width: '100%', paddingLeft: '15px' }}  >   {item.Startingwork} - {item.EndWork}  </div> */}
 
 
 
@@ -1125,7 +1253,7 @@ setState({ selected: selectedItems, selectedNames })
                       </div>
                                         ))} 
 
-                                          <div id='eduction'> Training
+                                          <div id='eduction' style={{color:'#108863'}}  > Training
                       
                       <div style={{ float: 'right' }}>
                       
@@ -1183,18 +1311,18 @@ setState({ selected: selectedItems, selectedNames })
                                               </div>
                       
                                             </div>
-                                            {ctx.value.data2.map(((item, i) =>
+                                            {this.state.data2.map(((item, i) =>
                                             <div key={i} style={{width:'100%'}} >
                                             <div id='editesss' >
                                             <div style={{ width: '100%', paddingLeft: '15px', fontSize: '16px', fontWeight: '500',paddingRight:'15px' }}> 
-                                            <span style={{color:'#1A5491'}} >  Place :  </span>   
+                                            <span style={{color:'rgb(59, 130, 81)'}} >  Place :  </span>   
                                             <span style={{paddingLeft:'8px'}}>    {item.place} </span>
   
                                             
                                             
                                              </div>
                                              </div>
-                                            <div style={{ width: '100%', paddingLeft: '15px' }} >        <span style={{color:'#1A5491'}} >  Subject :  </span>   
+                                            <div style={{ width: '100%', paddingLeft: '15px' }} >        <span style={{color:'rgb(59, 130, 81)'}} >  Subject :  </span>   
                                             <span style={{paddingLeft:'8px'}}>     {item.subject}  </span> </div>
                                             <div style={{ width: '100%', paddingLeft: '15px' }}  > {item.date} </div>
 
@@ -1211,12 +1339,12 @@ setState({ selected: selectedItems, selectedNames })
                                           </div>
                                             ))}
 
-<div  style={ctx.value.data.Notes === 'NON' ?  {display:'none'} : { display:'',fontSize:'14px',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
-                                 {ctx.value.data.Notes}
+<div  style={this.state.data.Notes === 'NON' ?  {display:'none'} : { display:'',fontSize:'14px',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
+                                 {this.state.data.Notes}
                                                         </div>
-                                                        <div  style={ctx.value.data.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
+                                                        <div  style={this.state.data.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                                         <div  style={{cursor:'pointer',zIndex:'3'}}   onClick={() => {
-                            window.open( `https://sky-link.herokuapp.com/` + ctx.value.data.cv,'_blank');
+                            window.open( `https://sky-link.herokuapp.com/` +this.state.data.cv,'_blank');
                          
     
                         }}>
@@ -1233,20 +1361,25 @@ setState({ selected: selectedItems, selectedNames })
                 </Row>
 
               </div>
-              {/* // ):(
-            //   <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100vh'}}>
-            //   <img src={require('../assets/img/_food.gif')}   alt='gif'/>
-            //   </div> 
-            // )} */}
+        
             </div>
           </div>
          
             </div>
         
           )
-        }else if (ctx.value.chech_userLOgin==="") {
+        }else if (this.state.chech_userLOgin==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+                 options={{
+                   animationData: jssson,
+                 }}
+                 width={300}
+                 height={300}
+               />
+        </div>
           )
         }
         

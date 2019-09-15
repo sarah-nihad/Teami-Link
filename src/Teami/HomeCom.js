@@ -5,7 +5,8 @@ import NavCom from './NavCom';
 import Context from '../component/context';
 // import Cookies from 'universal-cookie';
 import MainCom from './MainCom';
-
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 
 class HomeCom extends Component {
   constructor(props) {
@@ -45,7 +46,16 @@ class HomeCom extends Component {
           )
         }else if (ctx.value.chech_compLOgin==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+                 options={{
+                   animationData: jssson,
+                 }}
+                width={300}
+                height={300}
+               />
+</div>
           )
         }
 

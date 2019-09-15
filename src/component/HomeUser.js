@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Redirect} from 'react-router-dom';
-// import Foot1 from './Foot1';
 import Nav2 from './Nav2';
 import Context from './context';
-// import Cookies from 'universal-cookie';
+
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
+
 import Profile from './Profile';
-import '@lottiefiles/lottie-player';
+// import '@lottiefiles/lottie-player';
 class POS extends Component {
   constructor(props) {
     super(props);
@@ -45,15 +47,13 @@ if (ctx.value.chech_userLOgin==="notlogin") {
   return(
     <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
    
-    <lottie-player
-    autoplay
- 
-    loop
-    mode="normal"
-    src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-style={{width:'300px',height:'300px'}}
->
-</lottie-player>
+   <Lottie
+        options={{
+          animationData: jssson,
+        }}
+        width={300}
+        height={300}
+      />
 </div>
   )
 }

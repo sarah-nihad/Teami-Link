@@ -5,8 +5,10 @@ import axios from 'axios';
 import host from '../component/host';
 import NavCom from '../Teami/NavCom';
 import { Redirect} from 'react-router-dom';
-// import { TextInput, Button} from 'evergreen-ui';
+// import '@lottiefiles/lottie-player';
 import Cookies from 'universal-cookie';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 import '../assets/css/teami.css';
 const cookies = new Cookies();
 class finduser extends Component {
@@ -91,7 +93,7 @@ console.log(myParam);
 
                             <div id='name22user2'  > Name :       {item.name}  </div>
                             <div id='name22user2' style={{ color: '#1A5491' }} >
-                              <i className="fas fa-envelope" style={{ fontSize: '15px' }}></i>   <span style={{ paddingLeft: '10px', width: '100%' }}  >{item.email}</span>
+                              <i className="fas fa-envelope" style={{ fontSize: '15px' }}></i>   <span style={{ paddingLeft: '10px', width: '100%'  }} id='find_usermwil'  >{item.email}</span>
                             </div>
                           </div>
 
@@ -101,10 +103,10 @@ console.log(myParam);
                         <Col id='colusercc'  xs={12}    lg={3}  >
                         <div  key={i} style={{ width: '100%' }}   >
                           <div id='name22user2' style={{ color: '#1A5491' }} >
-                            <i className="fas fa-phone-volume"></i> <span style={{ paddingLeft: '10px', width: '100%' }}  > {item.phone} </span>
+                            <i className="fas fa-phone-volume"></i> <span style={{ paddingLeft: '10px', width: '100%' }} id='find_usermwil' > {item.phone} </span>
                           </div>
                           <div id='name22user2' style={{ color: '#1A5491' }} >
-                            <i className="fas fa-map-marker-alt" style={{ fontSize: '14px' }} ></i>  <span style={{ paddingLeft: '10px', width: '100%' }}  >  {item.ctiy} </span>
+                            <i className="fas fa-map-marker-alt" style={{ fontSize: '14px' }} ></i>  <span style={{ paddingLeft: '10px', width: '100%' }} id='find_usermwil' >  {item.ctiy} </span>
                           </div>   </div>
                         </Col>
 
@@ -114,7 +116,7 @@ console.log(myParam);
                             <span style={{ width: '100%' }}  >  Education  :   {item.Education} </span>
                           </div> 
                           <div id='name22user2' style={{ color: '#1A5491' }} >
-                            <span style={{ width: '100%' }}  >  gender  :   {item.gender} </span>
+                          <i className="fas fa-venus-mars" style={{ fontSize: '14px' }} ></i>  <span style={{ paddingLeft: '10px', width: '100%' }} id='find_usermwil' >  {item.gender} </span>
                           </div> 
                            </div>
                         </Col>
@@ -139,7 +141,16 @@ console.log(myParam);
           )
         }else if (ctx.value.chech_compLOgin==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+        options={{
+          animationData: jssson,
+        }}
+        width={300}
+                height={300}
+      />
+        </div>
           )
         }
 

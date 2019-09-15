@@ -1,14 +1,14 @@
 import React,{Component} from 'react'
 import {Row,Col} from 'react-bootstrap';
-import {TextInput} from 'evergreen-ui';
+import {TextInput,toaster} from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 
 // import { Link} from 'react-router-dom';
 import Context from '../component/context';
-import Cookies from 'universal-cookie';
- const cookies =new Cookies();
- class Admin_login extends Component{
+// import Cookies from 'universal-cookie';
+//  const cookies =new Cookies();
+ class Forget_password extends Component{
     constructor(props){
         super(props);
     this.state={
@@ -21,36 +21,46 @@ import Cookies from 'universal-cookie';
 
 
 
-    login(e) {
-   
-      axios.post(host + `api/v1/admin/auth/login`, {
-        email: this.state.email,
-        password: this.state.password
-      })
-  
-        .then(response => {
-          console.log(response.data);
+    aplay() {
+
+        let formData = new FormData();
+        var headers = {
+          "Content-Type": "application/json",
+        //   token: cookies.get("Usertoken")
+        };
+    
+        
+        formData.append("email",this.state.email);
       
-            // if (response.data.redirect === false) {
-         window.location.href = '/Home'
-            cookies.set("token_admin",response.data.token,"redirect",response.data.redirect,{
-              path:'/',
-              expires:new Date(Date.now() + 60480000),
-              
+    
+       
+    
+        axios({
+          url: host + `api/v1/auth/email`,
+          method: "POST",
+          data: formData,
+          headers: headers,
+    
+        })
+          .then(response => {
+            if (response.status === 200) {
+              toaster.success(' Done ');
+            
             }
-         
-            );
-        //   }
+    
+          })
+          .catch(function (error) {
+            console.log(error)
+        
+          });
+    
+      }
+    
 
   
 
 
 
-        })
-        .catch(function (error) {
-          console.log(error.message)
-        });
-    }
 
     render(){
         return(
@@ -66,12 +76,12 @@ import Cookies from 'universal-cookie';
 <Row style={{marginRight:'0px',paddingBottom:'3%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}} >
   <div  style={{fontSize:'29px',lineHeight:'30px',fontWeight:'400',color:'#000',textAlign:'center'}}    ></div>
  <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center'}} id='textmaint'>
-   <img src={require('../assets/img/link.png')}  style={{height:'120px'}} alt='img'  />
+   <img src={require('../assets/img/link.png')}  style={{height:'120px'}} alt='img' />
    </div> 
 </Row>
     <Row style={{marginRight:'0px'}}id='rowlogins1'>
         <Col xs={12} id='ccsarlogin3'>
-<div style={{fontSize:'24px',fontWeight:'400',color:'rgb(43, 45, 117)',paddingTop:'3%'}}> Admin Login</div>
+<div style={{fontSize:'24px',fontWeight:'400',color:'rgb(43, 45, 117)',paddingTop:'3%'}}>Forget Password</div>
 
         <div id='d111serlogin'>
     
@@ -85,27 +95,24 @@ import Cookies from 'universal-cookie';
 </div>
 
 
-<div id='d111serlogin'>
+{/* <div id='d111serlogin'> */}
      
- <TextInput id='width32'
+ {/* <TextInput id='width32'
   name="text-input-name" type='password'
   placeholder=" Password " 
   required value={this.state.password} onChange={(e)=>{
     this.setState({password:e.target.value})
       }}
-/>
-</div>
+/> */}
+{/* </div> */}
 
 
-{/* <div id='forgot'>
-  <p id='p3'>Forgot Password?</p>
-</div> */}
        
         <div id='log1'>
      <button  id='log'     onClick={(e) => {
-                    this.login(e) }}  > 
+                    this.aplay(e) }}  > 
  
-       Log In 
+     Send
      
         </button>
    
@@ -149,4 +156,4 @@ import Cookies from 'universal-cookie';
         
     }
 }
-export default Admin_login;
+export default Forget_password;

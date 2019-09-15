@@ -20,7 +20,8 @@ class User extends Component {
       password: '',
       phone: '',
       description: '',
-      File:''
+      File:'',
+      
 
     }
   }
@@ -39,7 +40,7 @@ class User extends Component {
           data2:res1.data.data.training,
 
         })
-        // console.log(res1.data.result)
+        console.log(res1.data.data)
       })
       .catch(err => {
         console.log('error:' + err);
@@ -151,7 +152,7 @@ class User extends Component {
             
             
             
-                                    <div id='eduction'> Experience
+                                    <div id='eduction' style={this.state.data.experience < 1 ?  {display:'none'} : { display:''}}   > Experience
                                   
                             
                                   
@@ -202,7 +203,7 @@ class User extends Component {
                                   </div>
                                                     ))} 
             
-                                                      <div id='eduction'> Training
+                                                      <div id='eduction' style={this.state.data.training < 1 ?  {display:'none'} : { display:''}}     > Training
                                   
                                
                                   
@@ -233,7 +234,7 @@ class User extends Component {
                                                       </div>
                                                         ))} 
             
-            <div  style={{fontSize:'14px',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
+            <div  style={this.state.data.Notes === 'NON' ?  {display:'none'} : { display:'',fontSize:'14px',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                              {this.state.data.Notes}
                                                                     </div>
                                                                     <div  style={this.state.data.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >

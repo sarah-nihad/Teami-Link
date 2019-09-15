@@ -75,5 +75,9 @@
     {
         "name":"Maysan",
         "data":["Maysan"]
+    },
+    {
+        "name":"all",
+        "data":["all"]
     }
 ]

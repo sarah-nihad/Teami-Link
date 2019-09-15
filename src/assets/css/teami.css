@@ -11,6 +11,9 @@ justify-content: center;
     font-weight: 700;
     line-height: 20px;
 }
+body{
+  background-color: #F4F4F4;
+}
 .warningbut{
   width:15%;
   height:40px;
@@ -224,11 +227,11 @@ color: #fff;
     /* margin-top: 6%; */
 }
 #mainpost{
-  /* background-color: #FFF; */
+  background-color: #FFF;
   width: 85%;
   min-height: 300px;
   /* margin-top: 5%; */
-  box-shadow: 0px 0px 6px 1px rgba(26, 84, 145, 0.29);
+  box-shadow: inset 0px 0px 1px 0px rgb(26, 84, 145);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -254,7 +257,7 @@ color: #fff;
 #abbcom{
   position: relative;
   background-color: #3F4045;
-  height: 150px;
+  min-height: 150px;
   width: 100%;
   z-index: 1;
   bottom: 25%;
@@ -360,12 +363,14 @@ transform: scale(1.2);
 }
 #aplay_user{
   width: 30%;
-  border: 2px solid #94bcbf;
+  border: 2px solid #1A5491;
   display: flex;
   justify-content: center;
+  border-radius: 5px;
 }
+
 #aplay_user:hover{
-background-color: #94bcbf;
+background-color: #1A5491;
 color: #fff;
 transform: scale(1.2);
 cursor: pointer;
@@ -403,7 +408,7 @@ margin-top: 7%;
 #carduserff{
   min-height: 150px;
   width: 100%;
-  box-shadow:0px 1px 11px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 4px 0px rgba(61, 122, 177, 0.36);
   display: flex;
   align-items: center;
  padding-left: 2%;
@@ -471,7 +476,52 @@ cursor: pointer;
   transform: scale(1.2);
   cursor: pointer;
 }
+#date_user1{
+  width: 100%;
+  display: flex;
+  justify-content: space-between
+} 
+
+.css-69cngj:not([disabled]):not([data-disabled]):active, 
+[data-css-69cngj]:not([disabled]):not([data-disabled]):active, 
+.css-69cngj:not([disabled]):not([data-disabled])[aria-expanded="true"],
+ [data-css-69cngj]:not([disabled]):not([data-disabled])[aria-expanded="true"],
+  .css-69cngj:not([disabled]):not([data-disabled])[data-active], [data-css-69cngj]:not([disabled]):not([data-disabled])[data-active]{
+    background-color: #FFF;
+  }
+
+
+
+
  @media (max-width: 575.98px) { 
+   #s2drv{
+     font-size: 12px;
+   }
+   #nbhk{
+     font-size: 15px;
+   }
+   #filrow1cooo{
+     margin-top: 25%;
+   }
+   #find_usermwil{
+     font-size: 15px;
+   }
+  #dds {
+    margin-right: 0;
+  }
+   #date_user1{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+   }
+   .📦h_180px  .📦w_280px{
+     width: 100%;
+   }
+  .📦w_280px{
+    width: 50%;
+  }
   #mainpostadvertise{
 width: 80%;
   }
@@ -576,6 +626,9 @@ width: 100%;
 
 
  @media (min-width: 576px) and (max-width: 767.98px) { 
+  #filrow1cooo{
+    margin-top: 18%;
+  }
   #imguse1{
     padding-top: 5px;
   }
@@ -659,7 +712,9 @@ width: 100%;
  }
 
  @media (min-width: 768px) and (max-width: 991.98px) { 
-
+  #filrow1cooo{
+    margin-top: 15%;
+  }
   #imguse1{
     padding-top: 5px;
   }
@@ -736,6 +791,9 @@ width: 100%;
  }
 
  @media (min-width: 992px) and (max-width: 1199.98px) {
+  #filrow1cooo{
+    margin-top: 12%;
+  }
   #itemnavteam{
     width: 30%;
  }
@@ -769,11 +827,14 @@ width: 30%;
 
 
  @media (min-width: 1200px) { 
+  #filrow1cooo{
+    margin-top: 10%;
+  }
   #filtermodel{
 display: none;
   }
   #filrow1{
-    padding-top: 5%;
+    padding-top: 10%;
   }
   #filrow2{
     padding-top: 5%;

@@ -28,7 +28,7 @@ class Alladvertise extends React.Component{
       rating:'',
       has_more:false,
       page:1,
-      limit:2
+      limit:50
 
     }
     this.getData =this.getData.bind(this)
@@ -150,14 +150,15 @@ axios({
             //     <h3>{d.name}</h3>
              
             // </li>
-<div>
-<Table striped bordered hover>
+<div id='tabss'  >
+<Table  striped bordered hover responsive   >
   <thead>
     <tr>
       <th>company_name</th>
       <th>Office Name</th>
       <th>title</th>
-      <th>body</th>
+      <th>Text</th>
+      <th>Date</th>
       <th>delete</th>
     </tr>
   </thead>
@@ -168,38 +169,37 @@ axios({
       <td>{item.company_id.OfficeName}</td>
 
       <td>{item.title}</td>
+     
+
       <td>
-    <Component initialState={{ isShown: false }}>
-                          {({ state, setState }) => (
-                            <Pane >
-                              <Dialog
-                                isShown={state.isShown}
-                                title="Change Password"
-                                width={'60%'}
-                                confirmLabel="Edit"
-                                onCloseComplete={() => setState({ isShown: false })}
-                                onConfirm={() => {
-                                  setState({ isShown: false })
-                                  }} 
-                                   > 
+   
 
-                                  <div id='dd'>
-                       
-                                  {item.body}
+                        <Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+      
+        onCloseComplete={() => setState({ isShown: false })}
+        hasFooter={false}
+      >
+        {item.body}
+      </Dialog>
 
-                                </div>
-                              </Dialog>
+      <Button onClick={() => setState({ isShown: true })}>Show </Button>
+    </Pane>
+  )}
+</Component>
 
-                              <Button style={{width:'100%'}}  onClick={() => { setState({ isShown: true }) }}> title  </Button>
-                            </Pane>
-                          )}
-                        </Component> 
       </td>
-
+      <td>{item.uptime}  </td>
 
    
       <td>    <i className="fas fa-trash" style={{ color: 'black', marginRight: 30, marginTop: 10, cursor: 'pointer' }}
                 onClick={(e) => { this.delete(item._id) }} />   </td>
+
+
+
     </tr>
  ))}
   
@@ -220,29 +220,6 @@ axios({
 
         )
     }}
-    // if(this.state.loading){
-    //     return(
-    //         <p>loading...</p>
-    //     )
-    // }
-    // return(
-    //     <div>
-    //         <ul>
-    //         {theData}
-    //         </ul>
-         
-          
-
-        // </div>
-    // )
-// }
    
-// }
-
-
-
-
-
-
 
 export default Alladvertise;

@@ -42,7 +42,7 @@ class Main extends Component {
                                         <div style={{
                                             width: '90%', display: 'flex', flexDirection: 'column', alignItems: 'center',
                                             justifyContent: 'center', paddingTop: '2%',textAlign:'center'
-                                        }}  >Get Salary Matching, Location Map and Company Insights.</div>
+                                        }}  >Get Job Matching , Location and Company Insights.</div>
                                     </Col>
                                 </Row>
 
@@ -56,14 +56,7 @@ class Main extends Component {
 
                         </div>
                     )
-                // }
-                // else {
-                //     return (
-                //         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
-                //             <img src={require('../assets/img/_food.gif')} alt='gif' />
-                //         </div>
-                //     )
-                // }
+           
             }}
 
             </Context.Consumer>

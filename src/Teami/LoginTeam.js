@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Row,Col} from 'react-bootstrap';
-import {TextInput} from 'evergreen-ui';
+import {TextInput,toaster} from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 
@@ -19,33 +19,7 @@ import Cookies from 'universal-cookie';
      
     }}
 
-    // login(){
-    //   var password=this.state.password;
-    //    var phone=this.state.phone; 
-    //    let formData = new FormData();
-    //    var headers = {
-    //      "Content-Type": "application/json",
-    //      token: cookies.get("token")
-    //    };
-    //    formData.append("phone", phone);
-    //    formData.append("password", password);
   
-    //    axios({
-    //      url:host+ `api/v1/user/login/`,
-    //      method: "POST",
-    //      data: formData,
-    //        headers: headers
-    //    })
-    //      .then(response => {
-    //       toaster.success('تم تسجيل الدخول بنجاح');
-    //      })
-    //      .catch(function (error) {
-    //        if (error.response) {
-    //          toaster.danger('قم بأدخال رقم الموبايل و الباسورد');
-    //        }
-    //      });
-
-    //     }
 
     login(e) {
       // e.preventDefault()
@@ -78,12 +52,16 @@ import Cookies from 'universal-cookie';
             
                );
              }
-
-
-
         })
         .catch(function (error) {
-          console.log(error.message)
+
+          
+          if (error.response.data.msg==="Please Check Your Email to complete your registration") {
+            window.location.href = '/Check_com'
+          }else{
+            toaster.danger(error.response.data.msg)
+          }
+          
         });
     }
 
@@ -131,7 +109,7 @@ import Cookies from 'universal-cookie';
 
 
 <div id='forgot'>
-  <p id='p3'>Forgot Password?</p>
+  <p id='p3'>  <Link to='/Forget_password'> Forgot Password? </Link>  </p>
 </div>
        
         <div id='log1'>
@@ -144,25 +122,13 @@ import Cookies from 'universal-cookie';
    
      </div>
     <div id='teamfree'>New User?
-    <div className="dropdown3">
+    {/* <div className="dropdown3"> */}
 
-     <div  style={{paddingLeft:'10px',color:'#3e91b3'}}> Sign up FREE Now </div>
+    <Link to='./SignupTeam' style={{paddingLeft:'10px',color:'#3e91b3'}}> Sign up FREE Now </Link> </div>
    
      
-     <div className="dropdown3-content">
-
-     <div style={{paddingBottom:'10%'}} >
-     <div id='stnav' style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}} > 
-     <Link to='./SignupTeam' style={{textDecoration:'none'}}> User Sign Up  </Link>  </div>
-     </div>
-   <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
-      <Link to='./Companysignup'style={{textDecoration:'none'}} > Company Sign Up  </Link>  </div>
-
-
-       </div>
-       </div>
-
-  </div>
+     
+   
         </Col>
     </Row>
 </div>

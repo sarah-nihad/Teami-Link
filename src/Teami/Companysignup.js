@@ -31,12 +31,17 @@ class Companysignup extends Component {
     axios.post(host + `api/v1/Company/register`, {
       email: this.state.email,
       password: this.state.password,
-      name: this.state.name
+      name: this.state.name,
+      company_name: this.state.company_name,
+      phone: this.state.phone,
+      OfficeName: this.state.OfficeName,
+      Position: this.state.Position,
+      ctiy: this.state.ctiy
     })
 
       .then(response => {
         // if (response === 200) {
-        window.location.href = '/HomeCom'
+        window.location.href = '/Check_com'
         cookies.set("token", response.data.token, {
           path: '/',
           expires: new Date(Date.now() + 60480000)
@@ -63,7 +68,7 @@ class Companysignup extends Component {
               <div id='main'>
                 <Row  id='rowcom' style={{ marginRight: '0px', paddingBottom: '3%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
                   {/* <img src={require('../assets/img/link.png')} id='img22' alt='offer' /> */}
-                  <div style={{ lineHeight: '30px', fontWeight: '400', color: '#fff', textAlign: 'center' }} id='textmaint1' > Make the most of your professional life</div>
+                  <div style={{ lineHeight: '30px', fontWeight: '400', color: '#fff', textAlign: 'center' }} id='textmaint1' > The Right Way To Get Talented People</div>
                      <div style={{fontSize:'24px',fontWeight:'400',color:'#fff',paddingTop:'3%'}}>Company Sign Up</div>
                 </Row>
                 <Row style={{ marginRight: '0px', width: '90%' }} id='rowlogins1c' >
@@ -167,7 +172,7 @@ class Companysignup extends Component {
                     </button>
 
                   </div>
-                  <div id='teamfree'>Already a member? <Link to='./LoginTeam' style={{ paddingLeft: '10px', color: '#3e91b3' }}> Log in Now </Link>  </div>
+                  <div id='teamfree'>Already a member? <Link to='./ComLogin' style={{ paddingLeft: '10px', color: '#3e91b3' }}> Log in Now </Link>  </div>
                 </Row>
                 </Row>
       

@@ -28,7 +28,7 @@ class Alljob extends React.Component{
       rating:'',
       has_more:false,
       page:1,
-      limit:2
+      limit:50
 
     }
     this.getData =this.getData.bind(this)
@@ -45,7 +45,7 @@ if (p) {
   pageckeck=this.state.page;
 }
 
-    console.log('p',p)
+    // console.log('p',p)
     // const {page} = this.state
     const {limit} = this.state
     // this.setState({
@@ -128,8 +128,8 @@ componentDidMount(){
             //     <h3>{d.name}</h3>
              
             // </li>
-<div>
-<Table striped bordered hover>
+<div id='tabss'   >
+<Table striped bordered hover responsive   >
   <thead>
     <tr>
    
@@ -141,6 +141,8 @@ componentDidMount(){
       <th>company_position</th>
       <th>Adver_title</th>
       <th>Adver_body</th>
+      <th>status</th>
+      <th>Date</th>
     </tr>
   </thead>
   <tbody>
@@ -155,44 +157,31 @@ componentDidMount(){
       
      <td>  {item.ads_id.title}</td>
       <td>
-    <Component initialState={{ isShown: false }}>
-                          {({ state, setState }) => (
-                            <Pane >
-                              <Dialog
-                                isShown={state.isShown}
-                                title="Change Password"
-                                width={'60%'}
-                                confirmLabel="Edit"
-                                onCloseComplete={() => setState({ isShown: false })}
-                                onConfirm={() => {
-                                  setState({ isShown: false })
-                                  }} 
-                                   > 
+    
+      
+      
+                        <Component initialState={{ isShown: false }}>
+  {({ state, setState }) => (
+    <Pane>
+      <Dialog
+        isShown={state.isShown}
+      
+        onCloseComplete={() => setState({ isShown: false })}
+        hasFooter={false}
+      >
+                {item.ads_id.body}
+      </Dialog>
 
-                                  <div id='dd'>
-                       
-                                  {item.ads_id.body}
-
-                                </div>
-                              </Dialog>
-
-                              <Button style={{width:'100%'}}  onClick={() => { setState({ isShown: true }) }}> title  </Button>
-                            </Pane>
-                          )}
-                        </Component> 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+      <Button onClick={() => setState({ isShown: true })}>Show </Button>
+    </Pane>
+  )}
+</Component>
+       
       </td>
+
+<td>{item.status}</td>
+
+<td> {item.uptime}  </td>
     </tr>
  ))}
   

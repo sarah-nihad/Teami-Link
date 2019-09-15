@@ -7,9 +7,9 @@ class Home extends Component{
         return(
 
             <div >
-<div style={{display:'flex',alignItems:'center',justifyContent:'center',height:'90vh',width:'100%',backgroundColor:'#1A5491'}}>
+<div style={{display:'flex',alignItems:'center',justifyContent:'center',height:'80vh',width:'100%',backgroundColor:'#1A5491'}}>
 <Link to='/'>
-<img src={require('../assets/img/link.png')} style={{height:'300px'}} alt='img'   />
+<img src={require('../assets/img/link.png')} id='dashimgl' alt='img'   />
 </Link>
 </div>
 

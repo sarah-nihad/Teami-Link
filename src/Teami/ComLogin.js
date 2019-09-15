@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Row,Col} from 'react-bootstrap';
-import {TextInput} from 'evergreen-ui';
+import {TextInput,toaster} from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 
@@ -15,33 +15,73 @@ import Cookies from 'universal-cookie';
       data:[],
       email:'',
       password:'',
-    
+      license:true
      
     }}
 
+    // login(e) {
+    //   e.preventDefault()
+    //   axios.post(host + `api/v1/Company/login`, {
+    //     email: this.state.email,
+    //     password: this.state.password
+    //   })
+  
+    //     .then(response => {
+  
+    //         window.location.href = '/HomeCom'
+    //         cookies.set("token",response.data.token,{
+    //           path:'/',
+    //           expires:new Date(Date.now() + 60480000)
+    //         }
+    //         );
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error.message)
+    //     });
+    // }
+
+    
     login(e) {
-      e.preventDefault()
+      // e.preventDefault()
       axios.post(host + `api/v1/Company/login`, {
         email: this.state.email,
         password: this.state.password
       })
   
         .then(response => {
-          // if (response === 200) {
-            window.location.href = '/HomeCom'
-            cookies.set("token",response.data.token,{
+          console.log(response.data);
+      
+            if (response.data.license === true) {
+         window.location.href = '/HomeCom'
+            cookies.set("token",response.data.token,"license",response.data.license,{
               path:'/',
-              expires:new Date(Date.now() + 60480000)
+              expires:new Date(Date.now() + 60480000),
+              
             }
+         
             );
-          // }
+          }
+
+         else if (response.data.license === false) {
+            window.location.href = '/Activation'
+               cookies.set("token",response.data.token,"license",response.data.license,{
+                 path:'/',
+                 expires:new Date(Date.now() + 60480000),
+                 
+               }
+            
+               );
+             }
         })
         .catch(function (error) {
-          console.log(error.message)
+          console.log(error.response.data.msg);
+          if (error.response.data.msg==="Please Check Your Email to complete your registration") {
+            window.location.href = '/Check_com'
+          }else{
+            toaster.danger(error.response.data.msg)
+          }
         });
     }
-
-    
 
     render(){
         return(
@@ -87,7 +127,7 @@ import Cookies from 'universal-cookie';
 
 
 <div id='forgot'>
-  <p id='p3'>Forgot Password?</p>
+  <p id='p3'> <Link to='/Forget_pass'>   Forgot Password? </Link>   </p>
 </div>
        
         <div id='log1'>
@@ -100,12 +140,12 @@ import Cookies from 'universal-cookie';
    
      </div>
     <div id='teamfree'>New User?
-    <div className="dropdown3">
+    {/* <div className="dropdown3"> */}
      {/* <Link to='./SignupTeam' style={{paddingLeft:'10px',color:'#3e91b3'}}>  */}
-     <div  style={{paddingLeft:'10px',color:'#3e91b3'}}> Sign up FREE Now </div>
+     <Link  to='./Companysignup' style={{paddingLeft:'10px',color:'#3e91b3'}}> Sign up FREE Now </Link>  </div>
      {/* </Link> */}
      
-     <div className="dropdown3-content">
+     {/* <div className="dropdown3-content">
 
      <div style={{paddingBottom:'10%'}} >
      <div id='stnav' style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}} > 
@@ -115,10 +155,10 @@ import Cookies from 'universal-cookie';
       <Link to='./Companysignup'style={{textDecoration:'none'}} > Company Sign Up  </Link>  </div>
 
 
-       </div>
-       </div>
+       </div> */}
+       {/* </div>
 
-  </div>
+  </div> */}
         </Col>
     </Row>
 </div>

@@ -9,8 +9,9 @@ import Context from '../component/context';
 import { Row, Col } from 'react-bootstrap';
 import {  Button, TextInput, Dialog, Pane, FilePicker,toaster} from 'evergreen-ui';
 import NavCom from './NavCom';
-// import { Link} from 'react-router-dom';
-// import Select from 'react-select';
+import Select from 'react-select';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 import State from './state.json';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -21,6 +22,8 @@ class Company2 extends React.Component {
     this.state = {
       data4: [],
       data1: [],
+      phone:'',
+
       company_name:'',
       email:'',
       name:'',
@@ -38,7 +41,8 @@ class Company2 extends React.Component {
     }
   }
   CityFun() {
-    var arr = [{ value: 'State', label: 'State' }];
+
+    var arr = [{ value: 'city', label: 'city' }];
     for (let i = 0; i < city.length; i++) {
       arr.push(
         { value: city[i].name, label: city[i].name }
@@ -48,25 +52,38 @@ class Company2 extends React.Component {
   }
 
 
-  componentDidMount() {
-    axios.get(host + 'api/v1/Company/profile', { headers: { token: cookies.get("token") } })
-      .then(res => {
-      
-        this.setState({
-          data4: res.data.profile
  
+componentDidMount(){
 
-        })
-        console.log(res.data.profile);
+  axios.get(host + 'api/v1/Company/profile', { headers: { token: cookies.get("token") } })
+  .then(res => {
   
-      })
-      .catch(err => {
-        console.log('error:' + err);
-      })
+    this.setState({
+      data4: res.data.profile,
+    
+      name: res.data.profile.name,
+      phone: res.data.profile.phone,
+      OfficeName: res.data.profile.OfficeName,
+      Position: res.data.profile.Position,
+      company_name: res.data.profile.company_name,
+      numberOfTeam: res.data.profile.numberOfTeam,
+      ctiy: res.data.profile.Cityinput,
+      file: res.data.profile.file,
+      
+    })
 
-  }
+
+    console.log(res.data.profile);
+  })
+  .catch(err => {
+    console.log('error:' + err);
+   
+  })
 
 
+
+
+}
 
 
   edit() {
@@ -81,7 +98,7 @@ class Company2 extends React.Component {
     formData.append("OfficeName", this.state.OfficeName);
     formData.append("Position", this.state.Position);
     formData.append("numberOfTeam", this.state.numberOfTeam);
-    formData.append("ctiy", this.state.ctiy);
+    formData.append("ctiy", this.state.Cityinput);
     formData.append("company_name", this.state.company_name);
     formData.append("file", this.state.file);
     axios({
@@ -92,6 +109,7 @@ class Company2 extends React.Component {
     })
       .then(response => {
         toaster.success('info has been edit successfully');
+        this.componentDidMount();
       })
       .catch(function (error) {
         // console.log(error.response.data)
@@ -124,9 +142,8 @@ class Company2 extends React.Component {
         toaster.success('information has been edit successfully');
       })
       .catch(function (error) {
-        // console.log(error.response.data)
-        if (error.response) {
-        }
+        console.log(error.response.data)
+        toaster.danger(error.response.data.msg);
       });
 
   }
@@ -154,7 +171,7 @@ class Company2 extends React.Component {
       <div style={{ backgroundColor: '#F5F5F5' }}>
 
 
-        <Row style={{ marginRight: '0px' }} id='filrow1'>
+        <Row style={{ marginRight: '0px' }} id='filrow1cooo'>
         
           <Col xs={12} id='colpost23' >
            <div id='adver'>
@@ -168,7 +185,7 @@ class Company2 extends React.Component {
 </div>
 <div id='abbtext'>
 <div  style={{paddingBottom:'2%',display:'flex',justifyContent:'space-between',width:'100%'}}>
-<div style={{paddingLeft:'2%',fontSize:'24px',paddingBottom:'2%',width:'50%'}}>{ctx.value.company_name} </div>
+<div style={{paddingLeft:'2%',fontSize:'24px',paddingBottom:'2%',width:'100%'}}>{this.state.data4.company_name} </div>
 
 
 
@@ -183,19 +200,21 @@ class Company2 extends React.Component {
 
 </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'20px'}}> 
-<span style={{color:'#1A5491'}} >Office Name : </span>  {ctx.value.data4.OfficeName} </div>
+<span style={{color:'#1A5491'}}id='nbhk'  >Office Name : </span> <span id='s2drv'  >    {this.state.data4.OfficeName} </span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} >Company Name : </span>  {ctx.value.data4.name} </div>
-<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > Position : </span> {ctx.value.data4.Position} </div>
+<span style={{color:'#1A5491'}} id='nbhk' >Company Name : </span>  <span id='s2drv'  >  {this.state.data4.company_name}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} > Ctiy : </span> {ctx.value.data4.ctiy}</div>
+<span style={{color:'#1A5491'}} id='nbhk'  > Name : </span>  <span id='s2drv'  >  {this.state.data4.name}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > E-mail : </span> {ctx.value.data4.email}  </div>
-<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
-<span style={{color:'#1A5491'}} > Phone : </span> {ctx.value.data4.phone} </div>
+<span style={{color:'#1A5491'}} id='nbhk'  > Position : </span> <span id='s2drv'  >   {this.state.data4.Position}</span>  </div>
 <div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
-<span style={{color:'#1A5491'}} > Number Of Team : </span> {ctx.value.data4.numberOfTeam} </div>
+<span style={{color:'#1A5491'}} id='nbhk'  > City : </span> <span id='s2drv'  >    {this.state.data4.ctiy} </span>   </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
+<span style={{color:'#1A5491'}} id='nbhk'   > E-mail : </span> <span id='s2drv' >    {this.state.data4.email} </span>  </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}> 
+<span style={{color:'#1A5491'}} id='nbhk'  > Phone : </span> <span id='s2drv' >  {this.state.data4.phone}</span>  </div>
+<div style={{width:'100%',paddingLeft:'2%',fontSize:'18px'}}>
+<span style={{color:'#1A5491'}} id='nbhk'  > Number Of Team : </span>  <span id='s2drv' >  {this.state.data4.numberOfTeam}</span>  </div>
                     </div>
 
 
@@ -219,7 +238,7 @@ class Company2 extends React.Component {
 
                        
                           <div id='dd'>
-                            <div> company_name : </div>
+                            <div> Company Name : </div>
                             <TextInput id='width'
                               name="text-input-name"
                               placeholder="company_name"
@@ -248,18 +267,22 @@ class Company2 extends React.Component {
 
                           </div>
                           <div id='dd'>
-                            <div> ctiy </div>
-                            <TextInput id='width'
-                              name="text-input-name"
-                              placeholder="ctiy" required
-                              value={this.state.ctiy} onChange={(e) => {
-                                this.setState({ ctiy: e.target.value })
-                              }} />
-                          </div>
+                                  <div> City :</div>
+                                  <Select
+                                  onChange={(e) => {
+                                    if (e.value !== 'city') {
+                                      this.setState({ Cityinput: e.value })
+                                      console.log( e.value );
+                                    }
+                                  }}
+                                  defaultValue={this.CityFun()[0]}
+                                  options={this.CityFun()}
+                                />
+                                </div>
 
 
                           <div id='dd'>
-                            <div> edit photo</div>
+                            <div> Edit photo</div>
                             <FilePicker id='width'
                               multiple
 
@@ -271,7 +294,7 @@ class Company2 extends React.Component {
 
                           </div>
                           <div id='dd'>
-                            <p > name : </p>
+                            <p > Name : </p>
 
                             <TextInput id='width'
                               name="text-input-name"
@@ -282,7 +305,7 @@ class Company2 extends React.Component {
                       
                           </div>
                           <div id='dd'>
-                            <p > phone : </p>
+                            <p > Phone : </p>
 
                             <TextInput id='width'
                               name="text-input-name"
@@ -295,7 +318,7 @@ class Company2 extends React.Component {
 
                      
                           <div id='dd'>
-                            <div> number Of Team</div>
+                            <div> Number Of Team</div>
 
                             <TextInput id='width'
                               name="text-input-name"
@@ -322,7 +345,7 @@ class Company2 extends React.Component {
                           title="Change Password"
                           width={'60%'}
                           // height={1000}
-                          confirmLabel="Edit"
+                          confirmLabel="Change"
                           onCloseComplete={() => setState({ isShown: false })}
                           onConfirm={() => {
                             setState({ isShown: false })
@@ -330,17 +353,17 @@ class Company2 extends React.Component {
                              > 
 
                             <div id='dd'>
-                            <div>old password :</div>
+                            <div>Old Password :</div>
                             <TextInput id='width'
                               name="text-input-name"
-                              placeholder="old password" required
+                              placeholder="Old password" required
                               value={this.state.password} onChange={(e) => {
                                 this.setState({ password: e.target.value })
                               }} />
                               </div>
 
                               <div id='dd'>
-                            <div>New password :</div>
+                            <div>New Password :</div>
 <TextInput id='width'
                               name="text-input-name"
                               placeholder="New password" required
@@ -386,7 +409,15 @@ class Company2 extends React.Component {
           )
         }else if (ctx.value.chech_compLOgin==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+                 options={{
+                   animationData: jssson,
+                 }}
+                 style={{width:'300px',height:'300px'}}
+               />
+        </div>
           )
         }
 

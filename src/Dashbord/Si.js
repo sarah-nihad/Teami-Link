@@ -11,7 +11,8 @@ import ListItem from '@material-ui/core/ListItem';
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 import Home from './Home';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Popover, Pane, Avatar } from 'evergreen-ui';
@@ -25,7 +26,7 @@ import Alladvertise from './Alladvertise';
 import Alluser from './Alluser';
 import { Redirect} from 'react-router-dom';
 import Context from '../component/context';
-
+// import '@lottiefiles/lottie-player';
 import Alljob from './Alljob';
 
 import Allcompany from './Allcompany';
@@ -42,7 +43,9 @@ function rendericon(props) {
   else if (props.match.path === '/Allcompany') {
     return (<Link to='./Home' id='ll'> <i className="fas fa-arrow-circle-left" id='ic' /></Link>)
   }
-
+  else if (props.match.path === '/Alljob') {
+    return (<Link to='./Home' id='ll'> <i className="fas fa-arrow-circle-left" id='ic' /></Link>)
+  }
   else if (props.match.path === '/Alladvertise') {
     return (<Link to='./Home' id='ll'> <i className="fas fa-arrow-circle-left" id='ic' /></Link>)
   }
@@ -216,7 +219,7 @@ class ResponsiveDrawer extends React.Component {
 
                           <ListItem button>
 
-                            <ListItemText ><span style={{ color: 'white', fontWeight: '500', fontSize: '15px' }}> All job.</span></ListItemText>
+                            <ListItemText ><span style={{ color: 'white', fontWeight: '500', fontSize: '15px' }}> Applied job</span></ListItemText>
                           </ListItem>
 
                         </List>
@@ -288,7 +291,7 @@ class ResponsiveDrawer extends React.Component {
 
                           <ListItem button>
 
-                            <ListItemText ><span style={{ color: 'white', fontWeight: '500', fontSize: '15px' }}>All job</span></ListItemText>
+                            <ListItemText ><span style={{ color: 'white', fontWeight: '500', fontSize: '15px' }}>Applied job</span></ListItemText>
                           </ListItem>
 
                         </List>
@@ -349,9 +352,16 @@ class ResponsiveDrawer extends React.Component {
           }
           else{
             return (
-              <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100vh'}}>
-         wating
-            </div>
+              <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+                 options={{
+                   animationData: jssson,
+                 }}
+                 width={300}
+                 height={300}
+               />
+          </div>
             )
           }
         }

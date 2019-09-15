@@ -7,7 +7,8 @@ import { Redirect} from 'react-router-dom';
 import Context from '../component/context';
 import { toaster} from 'evergreen-ui';
 import Cookies from 'universal-cookie';
-// import MainCom from './MainCom';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 // import { Link} from 'react-router-dom';
 const cookies = new Cookies();
 class Advertising extends Component {
@@ -68,7 +69,7 @@ class Advertising extends Component {
            <div id='mainpostadvertise' key={i}  >
 
 <div>{item.title} </div>
-<div style={{width:'100%',paddingLeft:'8px'}}>  {item.body} </div>
+<div style={{width:'100%',padding:'10px'}}>  {item.body} </div>
 <div style={{width:'100%',paddingLeft:'8px'}}> City :   {item.city} </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}> gender :  {item.gender} </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}> Education :  {item.education}   </div> 
@@ -106,7 +107,16 @@ class Advertising extends Component {
           )
         }else if (ctx.value.chech_compLOgin ==="") {
           return(
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+                 options={{
+                   animationData: jssson,
+                 }}
+                 width={300}
+                 height={300}
+               />
+        </div>
           )
         }
 

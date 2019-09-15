@@ -6,11 +6,13 @@ import host from './host';
 import { Redirect } from 'react-router-dom';
 import NavCom from '../Teami/NavCom';
 import { toaster } from 'evergreen-ui';
+import Lottie from 'lottie-react-web'
+import jssson from '../assets/img/jssson.json';
 // import Component from '@reactions/component';
 import Context from './context';
 import { Row, Col, Tab, Tabs } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
-// import DatePicker from "react-datepicker";
+// import '@lottiefiles/lottie-player';
 
 // import moment from 'moment';
 import Cookies from 'universal-cookie';
@@ -135,7 +137,7 @@ class User extends React.Component {
       headers: headers
     })
       .then(response => {
-        toaster.success('status has been received ');
+        toaster.success('status has been Accepted');
 
       })
       .catch(function (error) {
@@ -353,7 +355,6 @@ class User extends React.Component {
                                   <i className="fas fa-map-marker-alt" style={{ fontSize: '14px' }} ></i>  <span style={{ paddingLeft: '10px', width: '100%' }}  >  {item.user_id.ctiy} </span>
                                 </div>   </div>
                             </Col>
-
                             <Col id='colusercc' xs={12} lg={4}  >
                               <div key={i} style={{ width: '100%' }}   >
                                 <div id='name22user2' style={{ color: '#1A5491' }} >
@@ -388,7 +389,16 @@ class User extends React.Component {
           )
         } else if (ctx.value.chech_compLOgin === "") {
           return (
-            <h1>waiting</h1>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}  >
+   
+   <Lottie
+        options={{
+          animationData: jssson,
+        }}
+        width={300}
+        height={300}
+      />
+        </div>
           )
         }
 

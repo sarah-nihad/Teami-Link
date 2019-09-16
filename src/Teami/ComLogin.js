@@ -104,7 +104,7 @@ import Cookies from 'universal-cookie';
 {/* <div style={{fontSize:'14px',fontWeight:'400',color:'#333333',paddingTop:'1%',paddingBottom:'2%'}} >Find jobs matching your salary</div> */}
         <div id='d111serlogin'>
       {/* <p id='p2'> رقم الموبايل : </p> */}
- <TextInput id='width32'
+ <TextInput id='width32' type='email'
   name="text-input-name"
   placeholder="E-mail" 
   required value={this.state.email} onChange={(e)=>{

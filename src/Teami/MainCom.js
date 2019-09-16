@@ -14,6 +14,7 @@ import city1 from '../json/city1.json';
 import state from '../json/state.json';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import { Textarea } from 'evergreen-ui/commonjs/textarea';
 const cookies = new Cookies();
 const city = State;
 var sp = speciality;
@@ -335,7 +336,7 @@ else{
                                 </div>
                                 <div id='dd'>
                                   <div> Text :</div>
-                                  <TextInput id='width'
+                                  <Textarea id='width'
                                     name="text-input-name"
                                     placeholder="text ..."
                                     required value={this.state.body} onChange={(e) => {

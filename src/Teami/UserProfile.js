@@ -136,10 +136,11 @@ data2:[],
 
   categoryFun() {
    
-    var arr = [{ value: 'phamacuiticalCategory', label: 'phamacuiticalCategory' }];
+    var arr = [];
     for (let i = 0; i < phamacuiticalCategory.length; i++) {
       arr.push(
-        { value: phamacuiticalCategory[i].name, label: phamacuiticalCategory[i].name }
+        // { value: phamacuiticalCategory[i].name, label: phamacuiticalCategory[i].name }
+        <option value={phamacuiticalCategory[i].name }>{phamacuiticalCategory[i].name }</option>
       )
     }
     return arr
@@ -147,20 +148,22 @@ data2:[],
 
   CollageFun() {
    
-    var arr = [{ value: 'Collage', label: 'Collage' }];
+    var arr = [];
     for (let i = 0; i < Collage.length; i++) {
       arr.push(
-        { value: Collage[i].name, label: Collage[i].name }
+        // { value: Collage[i].name, label: Collage[i].name }
+        <option value={Collage[i].name }>{Collage[i].name }</option>
       )
     }
     return arr
   }
   
   positionFun() {
-    var arr = [{ value: 'position', label: 'position' }];
+    var arr = [];
     for (let i = 0; i < Position.length; i++) {
       arr.push(
-        { value: position[i].name, label: position[i].name }
+        // { value: position[i].name, label: position[i].name }
+        <option value={position[i].name }>{position[i].name }</option>
       )
     }
     return arr
@@ -676,7 +679,7 @@ componentDidMount(){
                                 <div id='dd'>
                                   <div> city :</div>
                                   <Form.Group  >
-                                            <Form.Control as="select" 
+                                            <Form.Control as="select" id='sel_sa'
                                                 onChange={(even) => {
                                                     if (even.target.value !== 'Select') {
                                                         this.setState({ Cityinput: even.target.value })
@@ -693,8 +696,8 @@ componentDidMount(){
                                   <div> gender :</div>
                             
 
-<Form.Group  >
-                                            <Form.Control as="select" 
+                                            <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
                                                 onChange={(even) => {
                                                     if (even.target.value !== 'Select') {
                                                         this.setState({ gender: even.target.value })
@@ -711,20 +714,10 @@ componentDidMount(){
 
                                 <div id='dd'>
                                   <div> Have a Car?:</div>
-                           
-                                      {/* <Select
-                                  onChange={(e) => {
-                               
-                                      this.setState({ car: e.value })
-                                      console.log( e.value );
-                               
-                                  }}
-                             
-                                  options={options1}
-                                /> */}
+                        
 
                                         <Form.Group  >
-                                            <Form.Control as="select" 
+                                            <Form.Control as="select" id='sel_sa'
                                                 onChange={(even) => {
                                                     if (even.target.value !== 'Select') {
                                                         this.setState({ car: even.target.value })
@@ -742,15 +735,8 @@ componentDidMount(){
                                 <div id='dd'>
                                   <div>Are You Working Now?:</div>
                            
-                                 {/* <Select
-                                  onChange={(e) => {                              
-                                      this.setState({ working: e.value })
-                                      console.log( e.value   );
-                                  }}                                 
-                                  options={options2}
-                                /> */}
                                       <Form.Group  >
-                                            <Form.Control as="select" 
+                                            <Form.Control as="select" id='sel_sa'
                                                 onChange={(even) => {
                                                     if (even.target.value !== 'Select') {
                                                         this.setState({ working: even.target.value })
@@ -782,7 +768,7 @@ componentDidMount(){
                                 <div id='dd'>
                                   <p > Collage:</p>
 
-                                     <Select
+                                     {/* <Select
                                   onChange={(e) => {
                                     if (e.value !== 'Collage') {
                                       this.setState({ Collage: e.value })
@@ -797,8 +783,19 @@ componentDidMount(){
                                   }}
                                   defaultValue={this.CollageFun()[0]}
                                   options={this.CollageFun()}
-                                />
-                          
+                                /> */}
+                             <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ Collage: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> Collage</option>
+
+                                               {this.CollageFun()}
+                                            </Form.Control>
+                                        </Form.Group>
                                 </div>
                                 {!this.state.wait2 ? (
    
@@ -818,7 +815,7 @@ componentDidMount(){
 
                                 <div id='dd'>
                                   <p > Education:</p>
-                                    <Select
+                                    {/* <Select
                                         onChange={(e) => {
                                
                                       this.setState({ Education: e.value })
@@ -827,7 +824,21 @@ componentDidMount(){
                                   }}
                              
                                   options={options4}
-                                />
+                                /> */}
+
+<Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ Education: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> Education</option>
+                                                <option value="student"> student</option>
+                                                <option value="graduated"> graduated</option>
+                                            
+                                            </Form.Control>
+                                        </Form.Group>
                           
                                 </div>
 
@@ -964,28 +975,31 @@ componentDidMount(){
                                                            > 
                                                      <div id='dd'>
                                                    <p > Position:</p>
-                                                          <Select
-                                                                 onChange={(e) => {
-                                                              if (e.value !== 'position') {
-                                                                 this.setState({ Positioninput: e.value })
-                                                                  console.log(e.value);
-                                      }
-                                      if (e.value === 'other') {
-                                        setTimeout(() => {
-                                          this.positionwait()
-                                        }, 200);
-                                      }
-                                      if (e.value === 'Medical Supervisor' || e.value ==='Medical Representative' || e.value ==='Product Specialist'
-                                      || e.value ==='Product Manager'  || e.value ==='General manager'|| e.value ==='Team Leader') {
-                                        setTimeout(() => {
-                                          this.positionwait1()
-                                        }, 200);
-                                      }
 
-                                    }}
-                                    defaultValue={this.positionFun()[0]}
-                                    options={this.positionFun()}
-                                  />
+                                                   <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'position') {
+                                                        this.setState({ Positioninput: even.target.value })   
+                                                    }
+                                                    if (even.target.value === 'other') {
+                                                      setTimeout(() => {
+                                                        this.positionwait()
+                                                      }, 200);
+                                                    }
+                                                    if (even.target.value === 'Medical Supervisor' ||even.target.value ==='Medical Representative' || even.target.value ==='Product Specialist'
+                                                    ||even.target.value ==='Product Manager'  || even.target.value ==='General manager'|| even.target.value ==='Team Leader') {
+                                                      setTimeout(() => {
+                                                        this.positionwait1()
+                                                      }, 200);
+                                                    }
+                                                }}>
+                                                <option value="Select"> position</option>
+
+                                               {this.positionFun()}
+                                            </Form.Control>
+                                        </Form.Group>
+                                
                                 </div>
 
                                 {!this.state.wait1 ? (
@@ -1097,23 +1111,25 @@ componentDidMount(){
                                 <div id='dd'>
                                   <p > Phamacuitical Category:</p>
 
-
-                                  <Select
-                                    onChange={(e) => {
-                                      if (e.value !== 'phamacuiticalCategory') {
-                                        this.setState({ categoryinput: e.value })
-                                        console.log(e.value);
-                                      }
-                                      if (e.value === 'other') {
+                                  <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'phamacuiticalCategory') {
+                                                        this.setState({ categoryinput: even.target.value })
+                                                    }
+                                                    if (even.target.value === 'other') {
                                 
-                                        setTimeout(() => {
-                                          this.getCateById()
-                                        }, 200);
-                                      }
-                                    }}
-                                    defaultValue={this.categoryFun()[0]}
-                                    options={this.categoryFun()}
-                                  />
+                                                      setTimeout(() => {
+                                                        this.getCateById()
+                                                      }, 200);
+                                                    }
+                                                }}>
+                                                <option value="Select"> phamacuitical Category</option>
+
+                                               {this.categoryFun()}
+                                            </Form.Control>
+                                        </Form.Group>
+                           
  {!this.state.wait ? (
    
    <div id='dd'>
@@ -1144,14 +1160,27 @@ componentDidMount(){
                                                         <div id='dd'>
                                                           <div> time of Work :</div>
                                                      
-                                  <Select
+                                  {/* <Select
                                   onChange={(e) => {
                                       this.setState({ timeofWork: e.value })
                                       console.log( e.value );
                                       
                                   }}
                                   options={options3}
-                                />
+                                /> */}
+                                          <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ timeofWork: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> time of Work</option>
+                                                <option value="full"> full</option>
+                                                <option value="part"> part</option>
+                                            
+                                            </Form.Control>
+                                        </Form.Group>
                                                         </div>
 
 

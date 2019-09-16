@@ -94,7 +94,7 @@ class User extends React.Component {
       "Content-Type": "application/json",
       token: cookies.get("token")
     };
-    formData.append("status", "reject");
+    formData.append("status", "Rejected");
 
 
 
@@ -126,7 +126,7 @@ class User extends React.Component {
       "Content-Type": "application/json",
       token: cookies.get("token")
     };
-    formData.append("status", "received ");
+    formData.append("status", "Accepted ");
 
 
 

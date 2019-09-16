@@ -43,7 +43,7 @@ class Activation extends Component {
                 
             <div style={{width:'100%',textDecoration:'none',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',fontSize:'18px'}}> 
          <div>  <i className="fas fa-phone-volume" style={{color:'#2222ab'}} ></i> <span style={{paddingLeft:'10px',color:'#2222ab'}}  >   07710509440  </span> </div> 
-         <div>  <i className="fas fa-envelope" style={{color:'#2222ab'}} ></i> <span style={{paddingLeft:'10px',color:'#2222ab'}}  >   mustafa_aljaf@hotmail.com</span> </div> 
+         <div>  <i className="fas fa-envelope" style={{color:'#2222ab'}} ></i> <span style={{paddingLeft:'10px',color:'#2222ab'}}  >  info@sky-limitx.com</span> </div> 
         
          </div>
                   </div> 

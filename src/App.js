@@ -190,7 +190,7 @@ if (token) {
   let data=res.data.result
 
   let fdata=data.filter(d=>
-    d.status==="reject"
+    d.status==="Rejected"
     )
 
     // console.log('fdata',fdata);
@@ -200,7 +200,7 @@ if (token) {
       data9:fdata
     })
     let fdata1=data.filter(d=>
-      d.status==="received "
+      d.status==="Accepted "
       )
       // console.log('fdata1',fdata1);
       // console.log(fdata1);

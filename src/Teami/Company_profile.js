@@ -6,8 +6,8 @@ import host from '../component/host';
 import Component from '@reactions/component';
 import { Redirect} from 'react-router-dom';
 import Context from '../component/context';
-import { Row, Col } from 'react-bootstrap';
-import {  Button, TextInput, Dialog, Pane, FilePicker,toaster} from 'evergreen-ui';
+import { Row, Col ,Form} from 'react-bootstrap';
+import {  Button, TextInput, Dialog, Pane, FilePicker,toaster,Textarea} from 'evergreen-ui';
 import NavCom from './NavCom';
 import Select from 'react-select';
 import Lottie from 'lottie-react-web'
@@ -171,7 +171,7 @@ componentDidMount(){
       <div style={{ backgroundColor: '#F5F5F5' }}>
 
 
-        <Row style={{ marginRight: '0px' }} id='filrow1cooo'>
+        {/* <Row style={{ marginRight: '0px' }} id='filrow1cooo'>
         
           <Col xs={12} id='colpost23' >
            <div id='adver'>
@@ -180,22 +180,11 @@ componentDidMount(){
 
 </div>
 <div id='abbimg'>
-{/* <img src={require('../assets/img/cro.jpg')} id='imgcom' /> */}
 <img src={host + ctx.value.data4.File} id='imgcom' alt='img' />
 </div>
 <div id='abbtext'>
 <div  style={{paddingBottom:'2%',display:'flex',justifyContent:'space-between',width:'100%'}}>
 <div style={{paddingLeft:'2%',fontSize:'24px',paddingBottom:'2%',width:'100%'}}>{this.state.data4.company_name} </div>
-
-
-
-
-
-
-
-
-
-
 
 
 </div>
@@ -221,7 +210,142 @@ componentDidMount(){
 <div style={{width:'100%',display:'flex',justifyContent:'space-around',position:'relative',bottom:'35px'}}  >
 
 
-                    <Component initialState={{ isShown: false }}>
+                
+
+
+
+                
+
+
+                  </div>
+
+
+           </div>
+           
+    
+
+          </Col>
+
+
+        </Row> */}
+
+
+
+
+<div style={{
+                backgroundColor: '#F5F5F5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
+                , width: '100%'
+              }}>
+                <Row style={{ marginRight: '0px',  }} id='userpro1'  >
+
+                  <Col xs={12}>
+
+                    <div id='cardprofileuser' >
+
+              
+                        <div id='backprofcoluser'>
+                     
+
+
+                        </div>
+
+
+
+                      <div id='name1user' >
+                      
+                             <img src={host +this.state.data4.File} id='img123user'alt='img' />
+                             </div>
+                             <div id='name1user' >
+                     
+                     {this.state.data4.company_name}
+                
+                      </div>
+                      <div id='name22user' >
+                     
+                      <span style={{color:'#1A5491'}}id='nbhk'  >Office Name : </span> <span id='s2drv'  >    {this.state.data4.OfficeName} </span> 
+                
+                      </div>
+
+                      <div id='name22user' >
+                     
+                      <span style={{color:'#1A5491'}} id='nbhk'  > Position : </span> <span id='s2drv'  >   {this.state.data4.Position}</span> 
+                
+                      </div>
+                      <div id='name22user' >
+                     
+                      <span style={{color:'#1A5491'}} id='nbhk'  > Name : </span> <span id='s2drv'  >   {this.state.data4.name}</span> 
+                   
+                         </div>
+                      <div id='name22user' style={{color:'#1A5491'}} >
+                      <i className="fas fa-envelope"style={{fontSize:'15px'}}></i>   <span style={{paddingLeft:'10px',width:'100%'}} id='s2drv' >{this.state.data4.email}</span>  
+                          </div>
+                        <div id='name22user'style={this.state.data4.phone === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                        <i className="fas fa-phone-volume"></i> <span style={{paddingLeft:'10px',width:'100%'}} id='s2drv' > {this.state.data4.phone} </span> 
+                            </div>
+                    <div id='name22user'style={this.state.data4.ctiy === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                    <i className="fas fa-map-marker-alt" style={{fontSize:'14px'}} ></i>  <span style={{paddingLeft:'10px',width:'100%'}} id='s2drv' >  {this.state.data4.ctiy} </span>
+                            </div>
+                           
+                                        <div id='name22user'style={this.state.data4.numberOfTeam === 0 ?  {display:'none'} : { display:'',fontSize:'12px'}}  >
+                                        <span style={{color:'#1A5491'}} id='nbhk'  > Number Of Team : </span>  <span id='s2drv' >  {this.state.data4.numberOfTeam}</span> 
+                                       </div>
+
+                  
+                                       <div style={{display:'flex',alignItems:'center',justifyContent:'space-around',width:'100%'}}>
+                           <div id='edituser'>
+
+                           <Component initialState={{ isShown: false }}>
+                    {({ state, setState }) => (
+                      <Pane >
+                        <Dialog
+                          isShown={state.isShown}
+                          title="Change Password"
+                          width={'60%'}
+                          // height={1000}
+                          confirmLabel="Change"
+                          onCloseComplete={() => setState({ isShown: false })}
+                          onConfirm={() => {
+                            setState({ isShown: false })
+                            this.change() }} 
+                             > 
+
+                            <div id='dd'>
+                            <div>Old Password :</div>
+                            <TextInput id='width'
+                              name="text-input-name"
+                              placeholder="Old password" required
+                              value={this.state.password} onChange={(e) => {
+                                this.setState({ password: e.target.value })
+                              }} />
+                              </div>
+
+                              <div id='dd'>
+                            <div>New Password :</div>
+<TextInput id='width'
+                              name="text-input-name"
+                              placeholder="New password" required
+                              value={this.state.passwordNew} onChange={(e) => {
+                                this.setState({ passwordNew: e.target.value })
+                              }} />
+    </div>
+
+
+
+                        </Dialog>
+
+                        <Button style={{width:'100%'}}  onClick={() => { setState({ isShown: true }) }}> Change Password   </Button>
+                      </Pane>
+                    )}
+                  </Component>
+
+                             </div>
+                     
+                         
+
+                             <div id='edituser'>
+
+
+                             <Component initialState={{ isShown: false }}>
                     {({ state, setState }) => (
                       <Pane >
                         <Dialog
@@ -337,53 +461,7 @@ componentDidMount(){
 
 
 
-                  <Component initialState={{ isShown: false }}>
-                    {({ state, setState }) => (
-                      <Pane >
-                        <Dialog
-                          isShown={state.isShown}
-                          title="Change Password"
-                          width={'60%'}
-                          // height={1000}
-                          confirmLabel="Change"
-                          onCloseComplete={() => setState({ isShown: false })}
-                          onConfirm={() => {
-                            setState({ isShown: false })
-                            this.change() }} 
-                             > 
-
-                            <div id='dd'>
-                            <div>Old Password :</div>
-                            <TextInput id='width'
-                              name="text-input-name"
-                              placeholder="Old password" required
-                              value={this.state.password} onChange={(e) => {
-                                this.setState({ password: e.target.value })
-                              }} />
-                              </div>
-
-                              <div id='dd'>
-                            <div>New Password :</div>
-<TextInput id='width'
-                              name="text-input-name"
-                              placeholder="New password" required
-                              value={this.state.passwordNew} onChange={(e) => {
-                                this.setState({ passwordNew: e.target.value })
-                              }} />
-    </div>
-
-
-
-                        </Dialog>
-
-                        <Button style={{width:'100%'}}  onClick={() => { setState({ isShown: true }) }}> Change Password   </Button>
-                      </Pane>
-                    )}
-                  </Component>
-
-
-
-                  </div>
+                               </div>
 
 
 
@@ -391,14 +469,21 @@ componentDidMount(){
 
 
 
-           </div>
-           
-    
-
-          </Col>
 
 
-        </Row>
+                    </div></div>
+
+                  </Col>
+
+                </Row>
+
+
+</div>
+
+
+
+
+
 
       </div>
 

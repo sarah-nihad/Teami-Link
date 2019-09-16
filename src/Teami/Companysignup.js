@@ -77,7 +77,7 @@ class Companysignup extends Component {
                  
                     <div id='d111serlogindr' style={{ paddingTop: '2%' }}>
 
-                      <TextInput id='width32'
+                      <TextInput id='width32' 
                         name="text-input-name"
                         placeholder="Name"
                         required value={this.state.name} onChange={(e) => {
@@ -88,7 +88,7 @@ class Companysignup extends Component {
 
                     <div id='d111serlogindr'>
 
-                      <TextInput id='width32'
+                      <TextInput id='width32' type='email'
                         name="text-input-name"
                         placeholder="E-mail"
                         required value={this.state.email} onChange={(e) => {

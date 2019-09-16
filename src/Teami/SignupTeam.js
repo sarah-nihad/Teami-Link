@@ -80,12 +80,21 @@ import Cookies from 'universal-cookie';
      
           <Context.Consumer>{ctx => {
             return (
-            <div id='mm'>     
+            <div id='mm'  >     
               <div id='m2'>
             
 <div id='main'>
+
+<Row style={{marginRight:'0px',paddingBottom:'3%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',marginTop:'1%'}} >
+  <div  style={{fontSize:'29px',lineHeight:'30px',fontWeight:'400',color:'#000',textAlign:'center'}}    ></div>
+ <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center'}} id='textmaint'>
+   <img src={require('../assets/img/link.png')}  style={{height:'90px'}} alt='img'  />
+   </div> 
+</Row>
+
+
 <Row style={{marginRight:'0px',paddingBottom:'3%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}} >
- <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center'}} id='textmaint1' > Together To The Professionality</div> 
+ <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center',width:'100%'}} id='textmaint' > Together To The Professionality</div> 
 </Row>
     <Row style={{marginRight:'0px'}}id='rowlogins1'>
 

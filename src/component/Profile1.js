@@ -80,7 +80,7 @@ class Company2 extends React.Component {
         <div style={{ backgroundColor: '#F5F5F5' }}>
 
 
-<Row style={{ marginRight: '0px' }} id='filrow1cooo'>
+{/* <Row style={{ marginRight: '0px' }} id='filrow1cooo'>
 
   <Col xs={12} id='colpost23' >
    <div id='adver'>
@@ -89,7 +89,6 @@ class Company2 extends React.Component {
 
 </div>
 <div id='abbimg'>
-{/* <img src={require('../assets/img/cro.jpg')} id='imgcom' /> */}
 <img src={host + this.state.data1.File} id='imgcom' alt='img' />
 </div>
 <div id='abbtext'>
@@ -116,22 +115,88 @@ class Company2 extends React.Component {
 <span style={{color:'#1A5491'}}  id='nbhk'> Number Of Team : </span> <span id='s2drv' >  {this.state.data1.numberOfTeam}</span>  </div>
             </div>
 
-
-
-
-
-
-
-
-
    </div>
-   
-
-
+  
   </Col>
 
 
-</Row>
+</Row> */}
+
+
+<div style={{
+                            backgroundColor: '#F5F5F5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
+                            , width: '100%'
+                          }}>
+                            <Row style={{ marginRight: '0px',  }} id='userpro1'  >
+            
+                              <Col xs={12}>
+            
+                                <div id='cardprofileuser' >
+            
+                          
+                                    <div id='backprofcoluser'>
+                                 
+            
+            
+                                    </div>
+            
+            
+            
+                                  <div id='name1user' >
+                                  
+                                         <img src={host + this.state.data1.File} id='img123user'alt='img' />
+                                         </div>
+                                         <div id='name1user' >
+                                 
+                                 {this.state.data1.company_name}
+                            
+                                  </div>
+                                  <div id='name22user' >
+                                 
+                                  <span style={{color:'#1A5491'}} id='nbhk' >Office Name : </span> <span id='s2drv'  >  {this.state.data1.OfficeName} </span>
+                               
+                                     </div>
+                                     <div id='name22user' >
+                                     <span style={{color:'#1A5491'}} id='nbhk' > Name : </span> <span id='s2drv' >  {this.state.data1.name}</span> 
+                            
+                                  </div>
+                                  <div id='name22user' >
+                                  <span style={{color:'#1A5491'}} id='nbhk' > Position : </span> <span id='s2drv' >  {this.state.data1.Position}</span> 
+                            
+                                  </div>
+
+                                 
+                                  <div id='name22user' style={{color:'#1A5491'}} >
+                                  <i className="fas fa-envelope"style={{fontSize:'15px'}}></i>   <span style={{paddingLeft:'10px',width:'100%'}}  id='s2drv' >{this.state.data1.email}</span>  
+                                      </div>
+                                    <div id='name22user'style={ctx.value.data.phone === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                                    <i className="fas fa-phone-volume"></i> <span style={{paddingLeft:'10px',width:'100%'}}  id='s2drv' > {this.state.data1.phone} </span> 
+                                        </div>
+                                <div id='name22user'style={ctx.value.data.ctiy === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                                <i className="fas fa-map-marker-alt" style={{fontSize:'14px'}} ></i>  <span style={{paddingLeft:'10px',width:'100%'}}  id='s2drv' >  {this.state.data1.ctiy} </span>
+                                        </div>
+                                         
+                                                    <div id='name22user'style={ctx.value.data.numberOfTeam === 0 ?  {display:'none'} : { display:'',fontSize:'12px'}}  >
+                                                    number Of Team :     {this.state.data1.numberOfTeam}
+                                                   </div>
+            
+                              
+                                </div>
+            
+                              </Col>
+            
+                            </Row>
+                            </div>
+
+
+
+
+
+
+
+
+
+
 
 </div>
             </div>

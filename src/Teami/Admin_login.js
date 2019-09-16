@@ -75,7 +75,7 @@ import Cookies from 'universal-cookie';
 
         <div id='d111serlogin'>
     
- <TextInput id='width32'
+ <TextInput id='width32' type='email'
   name="text-input-name"
   placeholder="E-mail" 
   required value={this.state.email} onChange={(e)=>{

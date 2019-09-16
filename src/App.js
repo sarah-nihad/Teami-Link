@@ -33,7 +33,7 @@ import Forget_password from './Teami/Forget_password';
 import Forget_pass from './Teami/Forget_pass';
 import Activation from './component/Activation';
 import Check_com from './component/Check_com';
-import Ahmed from './component/Ahmed';
+
 const cookies = new Cookies();
 class App extends Component {
   constructor() {
@@ -115,9 +115,7 @@ if (Usertoken) {
     data2:res.data.data.training,
 
     })
-  // console.log(res.data.data.experience);
-  
-
+ 
   })
   .catch(err => {
     this.setState({
@@ -314,7 +312,7 @@ if (token) {
               }
             }
           }}>
-{/* <Ahmed /> */}
+{/* <Ahmed />  */}
               <Route exact path='/' component={Main} />
               <Route path='/LoginTeam' component={LoginTeam} />
               <Route path='/SignupTeam' component={SignupTeam} />

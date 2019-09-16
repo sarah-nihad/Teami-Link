@@ -223,7 +223,7 @@ color: #fff;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 800px;
+  /* min-height: 800px; */
     /* margin-top: 6%; */
 }
 #mainpost{
@@ -285,7 +285,7 @@ color: #fff;
   background-color: #FFF;
   width: 85%;
   min-height: 300px;
-  /* margin-top: 7%; */
+  margin-top: 7%;
   box-shadow: 0 1px 10px rgba(95, 95, 95, 0.2);
   display: flex;
   flex-direction: column;
@@ -501,7 +501,7 @@ cursor: pointer;
      font-size: 15px;
    }
    #filrow1cooo{
-     margin-top: 25%;
+     margin-top: 38%;
    }
    #find_usermwil{
      font-size: 15px;

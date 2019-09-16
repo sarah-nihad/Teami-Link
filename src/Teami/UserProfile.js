@@ -1,14 +1,14 @@
 import React from 'react';
 import '../assets/css/teami.css';
 import axios from 'axios';
-import Select from 'react-select';
+// import Select from 'react-select';
 // import '@lottiefiles/lottie-player';
 import host from '../component/host';
 import Nav2 from '../component/Nav2';
-import { SelectMenu, Button, Textarea, TextInput,Dialog, Pane, FilePicker ,toaster,Switch} from 'evergreen-ui';
+import { SelectMenu, Button, Textarea, TextInput,Dialog, Pane, FilePicker ,toaster,Switch,Select} from 'evergreen-ui';
 import Component from '@reactions/component';
 import Context from '../component/context';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col,Form } from 'react-bootstrap';
 import { Redirect} from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
@@ -125,11 +125,10 @@ data2:[],
     this.handleChange6 = this.handleChange6.bind(this);
   }
   CityFun() {
-   
-    var arr = [{ value: 'city', label: 'city' }];
-    for (let i = 0; i < city.length; i++) {
+    var arr=[];
+       for (let i = 0; i < city.length; i++) {
       arr.push(
-        { value: city[i].name, label: city[i].name }
+        <option value={city[i].name }>{city[i].name }</option>
       )
     }
     return arr
@@ -242,6 +241,7 @@ componentDidMount(){
     Notes: res.data.data.Notes,
 
     })
+ console.log(res.data.data);
  
   })
   .catch(err => {
@@ -601,7 +601,7 @@ componentDidMount(){
                               <Dialog
                                 isShown={state.isShown}
                                 title="Change Password"
-                                width={'60%'}
+                                // width={'60%'}
                                 confirmLabel="Edit"
                                 onCloseComplete={() => setState({ isShown: false })}
                                 onConfirm={() => {
@@ -645,7 +645,7 @@ componentDidMount(){
                               <Dialog
                                 isShown={state.isShown}
                                 title="Edit Personal Information"
-                                width={'60%'}
+                                // width={'60%'}
                                 // height={1000}
                                 confirmLabel="Edit"
                                 onCloseComplete={() => setState({ isShown: false })}
@@ -675,37 +675,44 @@ componentDidMount(){
                                 </div>
                                 <div id='dd'>
                                   <div> city :</div>
-                                  <Select
-                                  onChange={(e) => {
-                                    if (e.value !== 'city') {
-                                      this.setState({ Cityinput: e.value })
-                                      console.log( e.value );
-                                    }
-                                  }}
-                                  defaultValue={this.CityFun()[0]}
-                                  options={this.CityFun()}
-                                />
+                                  <Form.Group  >
+                                            <Form.Control as="select" 
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ Cityinput: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> city</option>
+
+                                               {this.CityFun()}
+                                            </Form.Control>
+                                        </Form.Group>
                                 </div>
 
                                 <div id='dd'>
                                   <div> gender :</div>
-                                             <Select
-                                  onChange={(e) => {
-                               
-                                      this.setState({ gender: e.value })
-                                      console.log( e.value );
-                               
-                                  }}
-                             
-                                  options={options}
-                                />
+                            
+
+<Form.Group  >
+                                            <Form.Control as="select" 
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ gender: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> gender</option>
+                                                <option value="Male"> Male</option>
+                                                <option value="Female"> Female</option>
+                                            
+                                            </Form.Control>
+                                        </Form.Group>
 
                                 </div>
 
                                 <div id='dd'>
                                   <div> Have a Car?:</div>
                            
-                                      <Select
+                                      {/* <Select
                                   onChange={(e) => {
                                
                                       this.setState({ car: e.value })
@@ -714,23 +721,47 @@ componentDidMount(){
                                   }}
                              
                                   options={options1}
-                                />
+                                /> */}
+
+                                        <Form.Group  >
+                                            <Form.Control as="select" 
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ car: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> Select</option>
+                                                <option value="Yes"> Yes</option>
+                                                <option value="No"> No</option>
+                                            
+                                            </Form.Control>
+                                        </Form.Group>
 
                                 </div>
 
                                 <div id='dd'>
-                                  <div> working?:</div>
+                                  <div>Are You Working Now?:</div>
                            
-                                 <Select
-                                  onChange={(e) => {
-                               
+                                 {/* <Select
+                                  onChange={(e) => {                              
                                       this.setState({ working: e.value })
                                       console.log( e.value   );
-                               
-                                  }}
-                                  
+                                  }}                                 
                                   options={options2}
-                                />
+                                /> */}
+                                      <Form.Group  >
+                                            <Form.Control as="select" 
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ working: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> Select</option>
+                                                <option value="true"> Yes</option>
+                                                <option value="false"> No</option>
+                                            
+                                            </Form.Control>
+                                        </Form.Group>
 
                                 </div>
 
@@ -921,7 +952,7 @@ componentDidMount(){
                                                       <Dialog
                                                         isShown={state.isShown}
                                                         title=" Add Experience"
-                                                        width='70%'
+                                                        // width='70%'
                                                         confirmLabel="Add"
                                                         onCloseComplete={() => setState({ isShown: false })}
                                                         onConfirm={() => {
@@ -998,11 +1029,6 @@ componentDidMount(){
                             selected={state.selected}
                             onSelect={item => {
                               const selected = [...state.selected, item.value]
-
-                            
-                             
-                              
-
                               const selectedItems = selected
                               const selectedItemsLength = selectedItems.length
                               let selectedNames = ''

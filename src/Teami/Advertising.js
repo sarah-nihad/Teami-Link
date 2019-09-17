@@ -82,7 +82,7 @@ class Advertising extends Component {
 
 <div style={{  width: '100%',display:'flex',justifyContent:'flex-end',paddingRight:'30px' }} 
                                      onClick={(e) => { this.deletetra(item._id) }}   >
-                                    <i className="fas fa-trash-alt" id='trash'  ></i></div>
+                                    <i className="fas fa-trash-alt"  style={{color:'#9A281C'}}  id='trash'  ></i></div>
 
 
 

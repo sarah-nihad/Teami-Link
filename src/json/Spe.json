@@ -1,0 +1,157 @@
+[
+    {
+        "name":"Internal Medicine ",
+        "data":["Internal Medicine "]
+    },
+    {
+        "name":"Endocrinologist",
+        "data":["Endocrinologist"]
+    },
+    {
+        "name":"Cardiologist ",
+        "data":["Cardiologist "]
+    },
+    {
+        "name":"Gastroenterologist",
+        "data":["Gastroenterologist"]
+    },
+    {
+        "name":"Obstetrics and Gynecologist",
+        "data":["Obstetrics and Gynecologist"]
+    },
+    {
+        "name":"Ophthalmologist",
+        "data":["Ophthalmologist"]
+    },
+    {
+        "name":"Pediatrics",
+        "data":["Pediatrics"]
+    },
+    {
+        "name":"Neurologist",
+        "data":["Neurologist"]
+    },
+    {
+        "name":"Nephrologist",
+        "data":["Nephrologist"]
+    },
+    {
+        "name":"Urologist",
+        "data":["Urologist"]
+    },
+    {
+        "name":"Dermatologist",
+        "data":["Dermatologist"]
+    },
+    {
+        "name":"Allergy and immunology",
+        "data":["Allergy and immunology"]
+    },
+    {
+        "name":"Hematologist",
+        "data":["Hematologist"]
+    },
+    {
+        "name":"General Practitioner",
+        "data":["General Practitioner"]
+    },
+    {
+        "name":"Emergency medicine",
+        "data":["Emergency medicine"]
+    },
+    {
+        "name":"Psychiatric",
+        "data":["Psychiatric"]
+    },
+    {
+        "name":"Radiologist",
+        "data":["Radiologist"]
+    },
+    {
+        "name":"Dentist",
+        "data":["Dentist"]
+    },
+    {
+        "name":"Family medicine",
+        "data":["Family medicine"]
+    },
+    {
+        "name":"Sports medicine",
+        "data":["Sports medicine"]
+    },
+    {
+        "name":"Anesthesia",
+        "data":["Anesthesia"]
+    },
+    {
+        "name":"Rheumatology",
+        "data":["Rheumatology"]
+    },
+    {
+        "name":"Hepatology",
+        "data":["Hepatology"]
+    },
+    {
+        "name":"Anesthesiology & Recovery",
+        "data":["Anesthesiology & Recovery"]
+    },
+    {
+        "name":"Nuclear Medicine",
+        "data":["Nuclear Medicine"]
+    },
+    {
+        "name":"Speech-Language",
+        "data":["Speech-Language"]
+    },
+    {
+        "name":"Pediatric surgery",
+        "data":["Pediatric surgery"]
+    },
+    {
+        "name":"plastic surgery",
+        "data":["plastic surgery"]
+    },
+    {
+        "name":"Urology surgery",
+        "data":["Urology surgery"]
+    },
+    
+    {
+        "name":"Neurosurgery",
+        "data":["Neurosurgery"]
+    },
+    {
+        "name":"Cardiac surgery",
+        "data":["Cardiac surgery"]
+    },
+    {
+        "name":"Vascular surgery",
+        "data":["Vascular surgery"]
+    },
+    {
+        "name":"Oncology",
+        "data":["Oncology"]
+    },
+    {
+        "name":"Ear, nose and throat (ENT) surgery",
+        "data":["Ear, nose and throat (ENT) surgery"]
+    },
+    {
+        "name":"Orthopedics",
+        "data":["Orthopedics"]
+    },
+    {
+        "name":"brain surgery",
+        "data":["brain surgery"]
+    },
+    {
+        "name":"General Surgery",
+        "data":["General Surgery"]
+    },
+   
+    {
+        "name":"all",
+        "data":["all"]
+    }
+   
+]

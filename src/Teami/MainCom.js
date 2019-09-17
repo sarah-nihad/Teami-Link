@@ -5,41 +5,37 @@ import Select from 'react-select';
 import host from '../component/host';
 import Component from '@reactions/component';
 import Context from '../component/context';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col,Form } from 'react-bootstrap';
 import { SelectMenu, Button, TextInput, Dialog, Pane, toaster } from 'evergreen-ui';
-import State from './state.json';
+// import State from './state.json';
 import speciality from './speciality.json';
 import position2 from '../json/position2.json';
 import city1 from '../json/city1.json';
 import state from '../json/state.json';
-import { Link } from 'react-router-dom';
+import Position from './position.json';
+// import Category from './Category.json';
+// import colleage from './colleage.json';
+import SS from '../json/SS.json';
+import Spe from '../json/Spe.json';
+import Colg from '../json/Colg.json';
+import Cate from '../json/Cate.json';
+// import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { Textarea } from 'evergreen-ui/commonjs/textarea';
 const cookies = new Cookies();
-const city = State;
+const city = state;
 var sp = speciality;
+var s1 = Spe;
 var pos = position2;
 var st = state;
 var cit = city1;
-const options = [
-  { value: 'Yes', label: 'Yes' },
-  { value: 'No', label: 'No' },
-  { value: 'all', label: 'all' },
+const Collage = Colg;
+// var position = Position;
+var position = SS;
+const phamacuiticalCategory = Cate;
 
-]
-const options1 = [
-  { value: 'Male', label: 'Male' },
-  { value: 'Female', label: 'Female' },
-  { value: 'all', label: 'all' },
 
-]
 
-const options2 = [
-  { value: 'student', label: 'student' },
-  { value: 'graduated', label: 'graduated' },
-  { value: 'all', label: 'all' },
-
-]
 
 const options3 = [
   { value: 'Yes', label: 'Yes' },
@@ -47,89 +43,7 @@ const options3 = [
 
 
 ]
-const options4 = [
-  { value: 'Medicine', label: 'Medicine' },
-  { value: 'Veternary', label: 'Veternary' },
-  { value: 'Biology Scince', label: 'Biology Scince' },
-  { value: 'Chemistry scince', label: 'Chemistry scince' },
-  { value: 'Physics Scince', label: 'Physics Scince' },
-  { value: 'Business Adminsteation', label: 'Business Adminsteation' },
-  { value: 'Economics', label: 'Economics' },
 
-]
-
-const options5 = [
-  { value: 'Medical Representative', label: 'Medical Representative' },
-  { value: 'Sales Representative', label: 'Sales Representative' },
-  { value: 'Driver', label: 'Driver' },
-  { value: 'Collector', label: 'Collector' },
-  { value: 'Medical Supervisor', label: 'Medical Supervisor' },
-  { value: 'Sales Supervisor', label: 'Sales Supervisor' },
-  { value: 'Human Resource', label: 'Human Resource' },
-  { value: 'Accountant', label: 'Accountant' },
-  { value: 'Team Leader', label: 'Team Leader' },
-  { value: 'Educator', label: 'Educator' },
-  { value: 'Data Entry', label: 'Data Entry' },
-  { value: 'Warehouse', label: 'Warehouse' },
-  { value: 'Merchendiser', label: 'Merchendiser' },
-  { value: 'Product Specialist', label: 'Product Specialist' },
-  { value: 'Product Manager', label: 'Product Manager' },
-  { value: 'General manager', label: 'General manager' },
-
-
-]
-
-
-const options6 = [
-  { value: 'Pharmacuitical Drugs', label: 'Pharmacuitical Drugs' },
-  { value: 'Food Suplement', label: 'Food Suplement' },
-  { value: 'Medical Device', label: 'Medical Device' },
-  { value: 'Children Milk', label: 'Children Milk' },
-  { value: 'Medical Instrument', label: 'Medical Instrument' },
-
-]
-
-const options7 = [
-  { value: 'Internal Medicine', label: 'Internal Medicine' },
-  { value: 'Endocrinologist', label: 'Endocrinologist' },
-  { value: 'Cardiologist', label: 'Cardiologist' },
-  { value: 'Gastroenterologist', label: 'Gastroenterologist' },
-  { value: 'Obstetrics and Gynecologist', label: 'Obstetrics and Gynecologist' },
-  { value: 'Ophthalmologist', label: 'Ophthalmologist' },
-  { value: 'Pediatrics', label: 'Pediatrics' },
-  { value: 'Neurologist', label: 'Neurologist' },
-  { value: 'Nephrologist', label: 'Nephrologist' },
-  { value: 'Oncologist', label: 'Oncologist' },
-  { value: 'Urologist', label: 'Urologist' },
-  { value: 'Dermatologist', label: 'Dermatologist' },
-  { value: 'Allergy and immunology', label: 'Allergy and immunology' },
-  { value: 'Hematologist', label: 'Hematologist' },
-  { value: 'General Practitioner', label: 'General Practitioner' },
-  { value: 'Emergency medicine', label: 'Emergency medicine' },
-  { value: 'Psychiatric', label: 'Psychiatric' },
-  { value: 'Radiologist', label: 'Radiologist' },
-  { value: 'Dentist', label: 'Dentist' },
-  { value: 'Family medicine', label: 'Family medicine' },
-  { value: 'Sports medicine', label: 'Sports medicine' },
-  { value: 'Anesthesia', label: 'Anesthesia' },
-  { value: 'Rheumatology', label: 'Rheumatology' },
-  { value: 'Hepatology', label: 'Hepatology' },
-  { value: 'Anesthesiology & Recovery', label: 'Anesthesiology & Recovery' },
-  { value: 'Nuclear Medicine', label: 'Nuclear Medicine' },
-  { value: 'Speech-Language', label: 'Speech-Language' },
-  { value: 'Pediatric surgery', label: 'Pediatric surgery' },
-  { value: 'plastic surgery', label: 'plastic surgery' },
-  { value: 'Urology surgery', label: 'Urology surgery' },
-  { value: 'Neurosurgery', label: 'Neurosurgery' },
-  { value: 'Cardiac surgery', label: 'Cardiac surgery' },
-  { value: 'Vascular surgery', label: 'Vascular surgery' },
-  { value: 'Oncology', label: 'Oncology' },
-  { value: 'Ear, nose and throat (ENT) surgery', label: 'Ear, nose and throat (ENT) surgery' },
-  { value: 'Orthopedics', label: 'Orthopedics' },
-  { value: 'brain surgery', label: 'brain surgery' },
-  { value: 'General Surgery', label: 'General Surgery' },
-
-]
 
 
 class MainCom extends React.Component {
@@ -177,11 +91,10 @@ class MainCom extends React.Component {
 
 
   CityFun() {
-
-    var arr = [{ value: 'city', label: 'city' }];
-    for (let i = 0; i < city.length; i++) {
+    var arr=[];
+       for (let i = 0; i < city.length; i++) {
       arr.push(
-        { value: city[i].name, label: city[i].name }
+        <option value={city[i].name }>{city[i].name }</option>
       )
     }
     return arr
@@ -198,9 +111,48 @@ class MainCom extends React.Component {
     return arr
   }
 
-
-
-
+  positionFun() {
+    var arr = [];
+    for (let i = 0; i < Position.length; i++) {
+      arr.push(
+     
+        <option value={position[i].name }>{position[i].name }</option>
+      )
+    }
+    return arr
+  }
+  CollageFun() {
+   
+    var arr = [];
+    for (let i = 0; i < Collage.length; i++) {
+      arr.push(
+      
+        <option value={Collage[i].name }>{Collage[i].name }</option>
+      )
+    }
+    return arr
+  }
+  categoryFun() {
+   
+    var arr = [];
+    for (let i = 0; i < phamacuiticalCategory.length; i++) {
+      arr.push(
+        <option value={phamacuiticalCategory[i].name }>{phamacuiticalCategory[i].name }</option>
+      )
+    }
+    return arr
+  }
+  spFun() {
+   
+    var arr = [];
+    for (let i = 0; i < s1.length; i++) {
+      arr.push(
+        <option value={s1[i].name }>{s1[i].name }</option>
+      )
+    }
+    return arr
+  }
+  
   add() {
 
     let formData = new FormData();
@@ -278,34 +230,54 @@ else{
 
         return (
           <div>
-            {/* {!this.state.spin?( */}
+        
             <div style={{ backgroundColor: '#F5F5F5' }}>
 
 
               <Row style={{ marginRight: '0px' }} id='filrow12'>
 
                 <Col md={8} lg={8} id='colpost23' >
-                  <div id='adver'>
 
-                    <div id='abbcom'>
 
-                    </div>
-                    <div id='abbimg'>
-                      <Link to='./Company_profile'>
-                        {/* <img src={require('../assets/img/cro.jpg')} id='imgcom' />  */}
+                <Row style={{ marginRight: '0px',  }} id='userpro1'  >
 
-                        <img src={host + ctx.value.data4.File} id='imgcom' alt='img' />
-                      </Link>
-                    </div>
-                    <div id='abbtext'>
+<Col xs={12}>
 
-                      <div style={{ width: '100%', paddingLeft: '2%', fontSize: '24px' }}>{ctx.value.data4.company_name}</div>
-                      <div style={{ width: '100%', paddingLeft: '2%', fontSize: '20px' }}> {ctx.value.data4.Position}  </div>
-                      <div style={{ width: '100%', paddingLeft: '2%', fontSize: '18px' }}> {ctx.value.data4.ctiy}  </div>
+  <div id='cardprofileuser' >
 
-                      <div style={{
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '5%',
-                        width: '100%', paddingLeft: '2%', fontSize: '18px'
+
+      <div id='backprofcoluser'>
+   
+      </div>
+    <div id='name1user' >
+    
+           <img src={host + ctx.value.data4.File} id='img123user'alt='img' />
+
+           </div>
+
+    <div id='name1user' >
+   
+      {ctx.value.data4.company_name}
+ 
+       </div>
+    <div id='name22user' style={{color:'#1A5491'}} >
+    <i className="fas fa-envelope"style={{fontSize:'15px'}}></i>   <span style={{paddingLeft:'10px',width:'100%'}}  id='s2drv_ddcd' >{ctx.value.data4.email}</span>  
+        </div>
+      <div id='name22user'style={ctx.value.data4.phone === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+      <i className="fas fa-phone-volume"></i> <span style={{paddingLeft:'10px',width:'100%'}}  id='s2drv_ddcd' > {ctx.value.data4.phone} </span> 
+          </div>
+  <div id='name22user'style={ctx.value.data4.ctiy === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+  <i className="fas fa-map-marker-alt" style={{fontSize:'14px'}} ></i>  <span style={{paddingLeft:'10px',width:'100%'}}  id='s2drv_ddcd' >  {ctx.value.data4.ctiy} </span>
+          </div>
+          
+               
+
+ 
+       
+
+         <div style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-around', paddingTop: '5%',
+                        width: '100%', fontSize: '18px',paddingBottom:'5%'
                       }}>
                         Add Advertising
 
@@ -345,38 +317,38 @@ else{
                                   />
                                 </div>
 
-
-
-
-
-
-
-
-
                                 <div id='dd'>
                                   <div> City :</div>
-                                  <Select
-                                    onChange={(e) => {
-                                      if (e.value !== 'city') {
-                                        this.setState({ Cityinput: e.value })
-                                        console.log(e.value);
-                                      }
-                                    }}
-                                    defaultValue={this.stateFun()[0]}
-                                    options={this.stateFun()}
-                                  />
+                                  <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ Cityinput: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> city</option>
+
+                                               {this.CityFun()}
+                                            </Form.Control>
+                                        </Form.Group>
                                 </div>
 
                                 <div id='dd'>
                                   <div> Gender :</div>
 
-                                  <Select
-                                    onChange={(e) => {
-                                      this.setState({ gender: e.value })
-                                      console.log(e.value);
-                                    }}
-                                    options={options1}
-                                  />
+                                  <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ gender: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> gender</option>
+                                                <option value="Male"> Male</option>
+                                                <option value="Female"> Female</option>
+                                                <option value="all"> all</option>
+                                            </Form.Control>
+                                        </Form.Group>
 
                                 </div>
 
@@ -384,26 +356,38 @@ else{
                                 <div id='dd'>
                                   <p > Education : </p>
 
-                                  <Select
-                                    onChange={(e) => {
-                                      this.setState({ education: e.value })
-                                      console.log(e.value);
-                                    }}
-                                    options={options2}
-                                  />
+                                  <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ education: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> Education</option>
+                                                <option value="student"> student</option>
+                                                <option value="graduated"> graduated</option>
+                                                <option value="all"> all</option>
+                                            </Form.Control>
+                                        </Form.Group>
 
                                 </div>
 
                                 <div id='dd'>
                                   <div> Have Car :</div>
 
-                                  <Select
-                                    onChange={(e) => {
-                                      this.setState({ car: e.value })
-                                      console.log(e.value);
-                                    }}
-                                    options={options}
-                                  />
+                                  <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ car: even.target.value })
+                                                    }
+                                                }}>
+                                                <option value="Select"> Select</option>
+                                                <option value="Yes"> Yes</option>
+                                                <option value="No"> No</option>
+                                                <option value="all"> all</option>
+                                            </Form.Control>
+                                        </Form.Group>
 
                                 </div>
 
@@ -447,21 +431,25 @@ else{
                                       <p > Position:</p>
 
 
-                                      <Select
-                                        onChange={(e) => {
-                                          this.setState({ Positioninput: e.value })
-                                          console.log(e.value);
-                                          if (e.value === 'Medical Supervisor' || e.value ==='Medical Representative' || e.value ==='Product Specialist'
-                                          || e.value ==='Product Manager'  || e.value ==='General manager'|| e.value ==='Team Leader') {
-                                            setTimeout(() => {
-                                              this.positionwait()
-                                            }, 200);
+                                      <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'position') {
+                                                        this.setState({ Positioninput: even.target.value })   
+                                                    }
+                                              
+                                                    if (even.target.value === 'Medical Supervisor' ||even.target.value ==='Medical Representative' || even.target.value ==='Product Specialist'
+                                                    ||even.target.value ==='Product Manager'  || even.target.value ==='General manager'|| even.target.value ==='Team Leader') {
+                                                      setTimeout(() => {
+                                                        this.positionwait()
+                                                      }, 200);
+                                                    }
+                                                }}>
+                                                <option value="Select"> position</option>
 
-                                          }
-                                        }}
-                                        
-                                        options={options5}
-                                      />
+                                               {this.positionFun()}
+                                            </Form.Control>
+                                        </Form.Group>
                                     </div>
 
 {!this.state.wait ?(
@@ -469,13 +457,20 @@ else{
   <div id='dd'>
   <div> Speciality of Doctor:</div>
 
-  <Select
-    onChange={(e) => {
-      this.setState({ Speciality: e.value })
-      console.log(e.value);
-    }}
-    options={options7}
-  />
+  <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ speciality: even.target.value })
+                                                    }
+
+                                               
+                                                }}>
+                                                <option value="Select"> Collage</option>
+
+                                               {this.spFun()}
+                                            </Form.Control>
+                                        </Form.Group>
 
 </div>
 ):(
@@ -484,56 +479,48 @@ else{
 
 }
 
-
-
-
                                     <div id='dd'>
                                       <p > Collage : </p>
 
-                                      <Select
-                                        onChange={(e) => {
-                                          this.setState({ Collage1: e.value })
-                                          console.log(e.value);
-                                        }}
-                                        options={options4}
-                                      />
+                                      <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'Select') {
+                                                        this.setState({ Collage1: even.target.value })
+                                                    }
+
+                                               
+                                                }}>
+                                                <option value="Select"> Collage</option>
+
+                                               {this.CollageFun()}
+                                            </Form.Control>
+                                        </Form.Group>
 
                                     </div>
-
-
-                            
 
                                     <div id='dd'>
                                       <div> Phamacuitical Category:</div>
 
-                                      <Select
-                                        onChange={(e) => {
-                                          this.setState({ category: e.value })
-                                          console.log(e.value);
-                                        }}
-                                        options={options6}
-                                      />
+                                      <Form.Group  >
+                                            <Form.Control as="select" id='sel_sa'
+                                                onChange={(even) => {
+                                                    if (even.target.value !== 'phamacuiticalCategory') {
+                                                        this.setState({ category: even.target.value })
+                                                    }
+                                             
+                                                }}>
+                                                <option value="Select"> phamacuitical Category</option>
+
+                                               {this.categoryFun()}
+                                            </Form.Control>
+                                        </Form.Group>
 
                                     </div>
-
-
-
 
                                   </div>
 
                                 ) : (<div></div>)}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                               </Dialog>
@@ -544,15 +531,16 @@ else{
                         </Component>
 
 
-
-
-                      </div>
-                    </div>
+  </div>
 
 
 
 
-                    <div style={{ width: '100%' }} id='filtermodel' >
+
+
+  <div  id='hide_f1' >
+
+ 
                       <Component initialState={{ isShown: false }}>
                         {({ state, setState }) => (
                           <Pane >
@@ -1033,11 +1021,42 @@ else{
                     </div>
 
 
-                  </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+</Col>
+
+</Row>
 
 
 
                 </Col>
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
                 <Col md={4} lg={3} id='colfilter' >
 
                   <div id='divfilter'  >

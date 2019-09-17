@@ -195,7 +195,7 @@ axios({
       <td>{item.uptime}  </td>
 
    
-      <td>    <i className="fas fa-trash" style={{ color: 'black', marginRight: 30, marginTop: 10, cursor: 'pointer' }}
+      <td>    <i className="fas fa-trash" style={{ color: '#9A281C', marginRight: 30, marginTop: 10, cursor: 'pointer' }}
                 onClick={(e) => { this.delete(item._id) }} />   </td>
 
 

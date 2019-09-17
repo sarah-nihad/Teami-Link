@@ -6,8 +6,8 @@ import host from '../component/host';
 import Component from '@reactions/component';
 import { Redirect} from 'react-router-dom';
 import Context from '../component/context';
-import { Row, Col ,Form} from 'react-bootstrap';
-import {  Button, TextInput, Dialog, Pane, FilePicker,toaster,Textarea} from 'evergreen-ui';
+import { Row, Col } from 'react-bootstrap';
+import {  Button, TextInput, Dialog, Pane, FilePicker,toaster} from 'evergreen-ui';
 import NavCom from './NavCom';
 import Select from 'react-select';
 import Lottie from 'lottie-react-web'

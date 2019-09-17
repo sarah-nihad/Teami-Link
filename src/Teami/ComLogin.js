@@ -95,8 +95,14 @@ import Cookies from 'universal-cookie';
             
 <div id='main'>
 <Row style={{marginRight:'0px',paddingBottom:'3%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}} >
-  <div  style={{fontSize:'29px',lineHeight:'30px',fontWeight:'400',color:'#000',textAlign:'center'}}    >Welcome Back</div>
- <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center'}} id='textmaint'>Don't miss your next opportunity. Sign in to stay updated on your professional world.</div> 
+  <div  style={{fontSize:'29px',lineHeight:'30px',fontWeight:'400',color:'#000',textAlign:'center'}}    ></div>
+ <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center'}} id='textmaint'>
+   <img src={require('../assets/img/link.png')}  style={{height:'100px'}} alt='img'  />
+   </div> 
+</Row>
+<Row style={{marginRight:'0px',paddingBottom:'3%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}} >
+
+ <div style={{lineHeight:'30px',fontWeight:'400',color:'#fff',textAlign:'center',width:'100%'}} id='textmaint'> Log in to stay updated on your professional world.</div> 
 </Row>
     <Row style={{marginRight:'0px'}}id='rowlogins1'>
         <Col xs={12} id='ccsarlogin3'>

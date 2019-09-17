@@ -1,0 +1,71 @@
+[
+    {
+        "name":"Medical Representative",
+        "data":["Medical Representative"]
+    },
+    {
+        "name":"Sales Representative",
+        "data":["Sales Representative"]
+    },
+    {
+        "name":"Driver",
+        "data":["Driver"]
+    },
+    {
+        "name":"Collector",
+        "data":["Collector"]
+    },
+    {
+        "name":"Medical Supervisor",
+        "data":["Medical Supervisor"]
+    },
+    {
+        "name":"Sales Supervisor",
+        "data":["Sales Supervisor"]
+    },
+    {
+        "name":"Human Resource",
+        "data":["Human Resource"]
+    },
+    {
+        "name":"Accountant",
+        "data":["Accountant"]
+    },
+    {
+        "name":"Team Leader",
+        "data":["Team Leader"]
+    },
+    {
+        "name":"Educator",
+        "data":["Educator"]
+    },
+    {
+        "name":"Data Entry",
+        "data":["Data Entry"]
+    },
+    {
+        "name":"Warehouse",
+        "data":["Warehouse"]
+    },
+    {
+        "name":"Merchendiser",
+        "data":["Merchendiser"]
+    },
+    {
+        "name":"Product Specialist",
+        "data":["Product Specialist"]
+    },
+    {
+        "name":"Product Manager",
+        "data":["Product Manager"]
+    },
+    {
+        "name":"General manager",
+        "data":["General manager"]
+    },
+    {
+        "name":"all",
+        "data":["all"]
+    }
+   
+]

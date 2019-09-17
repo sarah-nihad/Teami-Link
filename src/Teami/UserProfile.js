@@ -5,7 +5,7 @@ import axios from 'axios';
 // import '@lottiefiles/lottie-player';
 import host from '../component/host';
 import Nav2 from '../component/Nav2';
-import { SelectMenu, Button, Textarea, TextInput,Dialog, Pane, FilePicker ,toaster,Switch,Select} from 'evergreen-ui';
+import { SelectMenu, Button, Textarea, TextInput,Dialog, Pane, FilePicker ,toaster,Switch} from 'evergreen-ui';
 import Component from '@reactions/component';
 import Context from '../component/context';
 import { Row, Col,Form } from 'react-bootstrap';
@@ -28,32 +28,6 @@ const Collage = colleage;
 var position = Position;
 const phamacuiticalCategory = Category;
 
-const options = [
-  { value: 'Male', label: 'Male' },
-  { value: 'Female', label: 'Female' },
-  
-]
-const options1 = [
-  { value: 'Yes', label: 'Yes' },
-  { value: 'No', label: 'No' },
-  
-]
-const options2 = [
-  { value: 'true', label: 'Yes' },
-  { value: 'false', label: 'No' },
-  
-]
-
-const options3 = [
-  { value: 'full', label: 'full' },
-  { value: 'part', label: 'part' },
-  
-]
-const options4 = [
-  { value: 'student', label: 'student' },
-  { value: 'graduated', label: 'graduated' },
-  
-]
 
 class UserProfile extends React.Component {
   constructor() {
@@ -139,7 +113,6 @@ data2:[],
     var arr = [];
     for (let i = 0; i < phamacuiticalCategory.length; i++) {
       arr.push(
-        // { value: phamacuiticalCategory[i].name, label: phamacuiticalCategory[i].name }
         <option value={phamacuiticalCategory[i].name }>{phamacuiticalCategory[i].name }</option>
       )
     }
@@ -151,7 +124,7 @@ data2:[],
     var arr = [];
     for (let i = 0; i < Collage.length; i++) {
       arr.push(
-        // { value: Collage[i].name, label: Collage[i].name }
+      
         <option value={Collage[i].name }>{Collage[i].name }</option>
       )
     }
@@ -162,7 +135,7 @@ data2:[],
     var arr = [];
     for (let i = 0; i < Position.length; i++) {
       arr.push(
-        // { value: position[i].name, label: position[i].name }
+     
         <option value={position[i].name }>{position[i].name }</option>
       )
     }
@@ -400,12 +373,20 @@ componentDidMount(){
     }
 
 
-    formData.append("officeName", this.state.officeName);
-    formData.append("companyName", this.state.companyName);
+    
+
     formData.append("timeofWork", this.state.timeofWork);
        formData.append("startingwork",startingwork);
     
-    
+
+       if (this.state.officeName) {
+        formData.append("officeName", this.state.officeName);
+       }
+
+       if (this.state.companyName) {
+        formData.append("companyName", this.state.companyName);
+       }
+
 
     axios({
       url: host + `api/v1/user/experience`,
@@ -429,16 +410,23 @@ componentDidMount(){
 
   training(){
 
-       var date=moment(this.state.date).format("YYYY-MM-DD");
     let formData = new FormData();
     var headers = {
       "Content-Type": "application/json",
       token: cookies.get("Usertoken")
     };
     formData.append("place", this.state.place);
-    formData.append("date", date);
+    if (this.state.date) {
+      var date=moment(this.state.date).format("YYYY-MM-DD");
+      formData.append("date", date)
+    }
+;
     formData.append("subject", this.state.subject);
  
+// console.log(this.state.date);
+
+
+// console.log(date);
 
     axios({
       url: host + `api/v1/user/training`,
@@ -563,12 +551,7 @@ componentDidMount(){
               
                         <div id='backprofcoluser'>
                      
-
-
                         </div>
-
-
-
                       <div id='name1user' >
                       
                              <img src={host +this.state.data.File} id='img123user'alt='img' />
@@ -761,34 +744,22 @@ componentDidMount(){
                                     }} />
                                 </div>
 
-
-                             
-
-                            
                                 <div id='dd'>
                                   <p > Collage:</p>
 
-                                     {/* <Select
-                                  onChange={(e) => {
-                                    if (e.value !== 'Collage') {
-                                      this.setState({ Collage: e.value })
-                                      console.log( e.value );
-                                    }
-                                    if (e.value === 'other') {
-                                      setTimeout(() => {
-                                        this.colgwait()
-                                      }, 200);
-                
-                                    }
-                                  }}
-                                  defaultValue={this.CollageFun()[0]}
-                                  options={this.CollageFun()}
-                                /> */}
+                          
                              <Form.Group  >
                                             <Form.Control as="select" id='sel_sa'
                                                 onChange={(even) => {
                                                     if (even.target.value !== 'Select') {
                                                         this.setState({ Collage: even.target.value })
+                                                    }
+
+                                                    if (even.target.value === 'other') {
+                                                      setTimeout(() => {
+                                                        this.colgwait()
+                                                      }, 200);
+                                
                                                     }
                                                 }}>
                                                 <option value="Select"> Collage</option>
@@ -815,16 +786,7 @@ componentDidMount(){
 
                                 <div id='dd'>
                                   <p > Education:</p>
-                                    {/* <Select
-                                        onChange={(e) => {
-                               
-                                      this.setState({ Education: e.value })
-                                      console.log( e.value );
-                               
-                                  }}
                              
-                                  options={options4}
-                                /> */}
 
 <Form.Group  >
                                             <Form.Control as="select" id='sel_sa'
@@ -1300,7 +1262,7 @@ componentDidMount(){
                                              onClick={(e) => { this.delete(item._id) }}   >
 
 
-                                            <i className="fas fa-trash-alt"></i></div>
+                                            <i className="fas fa-trash-alt" style={{color:'#9A281C'}}id='trash' ></i></div>
 
                                             <div style={{width:'100%',borderBottom:'1px solid #efe2e2',paddingTop:'5%'}} >
                       
@@ -1348,7 +1310,7 @@ componentDidMount(){
                                                           />
                                                         </div>
                                                         <div id='dds'>
-                                                          <div> Date of Garduation </div>
+                                                          <div>Training Date </div>
                       
                                                           <DatePicker id='width'
                                                             selected={this.state.startDate}
@@ -1384,7 +1346,7 @@ componentDidMount(){
 
                                             <div style={{  width: '100%',display:'flex',justifyContent:'flex-end',paddingRight:'30px' }} 
                                              onClick={(e) => { this.deletetra(item._id) }}   >
-                                            <i className="fas fa-trash-alt"></i></div>
+                                            <i className="fas fa-trash-alt" id='trash' style={{color:'#9A281C'}} ></i></div>
 
 
                       
@@ -1399,11 +1361,11 @@ componentDidMount(){
                                                         </div>
                                                         <div  style={this.state.data.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                                         <div  style={{cursor:'pointer',zIndex:'3'}}   onClick={() => {
-                            window.open( `https://sky-link.herokuapp.com/` +this.state.data.cv,'_blank');
+                            window.open( host +this.state.data.cv,'_blank');
                          
     
                         }}>
-                               CV     
+                          <Button marginRight={12} iconBefore="manual" intent="none" style={{background:'#47a684',color:'#fff'}}   >Show CV</Button>
                                        </div></div>
 
                                           </div>

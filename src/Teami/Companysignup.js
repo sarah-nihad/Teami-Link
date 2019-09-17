@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap';
-import { TextInput } from 'evergreen-ui';
+import { TextInput,toaster } from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import Context from '../component/context';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+// import Cookies from 'universal-cookie';
+// const cookies = new Cookies();
 class Companysignup extends Component {
   constructor(props) {
     super(props);
@@ -42,15 +42,32 @@ class Companysignup extends Component {
       .then(response => {
         // if (response === 200) {
         window.location.href = '/Check_com'
-        cookies.set("token", response.data.token, {
-          path: '/',
-          expires: new Date(Date.now() + 60480000)
-        }
-        );
+
         // }
       })
       .catch(function (error) {
-        console.log(error.message)
+        console.log(error.response.data)
+
+  
+        if (error.response.data.msg==="Please Check Your Email to complete your registration") {
+          window.location.href = '/Check_com'
+        }else if (error.response.data.code===11000) {
+          toaster.danger('Information is alredy used')
+        }
+        else {
+          
+        
+          toaster.danger(error.response.data.msg)
+        }
+
+      
+
+
+
+
+
+
+
       });
   }
 

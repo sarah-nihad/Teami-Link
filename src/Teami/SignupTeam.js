@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Row,Col} from 'react-bootstrap';
-import {TextInput} from 'evergreen-ui';
+import {TextInput,toaster} from 'evergreen-ui';
 import host from '../component/host';
 import axios from 'axios';
 import { Link} from 'react-router-dom';
@@ -71,6 +71,17 @@ import Cookies from 'universal-cookie';
     })
     .catch(function (error) {
       console.log(error.message)
+
+
+      if (error.response.data.msg==="Please Check Your Email to complete your registration") {
+        window.location.href = '/Check_com'
+      }else{
+        toaster.danger(error.response.data.msg)
+      }
+
+
+
+
     });
 }
     

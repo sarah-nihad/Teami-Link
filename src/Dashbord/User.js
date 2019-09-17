@@ -4,7 +4,7 @@ import axios from 'axios';
 import host from '../component/host';
 // import Context from '../component/context';
 import { Row, Col } from 'react-bootstrap';
-
+import {Button} from 'evergreen-ui';
 
 // import Cookies from 'universal-cookie';
 
@@ -239,11 +239,11 @@ class User extends Component {
                                                                     </div>
                                                                     <div  style={this.state.data.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                                                     <div  style={{cursor:'pointer',zIndex:'3'}}   onClick={() => {
-                                        window.open( `https://sky-link.herokuapp.com/` + this.state.data.cv,'_blank');
+                                        window.open( host + this.state.data.cv,'_blank');
                                      
                 
                                     }}>
-                                           CV     
+                                     <Button marginRight={12} iconBefore="manual" intent="none" style={{background:'#47a684',color:'#fff'}} >Show CV</Button>
                                                    </div></div>
             
                                                       </div>

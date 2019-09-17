@@ -102,20 +102,20 @@ console.log(myParam);
 
                         <Col id='colusercc'  xs={12}    lg={3}  >
                         <div  key={i} style={{ width: '100%' }}   >
-                          <div id='name22user2' style={{ color: '#1A5491' }} >
+                          <div id='name22user2' style={  item.phone ==='NON' ? {display:'none'}:  {display:'', color: '#1A5491' }} >
                             <i className="fas fa-phone-volume"></i> <span style={{ paddingLeft: '10px', width: '100%' }} id='find_usermwil' > {item.phone} </span>
                           </div>
-                          <div id='name22user2' style={{ color: '#1A5491' }} >
+                          <div id='name22user2' style={  item.ctiy === "NON" ? {display:'none'} :  {display:'', color: '#1A5491' }} >
                             <i className="fas fa-map-marker-alt" style={{ fontSize: '14px' }} ></i>  <span style={{ paddingLeft: '10px', width: '100%' }} id='find_usermwil' >  {item.ctiy} </span>
                           </div>   </div>
                         </Col>
 
                         <Col  id='colusercc' xs={12}   lg={3}  >
                         <div  key={i} style={{ width: '100%' }}   >
-                          <div id='name22user2' style={{ color: '#1A5491' }} >
+                          <div id='name22user2' style={ item.Education === 'NON' ? {display:'none'} :   {display:'', color: '#1A5491' }} >
                             <span style={{ width: '100%' }}  >  Education  :   {item.Education} </span>
                           </div> 
-                          <div id='name22user2' style={{ color: '#1A5491' }} >
+                          <div id='name22user2' style={ item.gender ==='NON' ? {display:'none'} :  {display:'', color: '#1A5491' }} >
                           <i className="fas fa-venus-mars" style={{ fontSize: '14px' }} ></i>  <span style={{ paddingLeft: '10px', width: '100%' }} id='find_usermwil' >  {item.gender} </span>
                           </div> 
                            </div>

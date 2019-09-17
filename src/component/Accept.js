@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Context from './context';
 import { Row, Col,} from 'react-bootstrap';
 import axios from 'axios';
+import {Button} from 'evergreen-ui';
 import host from '../component/host';
 import NavCom from '../Teami/NavCom';
 import { Redirect} from 'react-router-dom';
@@ -247,11 +248,11 @@ class Accept extends Component {
                                                                     </div>
                                                                     <div  style={this.state.data1.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                                                     <div  style={{cursor:'pointer',zIndex:'3'}}   onClick={() => {
-                                        window.open( `https://sky-link.herokuapp.com/` + this.state.data1.cv,'_blank');
+                                        window.open( host + this.state.data1.cv,'_blank');
                                      
                 
                                     }}>
-                                           CV     
+                                     <Button marginRight={12} iconBefore="manual" intent="none" style={{background:'#47a684',color:'#fff'}} >Show CV</Button>
                                                    </div></div>
             
                                                       </div>

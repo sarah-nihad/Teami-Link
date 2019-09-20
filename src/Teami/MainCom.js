@@ -13,8 +13,7 @@ import position2 from '../json/position2.json';
 import city1 from '../json/city1.json';
 import state from '../json/state.json';
 import Position from './position.json';
-// import Category from './Category.json';
-// import colleage from './colleage.json';
+import{Link } from 'react-router-dom';
 import SS from '../json/SS.json';
 import Spe from '../json/Spe.json';
 import Colg from '../json/Colg.json';
@@ -251,7 +250,7 @@ else{
       </div>
     <div id='name1user' >
     
-           <img src={host + ctx.value.data4.File} id='img123user'alt='img' />
+         <Link to='/Company_profile'> <img src={host + ctx.value.data4.File} id='img123user'alt='img' /></Link>
 
            </div>
 
@@ -466,7 +465,7 @@ else{
 
                                                
                                                 }}>
-                                                <option value="Select"> Collage</option>
+                                                <option value="Select"> College</option>
 
                                                {this.spFun()}
                                             </Form.Control>
@@ -480,7 +479,7 @@ else{
 }
 
                                     <div id='dd'>
-                                      <p > Collage : </p>
+                                      <p > College : </p>
 
                                       <Form.Group  >
                                             <Form.Control as="select" id='sel_sa'
@@ -491,7 +490,7 @@ else{
 
                                                
                                                 }}>
-                                                <option value="Select"> Collage</option>
+                                                <option value="Select"> College</option>
 
                                                {this.CollageFun()}
                                             </Form.Control>

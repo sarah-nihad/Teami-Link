@@ -118,8 +118,6 @@ class Navmain extends React.Component {
                <img src={require('../assets/img/link.png')} id='img22' alt='offer' /></Navbar.Brand>
 
         
-              {/* <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ color: 'white' }} /> */}
-              {/* <Navbar.Collapse id="basic-navbar-nav" style={{ color: 'white' }} > */}
                 <Nav className="mr-auto">
 
                 </Nav>
@@ -140,12 +138,26 @@ class Navmain extends React.Component {
       flexDirection="column"
     >
      <div style={{paddingBottom:'10%'}} >
+
+       {ctx.value.chech_userLOgin && ctx.value.chech_userLOgin!=="notlogin" ?(
      <div id='stnav' style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}} > 
-     <Link to='./LoginTeam' style={{textDecoration:'none'}}> User Login   </Link>  </div>
+     <Link to='./HomeUser' style={{textDecoration:'none'}}> User Profile   </Link>  </div>
+       ):(
+
+        <div id='stnav' style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}} > 
+        <Link to='./LoginTeam' style={{textDecoration:'none'}}> User Login   </Link>  </div>
+       )}
+
+
      </div>
      <div style={{paddingBottom:'10%'}} >
+       {ctx.value.chech_compLOgin && ctx.value.chech_compLOgin!=="notlogin" ?(
    <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
-      <Link to='./ComLogin'style={{textDecoration:'none'}} > Company Login  </Link>  </div>
+      <Link to='./HomeCom'style={{textDecoration:'none'}} > Company Profile  </Link>  </div>
+       ):(
+        <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
+        <Link to='./ComLogin'style={{textDecoration:'none'}} > Company Login  </Link>  </div>
+       )}
       </div>
       {ctx.value.auth === false ? (
       <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
@@ -165,31 +177,50 @@ class Navmain extends React.Component {
 </Popover>
             
                 
-           
-                  <Popover
-  content={
-    <Pane
-      width={200}
-      height={200}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
-    >
-     <div style={{paddingBottom:'10%'}} >
-     <div id='stnav' style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}} > 
-     <Link to='./SignupTeam' style={{textDecoration:'none'}}> User Sign Up   </Link>  </div>
-     </div>
-   <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
-      <Link to='./Companysignup'style={{textDecoration:'none'}} > Company Sign Up  </Link>  </div>
+
+  {ctx.value.chech_userLOgin && ctx.value.chech_userLOgin!=="notlogin"
+  &&
+  ctx.value.chech_compLOgin && ctx.value.chech_compLOgin!=="notlogin"
+  ? (
+  
+<React.Fragment></React.Fragment>
+  
+):(
 
 
-    </Pane>
-  }
+<Popover
+content={
+  <Pane
+    width={200}
+    height={200}
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    flexDirection="column"
+  >
+      {ctx.value.chech_userLOgin && ctx.value.chech_userLOgin!=="notlogin" ?(
+       <React.Fragment></React.Fragment>
+      ):(
+ 
+        <div style={{paddingBottom:'10%'}} >
+        <div id='stnav' style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}} > 
+        <Link to='./SignupTeam' style={{textDecoration:'none'}}> User Sign Up   </Link>  </div>
+        </div>
+      )}
+
+{ctx.value.chech_compLOgin && ctx.value.chech_compLOgin!=="notlogin" ?(
+<React.Fragment></React.Fragment>
+):(
+ <div id='stnav'  style={{height:'30px',width:'150px',border:'1px solid blue',display:'flex',alignItems:'center',justifyContent:'center'}}  >
+    <Link to='./Companysignup'style={{textDecoration:'none'}} > Company Sign Up  </Link>  </div>
+)}
+
+  </Pane>
+}
 >
-  <Button> Sign Up </Button>
+<Button> Sign Up </Button>
 </Popover>
-   
+)}
             
                 </div>
 
@@ -205,10 +236,24 @@ class Navmain extends React.Component {
   </div>
 
   <div id='text-block'>
-   <div id='signteam' > <Link to='./SignupTeam'> User Sign Up  <i className="fas fa-user" style={{color:'#1A5491',fontSize:'12px',paddingLeft:'5px'}}></i>  </Link>  </div>
-   
-   <div id='signteam'> <Link to='./Companysignup'> Company Sign Up <i className="far fa-building" style={{color:'#1A5491',fontSize:'12px',paddingLeft:'5px'}}></i> </Link>  </div>
-   
+  {ctx.value.chech_userLOgin && ctx.value.chech_userLOgin!=="notlogin" ?(
+   <div id='signteam' > 
+   <Link to='./HomeUser'> User Profile  <i className="fas fa-user" style={{color:'#1A5491',fontSize:'12px',paddingLeft:'5px'}}></i> 
+    </Link>  </div>
+  ):(
+    <div id='signteam' > 
+    <Link to='./SignupTeam'> User Sign Up  <i className="fas fa-user" style={{color:'#1A5491',fontSize:'12px',paddingLeft:'5px'}}></i> 
+     </Link>  </div>
+  )}
+   {ctx.value.chech_compLOgin && ctx.value.chech_compLOgin!=="notlogin" ?(
+   <div id='signteam'> 
+   <Link to='./HomeCom'> Company Profile<i className="far fa-building" style={{color:'#1A5491',fontSize:'12px',paddingLeft:'5px'}}></i>
+    </Link>  </div>
+   ):(
+    <div id='signteam'> 
+    <Link to='./Companysignup'> Company Sign Up <i className="far fa-building" style={{color:'#1A5491',fontSize:'12px',paddingLeft:'5px'}}></i>
+     </Link>  </div>
+   )}
    </div>
  <div id='welcometext'>
 Welcome to your professional community

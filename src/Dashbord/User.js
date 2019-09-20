@@ -129,7 +129,7 @@ class User extends Component {
                                   <div style={this.state.data.Collage === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
                                  
                                      {/* Information and Communication Engineering   */}
-                                     <span style={{color:'#1A5491'}} > Collage :  </span>        {this.state.data.Collage}
+                                     <span style={{color:'#1A5491'}} > College :  </span>        {this.state.data.Collage}
                                      </div>
             
                                      <div style={this.state.data.Education === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>

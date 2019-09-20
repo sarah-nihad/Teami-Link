@@ -74,7 +74,7 @@ class Advertising extends Component {
 <div style={{width:'100%',paddingLeft:'8px'}}> gender :  {item.gender} </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}> Education :  {item.education}   </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}> Car :  {`${item.car}`}  </div> 
-<div style={{width:'100%',paddingLeft:'8px'}}> Collage :  {item.collage}  </div> 
+<div style={{width:'100%',paddingLeft:'8px'}}> College :  {item.collage}  </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}> Position : {item.position}  </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}> Time of Work : {item.timeofWork}  </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}> Experience :  {item.experience}  </div> 

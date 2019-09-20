@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink} from 'react-router-dom';
+import { NavLink,Link} from 'react-router-dom';
 // import axios from 'axios';
 // import host from './host';
 // import Autosuggest from 'react-autosuggest';
@@ -139,7 +139,7 @@ class Nav2 extends React.Component {
             <Navbar expand="lg" id="navmai">
 
 
-              <Navbar.Brand style={{ paddingLeft: '3%' }}>  <img src={require('../assets/img/link.png')} id='img22' alt='offer' /></Navbar.Brand>
+              <Navbar.Brand style={{ paddingLeft: '3%' }}> <Link to ='/'><img src={require('../assets/img/link.png')} id='img22' alt='offer' /> </Link>  </Navbar.Brand>
 
               {/* <Navbar.Brand style={{ paddingLeft: '3%' }}>  <img src={require('../assets/img/with.png')} id='img223sss' alt='offer' /></Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ color: 'white' }} />

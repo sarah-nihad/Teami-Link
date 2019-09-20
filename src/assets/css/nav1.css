@@ -467,7 +467,7 @@ line-height: 16px;
     margin-top: 15px;
     margin-bottom: 10px;
     border-radius: 5px;
-    cursor: pointer; 
+    /* cursor: pointer;  */
 }
 
 
@@ -483,7 +483,7 @@ line-height: 16px;
     margin-top: 15px;
     margin-bottom: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
     padding: 0;
     /* margin: 0; */
 }

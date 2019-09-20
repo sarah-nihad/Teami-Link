@@ -157,7 +157,7 @@ axios({
       <th>Gender</th>
       <th>City</th>
       <th>Education</th>
-      <th>Collage</th>
+      <th>College</th>
       <th>Delete</th>
     </tr>
   </thead>

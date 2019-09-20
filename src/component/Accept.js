@@ -39,7 +39,7 @@ class Accept extends Component {
           data3:res1.data.data.training,
 
         })
-        console.log(res1.data.data)
+        // console.log(res1.data.data)
       })
       .catch(err => {
         console.log('error:' + err);
@@ -94,16 +94,16 @@ class Accept extends Component {
                                   <div id='name22user' style={{color:'#1A5491'}} >
                                   <i className="fas fa-envelope"style={{fontSize:'15px'}}></i>   <span style={{paddingLeft:'10px',width:'100%'}}  >{this.state.data1.email}</span>  
                                       </div>
-                                    <div id='name22user'style={ctx.value.data.phone === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                                    <div id='name22user'style={this.state.data1.phone === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
                                     <i className="fas fa-phone-volume"></i> <span style={{paddingLeft:'10px',width:'100%'}}  > {this.state.data1.phone} </span> 
                                         </div>
-                                <div id='name22user'style={ctx.value.data.ctiy === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
+                                <div id='name22user'style={this.state.data1.ctiy === 'NON' ?  {display:'none'} : { display:'',color:'#1A5491'} } >
                                 <i className="fas fa-map-marker-alt" style={{fontSize:'14px'}} ></i>  <span style={{paddingLeft:'10px',width:'100%'}}  >  {this.state.data1.ctiy} </span>
                                         </div>
-                                            <div id='name22user' style={ctx.value.data.BirthDate === 'NON' ?  {display:'none'} : { display:'',fontSize:'12px',color:'#1A5491'}}  >
+                                            <div id='name22user' style={this.state.data1.BirthDate === 'NON' || this.state.data1.BirthDate === 'Invalid date' ?  {display:'none'} : { display:'',fontSize:'12px',color:'#1A5491'}}  >
                               <span style={{fontSize:'14px'}}> <i className="fas fa-calendar-alt"></i> </span> <span style={{paddingLeft:'10px'}}  >   {this.state.data1.BirthDate} </span>
                                                    </div>
-                                                    <div id='name22user'style={ctx.value.data.experience_months === 0 ?  {display:'none'} : { display:'',fontSize:'12px'}}  >
+                                                    <div id='name22user'style={this.state.data1.experience_months <= 0 ?  {display:'none'} : { display:'',fontSize:'12px'}}  >
                                            experience months :     {this.state.data1.experience_months}
                                                    </div>
             
@@ -125,25 +125,25 @@ class Accept extends Component {
             
                                   </div>
                                   <div id='editesss' >
-                                  <div style={ctx.value.data.University === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px', fontWeight: '500',paddingRight:'15px',fontSize:'16px'}}>
+                                  <div style={this.state.data1.University === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px', fontWeight: '500',paddingRight:'15px',fontSize:'16px'}}>
                                
                                    {/* Al-Nahrain University  */}
                      <span style={{color:'#1A5491'}} > University :  </span>     {this.state.data1.University}
                                    </div>
                                    </div>
-                                  <div style={ctx.value.data.Collage === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
+                                  <div style={this.state.data1.Collage === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
                                  
                                      {/* Information and Communication Engineering   */}
-                                     <span style={{color:'#1A5491'}} > Collage :  </span>        {this.state.data1.Collage}
+                                     <span style={{color:'#1A5491'}} > College :  </span>        {this.state.data1.Collage}
                                      </div>
             
-                                     <div style={ctx.value.data.Education === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
+                                     <div style={this.state.data1.Education === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
                                         
                                      <span style={{color:'#1A5491'}} >        {this.state.data1.Education} </span>
             
                                           </div>
             
-                                    <div style={ctx.value.data.DateofGarduation === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
+                                    <div style={this.state.data1.DateofGarduation === 'NON' || this.state.data1.DateofGarduation === 'Invalid date' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
                                     <span style={{color:'#1A5491'}} >  graduation date  :  </span> {this.state.data1.DateofGarduation}
                                   </div>
             
@@ -246,7 +246,7 @@ class Accept extends Component {
             <div  style={this.state.data1.Notes === 'NON' ?  {display:'none'} : { display:'',fontSize:'14px',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                              {this.state.data1.Notes}
                                                                     </div>
-                                                                    <div  style={this.state.data1.cv === 'NON' ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
+                                                                    <div  style={this.state.data1.cv === 'NON' || this.state.data1.cv === null  ?  {display:'none'} : { display:'',color:'blue',width:'100%',paddingLeft:'15px',paddingTop:'1%',paddingBottom:'1%'}} >
                                                                     <div  style={{cursor:'pointer',zIndex:'3'}}   onClick={() => {
                                         window.open( host + this.state.data1.cv,'_blank');
                                      

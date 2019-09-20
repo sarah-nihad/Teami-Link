@@ -43,7 +43,7 @@ console.log(myParam);
        
 
         })
-        console.log(res1.data)
+        // console.log(res1.data)
       })
       .catch(err => {
         console.log('error:' + err);

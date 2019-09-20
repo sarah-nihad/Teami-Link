@@ -144,7 +144,7 @@ class Profile extends React.Component {
  <div style={{width:'100%',paddingLeft:'8px'}}>   <span style={{color:'rgb(6, 105, 210)'}} >  gender : </span> {item.gender} </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Education : </span> {item.education}   </div> 
 {/* <div style={{width:'100%',paddingLeft:'8px'}}> Car :  {`${item.car}`}  </div>  */}
-<div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Collage : </span> {item.collage}  </div> 
+<div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  College : </span> {item.collage}  </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Position : </span>{item.position}  </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} >  Time of Work : </span> {item.timeofWork}  </div> 
 <div style={{width:'100%',paddingLeft:'8px'}}>  <span style={{color:'rgb(6, 105, 210)'}} > Experience : </span> {item.experience}  </div> 

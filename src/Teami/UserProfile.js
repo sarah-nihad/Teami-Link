@@ -472,8 +472,14 @@ componentDidMount(){
     formData.append("ctiy", this.state.Cityinput);
     formData.append("Education", this.state.Education);
     formData.append("University", this.state.University);
-    formData.append("cv", this.state.cv);
-    formData.append("file", this.state.File);
+    if (this.state.cv) {
+      formData.append("cv", this.state.cv);
+    }
+  
+    if (this.state.File) {
+      formData.append("file", this.state.File);
+    }
+  
 
     formData.append("gender",this.state.gender);
     formData.append("car",this.state.car);
@@ -596,7 +602,7 @@ componentDidMount(){
                                    > 
 
                                   <div id='dd'>
-                                  <div>old password :</div>
+                                  <div>Old password :</div>
                                   <TextInput id='width'
                                     name="text-input-name"
                                     placeholder="old password" required
@@ -745,7 +751,7 @@ componentDidMount(){
                                 </div>
 
                                 <div id='dd'>
-                                  <p > Collage:</p>
+                                  <p > College:</p>
 
                           
                              <Form.Group  >
@@ -762,7 +768,7 @@ componentDidMount(){
                                 
                                                     }
                                                 }}>
-                                                <option value="Select"> Collage</option>
+                                                <option value="Select"> College</option>
 
                                                {this.CollageFun()}
                                             </Form.Control>
@@ -771,10 +777,10 @@ componentDidMount(){
                                 {!this.state.wait2 ? (
    
    <div id='dd'>
-   <div>write your Collage:</div>
+   <div>write your College:</div>
    <TextInput id='width'
      name="text-input-name"
-     placeholder="Collage"
+     placeholder="College"
      required value={this.state.Collage1} onChange={(e) => {
        this.setState({ Collage1: e.target.value })
      }} />
@@ -828,7 +834,7 @@ componentDidMount(){
                                   <FilePicker id='width'
                                     multiple
                                     onChange={files =>
-                                      this.setState({ cv: files[0], file1: files.length })
+                                      this.setState({ cv: files[0], file2: files.length })
                                     }
                                   />
 
@@ -890,7 +896,7 @@ componentDidMount(){
                       <div style={this.state.data.Collage === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>
                      
                          {/* Information and Communication Engineering   */}
-                         <span style={{color:'#1A5491'}} > Collage :  </span>        {this.state.data.Collage}
+                         <span style={{color:'#1A5491'}} > College :  </span>        {this.state.data.Collage}
                          </div>
 
                          <div style={this.state.data.Education === 'NON' ?  {display:'none'} : { display:'', width: '100%', paddingLeft: '15px'}}>

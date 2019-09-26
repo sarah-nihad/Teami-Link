@@ -472,11 +472,15 @@ componentDidMount(){
     formData.append("ctiy", this.state.Cityinput);
     formData.append("Education", this.state.Education);
     formData.append("University", this.state.University);
+
+    console.log(this.state.File);
+    
     if (this.state.cv) {
       formData.append("cv", this.state.cv);
     }
   
     if (this.state.File) {
+      console.log('this.state.File');
       formData.append("file", this.state.File);
     }
   
@@ -1346,7 +1350,7 @@ componentDidMount(){
                                              </div>
                                              </div>
                                             <div style={{ width: '100%', paddingLeft: '15px' }} >        <span style={{color:'rgb(59, 130, 81)'}} >  Subject :  </span>   
-                                            <span style={{paddingLeft:'8px'}}>     {item.subject}  </span> </div>
+                                            <span style={{paddingLeft:'8px',wordBreak:'break-all'}}>     {item.subject}  </span> </div>
                                             <div style={{ width: '100%', paddingLeft: '15px' }}  > {item.date} </div>
 
 

@@ -229,7 +229,7 @@ class Accept extends Component {
                                                          </div>
                                                          </div>
                                                         <div style={{ width: '100%', paddingLeft: '15px' }} >        <span style={{color:'rgb(59, 130, 81)'}} >  Subject :  </span>   
-                                                        <span style={{paddingLeft:'8px'}}>     {item.subject}  </span> </div>
+                                                        <span style={{paddingLeft:'8px',wordBreak:'break-all'}}>     {item.subject}  </span> </div>
                                                         <div style={{ width: '100%', paddingLeft: '15px' }}  > {item.date} </div>
             
             

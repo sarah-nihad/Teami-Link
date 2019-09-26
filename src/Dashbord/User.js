@@ -191,7 +191,7 @@ class User extends Component {
                                                          </div>
             
             
-                                                        <div style={{ width: '100%', paddingLeft: '15px' }}  >   {item.Startingwork} - {item.EndWork}  </div>
+                                                        <div style={{ width: '100%', paddingLeft: '15px' }}  >   {item.Startingwork} -  {item.EndWork}  </div>
             
             
             
@@ -220,7 +220,7 @@ class User extends Component {
                                                          </div>
                                                          </div>
                                                         <div style={{ width: '100%', paddingLeft: '15px' }} >        <span style={{color:'#1A5491'}} >  Subject :  </span>   
-                                                        <span style={{paddingLeft:'8px'}}>     {item.subject}  </span> </div>
+                                                        <span style={{paddingLeft:'8px',wordBreak:'break-all'}}>     {item.subject}  </span> </div>
                                                         <div style={{ width: '100%', paddingLeft: '15px' }}  > {item.date} </div>
             
             
